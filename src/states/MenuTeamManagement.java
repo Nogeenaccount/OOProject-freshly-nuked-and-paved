@@ -48,18 +48,18 @@ public class MenuTeamManagement extends State {
 		}
 	    }
 	}
-	JComboBox position1 = new JComboBox(playerNames);
-	JComboBox position2 = new JComboBox(playerNames);
-	JComboBox position3 = new JComboBox(playerNames);
-	JComboBox position4 = new JComboBox(playerNames);
-	JComboBox position5 = new JComboBox(playerNames);
-	JComboBox position6 = new JComboBox(playerNames);
-	JComboBox position7 = new JComboBox(playerNames);
-	JComboBox position8 = new JComboBox(playerNames);
-	JComboBox position9 = new JComboBox(playerNames);
-	JComboBox position10 = new JComboBox(playerNames);
-	JComboBox position11 = new JComboBox(playerNames);
-	JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
+	final JComboBox position1 = new JComboBox(playerNames);
+	final JComboBox position2 = new JComboBox(playerNames);
+	final JComboBox position3 = new JComboBox(playerNames);
+	final JComboBox position4 = new JComboBox(playerNames);
+	final JComboBox position5 = new JComboBox(playerNames);
+	final JComboBox position6 = new JComboBox(playerNames);
+	final JComboBox position7 = new JComboBox(playerNames);
+	final JComboBox position8 = new JComboBox(playerNames);
+	final JComboBox position9 = new JComboBox(playerNames);
+	final JComboBox position10 = new JComboBox(playerNames);
+	final JComboBox position11 = new JComboBox(playerNames);
+	final JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
 
 	//Initialise JComboBox selected //filler data
 	position1.setSelectedIndex(0);

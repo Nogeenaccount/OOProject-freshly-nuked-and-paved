@@ -63,8 +63,8 @@ public class MenuNew extends State {
 
 	//Initialise components
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	JList teamList = new JList(array1);
-	JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
+	final JList teamList = new JList(array1);
+	final JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
 
 	//Padding
 	JTextArea invisi2 = new JTextArea();
@@ -91,7 +91,7 @@ public class MenuNew extends State {
 	this.add(gameName);
 
 	//Enter your name
-	JTextField input = new JTextField();
+	final JTextField input = new JTextField();
 	input.setOpaque(true);
 	input.setPreferredSize(new Dimension(400, 40));
 	input.setMinimumSize(new Dimension(400, 40));
