@@ -51,11 +51,16 @@ public class MenuMain extends State {
 	c = new GridBagConstraints();
 
 	//Initialise Images
-	String userDir = System.getProperty("user.home");
-	String buttonNewImage = userDir + "\\Desktop\\GUIFiles\\NewGameButton.png";
-	String buttonContinueImage = userDir + "\\Desktop\\GUIFiles\\ContinueButton.png";
-	String buttonExitImage = userDir + "\\Desktop\\GUIFiles\\ExitButton.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+//	String userDir = System.getProperty("user.home");
+//	String buttonNewImage = userDir + "\\Desktop\\GUIFiles\\NewGameButton.png";
+//	String buttonContinueImage = userDir + "\\Desktop\\GUIFiles\\ContinueButton.png";
+//	String buttonExitImage = userDir + "\\Desktop\\GUIFiles\\ExitButton.png";
+//	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+        
+	String buttonNewImage = "GUIFiles\\NewGameButton.png";
+	String buttonContinueImage = "GUIFiles\\ContinueButton.png";
+	String buttonExitImage = "GUIFiles\\ExitButton.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	JTextArea invisi2 = new JTextArea();
 	c.weightx = 0.5;

@@ -31,12 +31,12 @@ public class MenuTeamManagement extends State {
 
 	//Initialise Images
 	String userDir = System.getProperty("user.home");
-	String buttonBackImage = userDir + "\\Desktop\\GUIFiles\\buttonBack4.png";
-	String promptFImage = userDir + "\\Desktop\\GUIFiles\\PromptF.png";
-	String promptMImage = userDir + "\\Desktop\\GUIFiles\\PromptM.png";
-	String promptDImage = userDir + "\\Desktop\\GUIFiles\\PromptD.png";
-	String promptGImage = userDir + "\\Desktop\\GUIFiles\\PromptG.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String buttonBackImage = "GUIFiles\\buttonBack4.png";
+	String promptFImage = "GUIFiles\\PromptF.png";
+	String promptMImage = "GUIFiles\\PromptM.png";
+	String promptDImage = "GUIFiles\\PromptD.png";
+	String promptGImage = "GUIFiles\\PromptG.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	//Initialise JComboBoxes
 	String[] playerNames = null;

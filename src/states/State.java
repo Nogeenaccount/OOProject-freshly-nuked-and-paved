@@ -38,7 +38,7 @@ public abstract class State extends JPanel {
 	this.add(button);
     }
 
-    protected void attachStateChanger(JButton button, State newState) {
+    protected void attachStateChanger(JButton button, final State newState) {
 	button.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {

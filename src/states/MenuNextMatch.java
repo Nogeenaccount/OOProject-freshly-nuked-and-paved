@@ -33,9 +33,9 @@ public class MenuNextMatch extends State {
 
 	//Initialise Images
 	String userDir = System.getProperty("user.home");
-	String buttonAdvanceImage = userDir + "\\Desktop\\GUIFiles\\buttonNMAdvance.png";
-	String buttonBackImage = userDir + "\\Desktop\\GUIFiles\\buttonNMBack.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String buttonAdvanceImage = "GUIFiles\\buttonNMAdvance.png";
+	String buttonBackImage = "GUIFiles\\buttonNMBack.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	//Next matches table Initialise
 	String[] array2 = new String[20];

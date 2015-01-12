@@ -31,9 +31,9 @@ public class MenuMatchScreen extends State {
 
 	//Initialise Images
 	String userDir = System.getProperty("user.home");
-	String labelImage = userDir + "\\Desktop\\GUIFiles\\labelNR.png";
-	String buttonNRAdvanceImage = userDir + "\\Desktop\\GUIFiles\\buttonNRAdvance.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String labelImage = "GUIFiles\\labelNR.png";
+	String buttonNRAdvanceImage = "GUIFiles\\buttonNRAdvance.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	//Prompt Matches
 	JLabel progress = new JLabel(new ImageIcon(labelImage));
