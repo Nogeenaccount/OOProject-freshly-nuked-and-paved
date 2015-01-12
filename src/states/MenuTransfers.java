@@ -53,21 +53,21 @@ public class MenuTransfers extends State {
 	System.out.println("Initialise Offers: use filler data");
 	String[] array2 = {"hey", "bye"};
 	//Eventually empty alreadyTried and alreadyTried if next match takes place
-	ArrayList<String> playerArray = new ArrayList();
+	final ArrayList<String> playerArray = new ArrayList();
 	String[] buyOrSell = {"Buy", "Sell"};
-	ArrayList<String> alreadyTried = new ArrayList();
+	final ArrayList<String> alreadyTried = new ArrayList();
 
 	//Initialise Components
-	JTextField teamPrompt = new JTextField();
-	JList playerList = new JList();
-	JTextField playerPrompt = new JTextField();
-	JTextField attemptPricePrompt = new JTextField();
-	JList buyOrSellList = new JList(buyOrSell);
-	JList teamList = new JList(array1);
-	JTextField attemptPrice = new JTextField();
-	JButton buttonAttempt = new JButton(new ImageIcon(buttonAttemptImage));
-	JList offerList = new JList(array2);
-	JButton offerAccept = new JButton(new ImageIcon(buttonOfferAcceptImage));
+	final JTextField teamPrompt = new JTextField();
+	final JList playerList = new JList();
+	final JTextField playerPrompt = new JTextField();
+	final JTextField attemptPricePrompt = new JTextField();
+	final JList buyOrSellList = new JList(buyOrSell);
+	final JList teamList = new JList(array1);
+	final JTextField attemptPrice = new JTextField();
+	final JButton buttonAttempt = new JButton(new ImageIcon(buttonAttemptImage));
+	final JList offerList = new JList(array2);
+	final JButton offerAccept = new JButton(new ImageIcon(buttonOfferAcceptImage));
 
 	//Prompt Budget
 	int yourBudget = 0;
