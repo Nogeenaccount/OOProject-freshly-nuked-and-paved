@@ -160,6 +160,93 @@ public class Team {
 	return true;
     }
 
+	/**
+	 * getDefaultLineUp: returns default optimal lineUp from team this
+	 * @return LineUp
+	 */
+	public LineUp getDefaultLineUp(){
+		LineUp l = new LineUp();
+		ArrayList<Player> aanvallers = new ArrayList<>();
+		ArrayList<Player> middenvelders = new ArrayList<>();
+		ArrayList<Player> verdedigers = new ArrayList<>();
+		ArrayList<Player> keepers = new ArrayList<>();
+		
+		// "geblesseerde spelers niet in lineup" nog niet geimplementeerd
+		for (int i =0; i<this.players.size(); i++){
+			switch (this.players.get(i).getPosition()){
+				case "GK" : keepers.add(this.players.get(i)); break;
+				case "MF" : middenvelders.add(this.players.get(i)); break;
+				case "AT" : aanvallers.add(this.players.get(i)); break;
+				case "DF" : verdedigers.add(this.players.get(i)); break; 
+			}
+		}
+		
+		
+		// eliminatie van mindere keepers
+		int toBeEliminated = 0;
+		int lowestStats = 1000000;
+		do {
+			for (int p = 0; p<keepers.size(); p++){
+			
+				if (keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance() < lowestStats) {
+					toBeEliminated = p;
+					lowestStats = keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance();
+				}
+			}
+			keepers.remove(toBeEliminated);
+		} while(keepers.size()>1);
+		
+		// eliminatie van mindere verdedigers
+		toBeEliminated = 0;
+		lowestStats = 100000;
+		do {
+			for (int p = 0; p<verdedigers.size(); p++){
+			
+				if (verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance() < lowestStats) {
+					toBeEliminated = p;
+					lowestStats = verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance();
+				}
+			}
+			verdedigers.remove(toBeEliminated);
+		} while(verdedigers.size()>4);
+		
+		// eliminatie van mindere middenvelders
+		toBeEliminated = 0;
+		lowestStats = 100000;
+		do {
+			for (int p = 0; p<middenvelders.size(); p++){
+			
+				if (middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance() < lowestStats) {
+					toBeEliminated = p;
+					lowestStats = middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance();
+				}
+			}
+			middenvelders.remove(toBeEliminated);
+		} while(middenvelders.size()>3);
+
+		// eliminatie van mindere aanvallers
+		toBeEliminated = 0;
+		lowestStats = 100000;
+		do {
+			for (int p = 0; p<aanvallers.size(); p++){
+			
+				if (aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance() < lowestStats) {
+					toBeEliminated = p;
+					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
+				}
+			}
+			aanvallers.remove(toBeEliminated);
+		} while(aanvallers.size()>3);
+		
+		
+		l.setAanvallers(aanvallers);
+		l.setMiddenvelders(middenvelders);
+		l.setVerdedigers(verdedigers);
+		l.setKeeper(keepers.get(0));
+		
+		return l;
+	}
+
 	// transfers player x from team y to team this
     // getters/setters
     public String getTeamName() {
