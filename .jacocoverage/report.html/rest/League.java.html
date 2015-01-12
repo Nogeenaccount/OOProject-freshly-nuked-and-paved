@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>League.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">rest</a> &gt; <span class="el_source">League.java</span></div><h1>League.java</h1><pre class="source lang-java linenums">package rest;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class League {
+
+    private String leagueName;
+    private int rounds;
+    private ArrayList&lt;Team&gt; teams;
+    //NEW Attributes
+    private String gameName;
+    private String chosenTeam;
+
+<span class="fc" id="L30">    public League(String name, int rounds, String gameName, String chosenTeam) {</span>
+<span class="fc" id="L31">	leagueName = name;</span>
+<span class="fc" id="L32">	this.rounds = rounds;</span>
+<span class="fc" id="L33">	teams = new ArrayList&lt;Team&gt;();</span>
+	//NEW Constructing
+<span class="fc" id="L35">	this.gameName = gameName;</span>
+<span class="fc" id="L36">	this.chosenTeam = chosenTeam;</span>
+<span class="fc" id="L37">    }</span>
+
+    public void add(Team team) {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">	if (!teams.contains(team)) {</span>
+<span class="nc" id="L41">	    teams.add(team);</span>
+	}
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * readResources: reads data out of resource XML file
+     *
+     * @param filename name of to-be-read file
+     * @return League league
+     */
+    public static League readResources(String fileName) {
+	try {
+<span class="fc" id="L53">	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L54">	    DocumentBuilder db = dbf.newDocumentBuilder();</span>
+<span class="fc" id="L55">	    Document doc = db.parse(new File(fileName));</span>
+<span class="fc" id="L56">	    doc.getDocumentElement().normalize();</span>
+<span class="fc" id="L57">	    NodeList leagueList = doc.getElementsByTagName(&quot;league&quot;);</span>
+<span class="fc" id="L58">	    Node lNode = leagueList.item(0);</span>
+<span class="fc" id="L59">	    Element lElement = (Element) lNode;</span>
+
+	    //NEW Get attributes
+<span class="fc" id="L62">	    String leagueName = lElement.getAttribute(&quot;name&quot;);</span>
+<span class="fc" id="L63">	    int rounds = Integer.parseInt(lElement.getElementsByTagName(&quot;matchesLeft&quot;).item(0).getTextContent());</span>
+<span class="fc" id="L64">	    String gameName = lElement.getElementsByTagName(&quot;gameName&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L65">	    String chosenTeam = lElement.getElementsByTagName(&quot;chosenTeam&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L66">	    League league = new League(leagueName, rounds, gameName, chosenTeam);</span>
+
+<span class="fc" id="L68">	    NodeList teamList = doc.getElementsByTagName(&quot;team&quot;);</span>
+<span class="fc" id="L69">	    NodeList playerlistxml = doc.getElementsByTagName(&quot;player&quot;);</span>
+	    // predefine variables
+	    Node tNode;
+	    Element tElement;
+	    String teamName;
+	    String stadiumName;
+	    int budget;
+	    Team team;
+	    Node pNode;
+	    Element pElement;
+	    String playerName;
+	    int number;
+	    int price;
+	    int end;
+	    int off;
+	    int def;
+	    String pos;
+	    Player player;
+	    int cc;
+	    int inj;
+<span class="fc" id="L89">	    int c = 0;</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">	    for (int i = 0; i &lt; teamList.getLength(); i++) {</span>
+<span class="nc" id="L91">		tNode = teamList.item(i);</span>
+<span class="nc" id="L92">		tElement = (Element) tNode;</span>
+<span class="nc" id="L93">		teamName = tElement.getAttribute(&quot;name&quot;);</span>
+<span class="nc" id="L94">		stadiumName = tElement.getElementsByTagName(&quot;stadiumName&quot;).item(0).getTextContent();</span>
+<span class="nc" id="L95">		budget = Integer.parseInt(tElement.getElementsByTagName(&quot;budget&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L96">		team = new Team(teamName, stadiumName, budget);</span>
+<span class="nc" id="L97">		int j = tElement.getElementsByTagName(&quot;player&quot;).getLength();</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		for (int p = c; p &lt; (c + j); p++) {</span>
+<span class="nc" id="L99">		    pNode = playerlistxml.item(p);</span>
+<span class="nc" id="L100">		    pElement = (Element) pNode;</span>
+<span class="nc" id="L101">		    playerName = pElement.getAttribute(&quot;name&quot;);</span>
+<span class="nc" id="L102">		    number = Integer.parseInt(pElement.getElementsByTagName(&quot;shirtNumber&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L103">		    price = Integer.parseInt(pElement.getElementsByTagName(&quot;price&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L104">		    end = Integer.parseInt(pElement.getElementsByTagName(&quot;endurance&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L105">		    off = Integer.parseInt(pElement.getElementsByTagName(&quot;offence&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L106">		    def = Integer.parseInt(pElement.getElementsByTagName(&quot;defence&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L107">		    pos = pElement.getElementsByTagName(&quot;pos&quot;).item(0).getTextContent();</span>
+<span class="nc" id="L108">		    cc = Integer.parseInt(pElement.getElementsByTagName(&quot;cardCount&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L109">		    inj = Integer.parseInt(pElement.getElementsByTagName(&quot;injured&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L110">		    player = new Player(playerName, number, price, end, off, def, pos, cc, inj);</span>
+<span class="nc" id="L111">		    team.add(player);</span>
+		}
+
+<span class="nc" id="L114">		c += j;</span>
+
+<span class="nc" id="L116">		league.add(team);</span>
+
+	    }
+<span class="fc" id="L119">	    System.out.println(&quot;Read file: &quot; + fileName);</span>
+<span class="fc" id="L120">	    return league;</span>
+<span class="nc" id="L121">	} catch (Exception e) {</span>
+<span class="nc" id="L122">	    e.printStackTrace();</span>
+
+	}
+<span class="nc" id="L125">	return new League(&quot;&quot;, 0, &quot;&quot;, &quot;&quot;);</span>
+    }
+
+    /**
+     * toString: turns League into a printable String
+     *
+     * @return String
+     */
+    public String toString() {
+	//NOT Changed for newest attributes
+<span class="nc" id="L135">	String str = &quot;&lt;League(&quot;;</span>
+<span class="nc" id="L136">	str += leagueName + &quot;, &quot; + rounds + &quot;, &quot;;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">	for (int i = 0; i &lt; teams.size(); i++) {</span>
+<span class="nc" id="L138">	    str += teams.get(i).toString();</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">	    if (i &lt; teams.size() - 1) {</span>
+<span class="nc" id="L140">		str += &quot;, &quot;;</span>
+	    }
+	}
+<span class="nc" id="L143">	str += &quot;)&gt;&quot;;</span>
+<span class="nc" id="L144">	return str;</span>
+
+    }
+
+    // getters/setters
+    public String getLeagueName() {
+<span class="fc" id="L150">	return leagueName;</span>
+    }
+
+    public void setLeagueName(String leaguename) {
+<span class="fc" id="L154">	this.leagueName = leaguename;</span>
+<span class="fc" id="L155">    }</span>
+
+    public int getRounds() {
+<span class="fc" id="L158">	return rounds;</span>
+    }
+
+    public void setRounds(int rounds) {
+<span class="fc" id="L162">	this.rounds = rounds;</span>
+<span class="fc" id="L163">    }</span>
+
+    public ArrayList&lt;Team&gt; getTeams() {
+<span class="fc" id="L166">	return teams;</span>
+    }
+
+    public void setTeams(ArrayList&lt;Team&gt; teams) {
+<span class="nc" id="L170">	this.teams = teams;</span>
+<span class="nc" id="L171">    }</span>
+
+    //NEW Getters &amp; setters
+    public String getGameName() {
+<span class="fc" id="L175">	return gameName;</span>
+    }
+
+    public void setGameName(String gameName) {
+<span class="fc" id="L179">	this.gameName = gameName;</span>
+<span class="fc" id="L180">    }</span>
+
+    public String getChosenTeam() {
+<span class="fc" id="L183">	return chosenTeam;</span>
+    }
+
+    public void setChosenTeam(String chosenTeam) {
+<span class="fc" id="L187">	this.chosenTeam = chosenTeam;</span>
+<span class="fc" id="L188">    }</span>
+
+    public void writeToXML(String filePath) {
+
+<span class="fc" id="L192">	DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();</span>
+	DocumentBuilder docBuilder;
+	try {
+<span class="fc" id="L195">	    docBuilder = docFactory.newDocumentBuilder();</span>
+
+	    //root element Barclays premier league
+<span class="fc" id="L198">	    Document doc = docBuilder.newDocument();</span>
+<span class="fc" id="L199">	    Element rootElement = doc.createElement(&quot;league&quot;);</span>
+<span class="fc" id="L200">	    doc.appendChild(rootElement);</span>
+<span class="fc" id="L201">	    Attr attribute = doc.createAttribute(&quot;name&quot;);</span>
+<span class="fc" id="L202">	    attribute.setValue(this.getLeagueName());</span>
+<span class="fc" id="L203">	    rootElement.setAttributeNode(attribute);</span>
+
+	    //Element matchesLeft instead of rounds
+<span class="fc" id="L206">	    Element rounds = doc.createElement(&quot;matchesLeft&quot;);</span>
+<span class="fc" id="L207">	    rounds.appendChild(doc.createTextNode(Integer.toString(this.getRounds())));</span>
+<span class="fc" id="L208">	    rootElement.appendChild(rounds);</span>
+
+	    //NEW Element gameName &amp; chosenTeam
+<span class="fc" id="L211">	    Element gameName = doc.createElement(&quot;gameName&quot;);</span>
+<span class="fc" id="L212">	    gameName.appendChild(doc.createTextNode(this.getGameName()));</span>
+<span class="fc" id="L213">	    rootElement.appendChild(gameName);</span>
+
+<span class="fc" id="L215">	    Element chosenTeam = doc.createElement(&quot;chosenTeam&quot;);</span>
+<span class="fc" id="L216">	    chosenTeam.appendChild(doc.createTextNode(this.getChosenTeam()));</span>
+<span class="fc" id="L217">	    rootElement.appendChild(chosenTeam);</span>
+
+	    //Element Teams
+<span class="pc bpc" id="L220" title="1 of 2 branches missed.">	    for (int i = 0; i &lt; this.teams.size(); i++) {</span>
+<span class="nc" id="L221">		Element team = doc.createElement(&quot;team&quot;);</span>
+<span class="nc" id="L222">		Attr name = doc.createAttribute(&quot;name&quot;);</span>
+<span class="nc" id="L223">		name.setValue(teams.get(i).getTeamName());</span>
+<span class="nc" id="L224">		team.setAttributeNode(name);</span>
+<span class="nc" id="L225">		rootElement.appendChild(team);</span>
+
+<span class="nc" id="L227">		Element Stadium = doc.createElement(&quot;stadiumName&quot;);</span>
+<span class="nc" id="L228">		Stadium.appendChild(doc.createTextNode(teams.get(i).getStadiumName()));</span>
+<span class="nc" id="L229">		team.appendChild(Stadium);</span>
+
+<span class="nc" id="L231">		Element win = doc.createElement(&quot;winStreak&quot;);</span>
+<span class="nc" id="L232">		win.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getWinStreak())));</span>
+<span class="nc" id="L233">		team.appendChild(win);</span>
+
+<span class="nc" id="L235">		Element budget = doc.createElement(&quot;budget&quot;);</span>
+<span class="nc" id="L236">		budget.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getBudget())));</span>
+<span class="nc" id="L237">		team.appendChild(budget);</span>
+
+<span class="nc" id="L239">		Element leagueScore = doc.createElement(&quot;leagueScore&quot;);</span>
+<span class="nc" id="L240">		leagueScore.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getLeagueScore())));</span>
+<span class="nc" id="L241">		team.appendChild(leagueScore);</span>
+
+<span class="nc" id="L243">		Element played = doc.createElement(&quot;played&quot;);</span>
+<span class="nc" id="L244">		played.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayed())));</span>
+<span class="nc" id="L245">		team.appendChild(played);</span>
+
+<span class="nc" id="L247">		Element wins = doc.createElement(&quot;wins&quot;);</span>
+<span class="nc" id="L248">		wins.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getWins())));</span>
+<span class="nc" id="L249">		team.appendChild(wins);</span>
+
+<span class="nc" id="L251">		Element draws = doc.createElement(&quot;draws&quot;);</span>
+<span class="nc" id="L252">		draws.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getDraws())));</span>
+<span class="nc" id="L253">		team.appendChild(draws);</span>
+
+<span class="nc" id="L255">		Element losses = doc.createElement(&quot;losses&quot;);</span>
+<span class="nc" id="L256">		losses.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getLosses())));</span>
+<span class="nc" id="L257">		team.appendChild(losses);</span>
+
+<span class="nc" id="L259">		Element goalsMade = doc.createElement(&quot;goalsMade&quot;);</span>
+<span class="nc" id="L260">		goalsMade.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getGoalsMade())));</span>
+<span class="nc" id="L261">		team.appendChild(goalsMade);</span>
+
+<span class="nc" id="L263">		Element goalsAgainst = doc.createElement(&quot;goalsAgainst&quot;);</span>
+<span class="nc" id="L264">		goalsAgainst.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getGoalsAgainst())));</span>
+<span class="nc" id="L265">		team.appendChild(goalsAgainst);</span>
+
+<span class="nc" id="L267">		Element goalDifference = doc.createElement(&quot;goalsDifference&quot;);</span>
+<span class="nc" id="L268">		goalDifference.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getGoalDifference())));</span>
+<span class="nc" id="L269">		team.appendChild(goalDifference);</span>
+
+		//Element players
+<span class="nc bnc" id="L272" title="All 2 branches missed.">		for (int j = 0; j &lt; teams.get(i).getPlayers().size(); j++) {</span>
+<span class="nc" id="L273">		    Element player = doc.createElement(&quot;player&quot;);</span>
+<span class="nc" id="L274">		    Attr namee = doc.createAttribute(&quot;name&quot;);</span>
+<span class="nc" id="L275">		    namee.setValue(teams.get(i).getPlayers().get(j).getPlayerName());</span>
+<span class="nc" id="L276">		    player.setAttributeNode(namee);</span>
+<span class="nc" id="L277">		    team.appendChild(player);</span>
+
+		    // player attributes
+<span class="nc" id="L280">		    Element position = doc.createElement(&quot;pos&quot;);</span>
+<span class="nc" id="L281">		    position.appendChild(doc.createTextNode(teams.get(i).getPlayers().get(j).getPosition()));</span>
+<span class="nc" id="L282">		    player.appendChild(position);</span>
+
+<span class="nc" id="L284">		    Element offence = doc.createElement(&quot;offence&quot;);</span>
+<span class="nc" id="L285">		    offence.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayers().get(j).getOffence())));</span>
+<span class="nc" id="L286">		    player.appendChild(offence);</span>
+
+<span class="nc" id="L288">		    Element defence = doc.createElement(&quot;defence&quot;);</span>
+<span class="nc" id="L289">		    defence.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayers().get(j).getDefence())));</span>
+<span class="nc" id="L290">		    player.appendChild(defence);</span>
+
+<span class="nc" id="L292">		    Element endurance = doc.createElement(&quot;endurance&quot;);</span>
+<span class="nc" id="L293">		    endurance.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayers().get(j).getEndurance())));</span>
+<span class="nc" id="L294">		    player.appendChild(endurance);</span>
+
+<span class="nc" id="L296">		    Element cardCount = doc.createElement(&quot;cardCount&quot;);</span>
+<span class="nc" id="L297">		    cardCount.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayers().get(j).getCardCount())));</span>
+<span class="nc" id="L298">		    player.appendChild(cardCount);</span>
+
+<span class="nc" id="L300">		    Element injured = doc.createElement(&quot;injured&quot;);</span>
+<span class="nc" id="L301">		    injured.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayers().get(j).getInjured())));</span>
+<span class="nc" id="L302">		    player.appendChild(injured);</span>
+
+<span class="nc" id="L304">		    Element shirtNumber = doc.createElement(&quot;shirtNumber&quot;);</span>
+<span class="nc" id="L305">		    shirtNumber.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayers().get(j).getShirtNumber())));</span>
+<span class="nc" id="L306">		    player.appendChild(shirtNumber);</span>
+
+<span class="nc" id="L308">		    Element price = doc.createElement(&quot;price&quot;);</span>
+<span class="nc" id="L309">		    price.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getPlayers().get(j).getPrice())));</span>
+<span class="nc" id="L310">		    player.appendChild(price);</span>
+		}
+	    }
+	    // write the content into xml file
+<span class="fc" id="L314">	    TransformerFactory transformerFactory = TransformerFactory.newInstance();</span>
+<span class="fc" id="L315">	    Transformer transformer = transformerFactory.newTransformer();</span>
+<span class="fc" id="L316">	    DOMSource source = new DOMSource(doc);</span>
+<span class="fc" id="L317">	    StreamResult result = new StreamResult(new File(filePath));</span>
+
+	    // Output to console for testing
+	    // StreamResult result = new StreamResult(System.out);
+<span class="fc" id="L321">	    transformer.transform(source, result);</span>
+
+<span class="fc" id="L323">	    System.out.println(&quot;Save file: &quot; + filePath);</span>
+
+<span class="nc" id="L325">	} catch (ParserConfigurationException | TransformerException e) {</span>
+	    // TODO Auto-generated catch block
+<span class="nc" id="L327">	    e.printStackTrace();</span>
+<span class="fc" id="L328">	}</span>
+
+<span class="fc" id="L330">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

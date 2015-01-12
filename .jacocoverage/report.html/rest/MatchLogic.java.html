@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MatchLogic.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">rest</a> &gt; <span class="el_source">MatchLogic.java</span></div><h1>MatchLogic.java</h1><pre class="source lang-java linenums">package rest;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+
+
+public class MatchLogic extends Thread{
+	
+	private int tCurrent;
+	private final int tMax;
+	private int score1;
+	private int score2;
+	private Team team1;
+	private Team team2;	
+	private JLabel text;
+	private JLabel updateText;
+	private JProgressBar pBar;
+	private JButton button;
+	
+	private double t1Offence;
+	private double t1Defence;
+	private double t1Endurance;
+
+	private double t2Offence;
+	private double t2Defence;
+	private double t2Endurance;
+
+	/**
+	 * matchLogic: constructor
+	 * @param t amount of time
+	 * @param t1 team one
+	 * @param t2 team two
+	 * @param txt html text
+	 * @param bar loading bar
+	 */
+<span class="nc" id="L37">	public MatchLogic(int t, Team t1, Team t2, JLabel txt, JLabel updateTxt, JProgressBar bar, JButton bt){</span>
+<span class="nc" id="L38">		tCurrent = 0;</span>
+<span class="nc" id="L39">		tMax = t;</span>
+<span class="nc" id="L40">		team1 = t1;</span>
+<span class="nc" id="L41">		team2 = t2;</span>
+<span class="nc" id="L42">		score1 = 0;</span>
+<span class="nc" id="L43">		score2 = 0;</span>
+		
+<span class="nc" id="L45">		text = txt;</span>
+<span class="nc" id="L46">		updateText = updateTxt;</span>
+<span class="nc" id="L47">		pBar = bar;</span>
+		
+<span class="nc" id="L49">		button = bt;</span>
+		
+/*		t1Offence =  offenceSum(t1);
+		t1Defence = defenceSum(t1);
+		t1Endurance = enduranceSum(t1);
+
+		t2Offence = offenceSum(t2);
+		t2Defence = defenceSum(t2);
+		t2Endurance = enduranceSum(t2);*/
+<span class="nc" id="L58">	}</span>
+	
+	/**
+	 * scored: return 1 or 0 depending on chance of scoring of the team
+	 * @param O1
+	 * @param D2
+	 * @param E1
+	 * @param E2
+	 * @param t
+	 * @return
+	 */
+	public int scored(double O1, double D2, double E1, double E2, double t) {
+		double P;
+<span class="nc" id="L71">		double a = 5;</span>
+<span class="nc" id="L72">		double b = 0.00015;</span>
+<span class="nc" id="L73">		P = (O1 - D2/2)*Math.pow((E1/E2),(t/a))*b;</span>
+		
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		if (Math.random() &lt; P)</span>
+<span class="nc" id="L76">			return 1;</span>
+		else
+<span class="nc" id="L78">			return 0;</span>
+	}
+	
+	/**
+	 * run: new Thread
+	 */
+	public void run(){
+		
+<span class="nc" id="L86">		String html1 = &quot;&quot;;</span>
+<span class="nc" id="L87">		String html2 = &quot;&quot;;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">		while (tCurrent&lt;=90){</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">			if (scored(t1Offence, t2Defence, t1Endurance, t2Endurance, tCurrent) == 1) {</span>
+<span class="nc" id="L90">				score1++;</span>
+			
+			
+			};
+<span class="nc bnc" id="L94" title="All 2 branches missed.">			if (scored(t2Offence, t1Defence, t2Endurance, t1Endurance, tCurrent) == 1) {</span>
+<span class="nc" id="L95">				score2++;</span>
+				
+			};
+			
+<span class="nc" id="L99">			pBar.setValue(tCurrent);		</span>
+<span class="nc" id="L100">			html1 = team1.getTeamName() + &quot; &quot; + score1 +&quot;-&quot;+ score2 + &quot; &quot; + team2.getTeamName() + &quot;&lt;br&gt;&quot; + tCurrent + &quot;'&lt;br&gt;&quot;;</span>
+<span class="nc" id="L101">			text.setText(&quot;&lt;html&gt;&quot;+html1+&quot;&lt;/html&gt;&quot;);</span>
+			
+<span class="nc bnc" id="L103" title="All 2 branches missed.">			if (tCurrent%10 == 0)</span>
+<span class="nc" id="L104">				html2 += &quot;update&quot;+(tCurrent/10+1)+&quot;&lt;br&gt;&quot;;</span>
+<span class="nc" id="L105">			updateText.setText(&quot;&lt;html&gt;&lt;body&gt;&lt;p&gt;&quot;+html2+&quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;);			</span>
+			
+<span class="nc" id="L107">			tCurrent += 90/tMax;</span>
+			
+<span class="nc bnc" id="L109" title="All 2 branches missed.">			if (tCurrent == tMax) {</span>
+<span class="nc" id="L110">				button.setEnabled(true);</span>
+<span class="nc" id="L111">				button.setVisible(true);</span>
+			}
+			
+			try {
+<span class="nc" id="L115">				java.lang.Thread.sleep(150);</span>
+<span class="nc" id="L116">			} catch (InterruptedException e) {</span>
+<span class="nc" id="L117">				e.printStackTrace();</span>
+<span class="nc" id="L118">			}</span>
+		}
+<span class="nc" id="L120">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

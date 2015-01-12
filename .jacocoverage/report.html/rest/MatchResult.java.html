@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MatchResult.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">rest</a> &gt; <span class="el_source">MatchResult.java</span></div><h1>MatchResult.java</h1><pre class="source lang-java linenums">package rest;
+<span class="nc" id="L2">public class MatchResult {</span>
+	/**
+	 * offenceSum: returns the sum of offence in lineUp
+	 * @param t
+	 * @return S
+	 */
+	public static double offenceSum(Team t){
+<span class="fc" id="L9">		double S = 0;</span>
+<span class="fc bfc" id="L10" title="All 2 branches covered.">		for (int i=0; i&lt;t.getLineUp().getAanvallers().size(); i++){</span>
+<span class="fc" id="L11">			S += t.getLineUp().getAanvallers().get(i).getOffence();</span>
+		}
+<span class="fc bfc" id="L13" title="All 2 branches covered.">		for (int i=0; i&lt;t.getLineUp().getMiddenvelders().size(); i++){</span>
+<span class="fc" id="L14">			S += ( t.getLineUp().getMiddenvelders().get(i).getOffence() )/2;</span>
+		}
+		
+<span class="fc" id="L17">		return S;</span>
+	}
+	
+	/**
+	 * defenceSum: returns the sum of defence in lineUp
+	 * @param t
+	 * @return S
+	 */
+	public static double defenceSum(Team t){
+<span class="fc" id="L26">		double S = 0;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">		for (int i=0; i&lt;t.getLineUp().getVerdedigers().size(); i++){</span>
+<span class="fc" id="L28">			S += t.getLineUp().getVerdedigers().get(i).getDefence();</span>
+		}
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		for (int i=0; i&lt;t.getLineUp().getMiddenvelders().size(); i++){</span>
+<span class="fc" id="L31">			S += ( t.getLineUp().getMiddenvelders().get(i).getDefence() )/2;</span>
+		}
+<span class="fc" id="L33">		S += t.getLineUp().getKeeper().getDefence(); </span>
+		
+<span class="fc" id="L35">		return S;</span>
+	}
+
+	/**
+	 * enduranceSum: returns the sum of endurance in lineUp
+	 * @param t
+	 * @return S
+	 */
+	public static double enduranceSum(Team t){
+<span class="fc" id="L44">		double S = 0;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		for (int i=0; i&lt;t.getLineUp().getAanvallers().size(); i++){</span>
+<span class="fc" id="L46">			S += t.getLineUp().getAanvallers().get(i).getEndurance();</span>
+		}
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		for (int i=0; i&lt;t.getLineUp().getVerdedigers().size(); i++){</span>
+<span class="fc" id="L49">			S += t.getLineUp().getVerdedigers().get(i).getEndurance();</span>
+		}
+<span class="fc bfc" id="L51" title="All 2 branches covered.">		for (int i=0; i&lt;t.getLineUp().getMiddenvelders().size(); i++){</span>
+<span class="fc" id="L52">			S += t.getLineUp().getMiddenvelders().get(i).getEndurance();</span>
+		}
+<span class="fc" id="L54">		S += t.getLineUp().getKeeper().getEndurance(); </span>
+		
+<span class="fc" id="L56">		return S;</span>
+	}
+
+	/**
+	 * scored: return 1 or 0 depending on chance of scoring of the team
+	 * @param O1 off
+	 * @param D2 def
+	 * @param E1 end
+	 * @param E2 end
+	 * @param t time
+	 * @return
+	 */
+	public static int scored(double O1, double D2, double E1, double E2, double t) {
+		double P;
+<span class="nc" id="L70">		double a = 20;</span>
+<span class="nc" id="L71">		double b = 0.0002;</span>
+<span class="nc" id="L72">		P = (O1 - D2/2)*Math.pow((E1/E2),(t/a))*b;</span>
+		
+<span class="nc bnc" id="L74" title="All 2 branches missed.">		if (Math.random() &lt; P)</span>
+<span class="nc" id="L75">			return 1;</span>
+		else
+<span class="nc" id="L77">			return 0;</span>
+	}
+
+	public static String getResult(Team t1, Team t2, int time){
+<span class="nc" id="L81">		int t1Result = 0;</span>
+<span class="nc" id="L82">		int t2Result = 0;</span>
+		
+<span class="nc bnc" id="L84" title="All 2 branches missed.">		for (int i = 0; i&lt;time; i++){</span>
+<span class="nc" id="L85">			t1Result += scored(offenceSum(t1),defenceSum(t2),enduranceSum(t1),enduranceSum(t2),time);</span>
+<span class="nc" id="L86">			t2Result += scored(offenceSum(t2),defenceSum(t1),enduranceSum(t2),enduranceSum(t1),time);</span>
+		}
+		
+<span class="nc" id="L89">		String str = t1Result + &quot; - &quot; + t2Result;</span>
+		
+<span class="nc" id="L91">		return str;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

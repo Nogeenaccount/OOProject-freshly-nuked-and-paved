@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>TournamentOverview.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">states</a> &gt; <span class="el_source">TournamentOverview.java</span></div><h1>TournamentOverview.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package states;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.SpringLayout.Constraints;
+
+/**
+ *
+ * @author user
+ */
+public class TournamentOverview extends State {
+
+<span class="nc" id="L20">    String[] columns = {&quot;Team&quot;,</span>
+	&quot;Points&quot;,
+	&quot;Won&quot;,
+	&quot;Draw&quot;,
+	&quot;Lost&quot;,
+	&quot;Goals&quot;};
+
+<span class="nc" id="L27">    public TournamentOverview() {</span>
+
+<span class="nc" id="L29">    }</span>
+
+    public void createGUI() {
+<span class="nc" id="L32">	JTable table = new JTable(getTeamData(), columns);</span>
+<span class="nc" id="L33">	table.setSize(800, 300);</span>
+<span class="nc" id="L34">	System.out.println(table.getSize());</span>
+
+	/*JButton startButton = new JButton(&quot;Back&quot;);
+	 layout = new GridBagLayout();
+	 this.setLayout(layout);
+	 c = new GridBagConstraints();
+	 c.weightx = 0.5;
+	 c.gridx = 0;
+	 c.gridy = 0;
+	 createButton(startButton, &quot;back&quot;, c, layout);*/
+<span class="nc" id="L44">	add(table);</span>
+<span class="nc" id="L45">    }</span>
+
+    public Object[][] getTeamData() {
+<span class="nc" id="L48">	Object[][] teamData = {</span>
+<span class="nc" id="L49">	    {&quot;Ajax&quot;, 12, 4, 0, 0, &quot;7 (12-5)&quot;},</span>
+<span class="nc" id="L50">	    {&quot;SC Heerenveen&quot;, 10, 3, 1, 0, &quot;5 (9-4)&quot;},</span>
+<span class="nc" id="L51">	    {&quot;PSV&quot;, 7, 2, 1, 1, &quot;3 (4-1)&quot;},</span>
+<span class="nc" id="L52">	    {&quot;FC bal op het dak&quot;, 5, 1, 2, 1, &quot;0 (5-5)&quot;},</span>
+<span class="nc" id="L53">	    {&quot;Feyenoord&quot;, -6, 0, 0, 6, &quot;-12 (12-24)&quot;}</span>
+	};
+
+<span class="nc" id="L56">	return teamData;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MenuMatchScreen.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">states</a> &gt; <span class="el_source">MenuMatchScreen.java</span></div><h1>MenuMatchScreen.java</h1><pre class="source lang-java linenums">package states;
+
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import rest.ThreadTest;
+
+@SuppressWarnings(&quot;serial&quot;)
+//WORKING WITH FILLER
+public class MenuMatchScreen extends State {
+	private String ongoingMatchText;
+
+<span class="nc" id="L19">	public MenuMatchScreen() {</span>
+<span class="nc" id="L20">    }</span>
+	
+    public void createGUI() {
+<span class="nc" id="L23">    layout = new GridBagLayout();</span>
+<span class="nc" id="L24">    this.setLayout(layout);</span>
+<span class="nc" id="L25">	c = new GridBagConstraints();</span>
+	
+	//Prompt Matches
+<span class="nc" id="L28">	JTextField progress = new JTextField();</span>
+<span class="nc" id="L29">	progress.setOpaque(true);</span>
+<span class="nc" id="L30">	progress.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L31">	progress.setEditable(false);</span>
+<span class="nc" id="L32">	progress.setText(&quot;There are matches in progress&quot;);</span>
+<span class="nc" id="L33">	c.weightx = 0.5;</span>
+<span class="nc" id="L34">	c.gridx = 1;</span>
+<span class="nc" id="L35">	c.gridy = 0;</span>
+<span class="nc" id="L36">	layout.setConstraints(progress, c);</span>
+<span class="nc" id="L37">	this.add(progress);</span>
+	
+	//Prompt Your Match progress
+<span class="nc" id="L40">	JTextArea matchProgress = new JTextArea();</span>
+<span class="nc" id="L41">	c.weightx = 0.5;</span>
+<span class="nc" id="L42">	c.gridx = 1;</span>
+<span class="nc" id="L43">	c.gridy = 2;</span>
+<span class="nc" id="L44">	layout.setConstraints(matchProgress, c);</span>
+<span class="nc" id="L45">	matchProgress.setPreferredSize(new Dimension(400, 400));</span>
+<span class="nc" id="L46">	matchProgress.setEditable(false);</span>
+<span class="nc" id="L47">	String matchProgressTextPart1 = &quot;Here is the progress of your match:\n\n&quot;;</span>
+<span class="nc" id="L48">	matchProgress.setText( matchProgressTextPart1);</span>
+<span class="nc" id="L49">	this.add(matchProgress);</span>
+	
+<span class="nc" id="L51">	Thread t = new Thread(new ThreadTest());</span>
+<span class="nc" id="L52">	rest.ThreadTest.setWorkSpace(matchProgress);</span>
+<span class="nc" id="L53">	t.start();</span>
+	
+	//Advance
+<span class="nc" id="L56">    JButton buttonAdvance = new JButton();</span>
+<span class="nc" id="L57">  	c.weightx = 0.5;</span>
+<span class="nc" id="L58">  	c.gridx = 1;</span>
+<span class="nc" id="L59">  	c.gridy = 4;</span>
+<span class="nc" id="L60">  	createButton(buttonAdvance, &quot;Advance&quot;, c, layout);</span>
+<span class="nc" id="L61">  	buttonAdvance.setEnabled(false);</span>
+<span class="nc" id="L62">  	attachStateChanger(buttonAdvance, new MenuAftermath());</span>
+  	
+  	//Advance button logic
+<span class="nc bnc" id="L65" title="All 2 branches missed.">  	while(t.isAlive()) {</span>
+<span class="nc" id="L66">  		System.out.println(&quot;waiting...&quot;);</span>
+  	}
+<span class="nc" id="L68">  	buttonAdvance.setEnabled(true);</span>
+<span class="nc" id="L69">  	System.out.println(&quot;Thread has finished, advance button has been enabled&quot;);</span>
+<span class="nc" id="L70">    }</span>
+
+	public String getOngoingMatchText() {
+<span class="nc" id="L73">		return ongoingMatchText;</span>
+	}
+
+	public void setOngoingMatchText(String ongoingMatchText) {
+<span class="nc" id="L77">		this.ongoingMatchText = ongoingMatchText;</span>
+<span class="nc" id="L78">	}</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

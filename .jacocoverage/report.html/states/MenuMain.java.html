@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MenuMain.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">states</a> &gt; <span class="el_source">MenuMain.java</span></div><h1>MenuMain.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package states;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.Border;
+
+import rest.League;
+
+/**
+ *
+ * @author user
+ */
+//FINISHED
+public class MenuMain extends State {
+
+<span class="nc" id="L43">    public MenuMain() {</span>
+
+<span class="nc" id="L45">    }</span>
+
+    public void createGUI() {
+<span class="nc" id="L48">	layout = new GridBagLayout();</span>
+<span class="nc" id="L49">	this.setLayout(layout);</span>
+<span class="nc" id="L50">	c = new GridBagConstraints();</span>
+	
+<span class="nc" id="L52">	JTextArea invisi2 = new JTextArea();</span>
+<span class="nc" id="L53">	c.weightx = 0.5;</span>
+<span class="nc" id="L54">	c.gridx = 2;</span>
+<span class="nc" id="L55">	c.gridy = 2;</span>
+<span class="nc" id="L56">	layout.setConstraints(invisi2, c);</span>
+<span class="nc" id="L57">	invisi2.setPreferredSize(new Dimension(200, 200));</span>
+<span class="nc" id="L58">	invisi2.setOpaque(false);</span>
+<span class="nc" id="L59">	invisi2.setEditable(false);</span>
+<span class="nc" id="L60">	invisi2.setMargin(new Insets(200, 0, 0, 0));</span>
+<span class="nc" id="L61">	this.add(invisi2);</span>
+	
+<span class="nc" id="L63">	JButton buttonNew = new JButton(new ImageIcon(&quot;C:\\Users\\Stefan\\Desktop\\GUIFiles\\NewGameButton.png&quot;));</span>
+<span class="nc" id="L64">	c.weightx = 0.5;</span>
+<span class="nc" id="L65">	c.gridx = 2;</span>
+<span class="nc" id="L66">	c.gridy = 3;</span>
+<span class="nc" id="L67">	createButton(buttonNew, &quot;&quot;, c, layout);</span>
+<span class="nc" id="L68">	buttonNew.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L69">	buttonNew.setMaximumSize(new Dimension(400, 80));</span>
+<span class="nc" id="L70">	attachStateChanger(buttonNew, new MenuNew());</span>
+
+<span class="nc" id="L72">	JButton buttonContinue = new JButton(new ImageIcon(&quot;C:\\Users\\Stefan\\Desktop\\GUIFiles\\ContinueButton.png&quot;));</span>
+<span class="nc" id="L73">	c.weightx = 0.5;</span>
+<span class="nc" id="L74">	c.gridx = 2;</span>
+<span class="nc" id="L75">	c.gridy = 4;</span>
+	
+	try {
+<span class="nc" id="L78">    	BufferedReader br = new BufferedReader(new FileReader(&quot;SaveGame.xml&quot;));</span>
+<span class="nc" id="L79">    	String tonton = br.readLine();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">		if (tonton == null) {</span>
+<span class="nc" id="L81">		    buttonContinue.setEnabled(false);</span>
+		}
+<span class="nc" id="L83">		br.close();</span>
+<span class="nc" id="L84">	} catch (IOException e1) {</span>
+<span class="nc" id="L85">		e1.printStackTrace();</span>
+<span class="nc" id="L86">	}</span>
+<span class="nc" id="L87">	createButton(buttonContinue, &quot;&quot;, c, layout);</span>
+<span class="nc" id="L88">	buttonContinue.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L89">	buttonContinue.setMaximumSize(new Dimension(400, 100));</span>
+<span class="nc" id="L90">	attachStateChanger(buttonContinue, new MenuBetweenRounds());</span>
+<span class="nc" id="L91">	buttonContinue.addActionListener(new ActionListener() {</span>
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L94">		StateManager.setLeague(League.readResources(&quot;SaveGame.xml&quot;));;</span>
+<span class="nc" id="L95">	    }</span>
+	});
+	
+<span class="nc" id="L98">	JButton buttonExit = new JButton(new ImageIcon(&quot;C:\\Users\\Stefan\\Desktop\\GUIFiles\\ExitButton.png&quot;));</span>
+<span class="nc" id="L99">	c.weightx = 0.5;</span>
+<span class="nc" id="L100">	c.gridx = 2;</span>
+<span class="nc" id="L101">	c.gridy = 5;</span>
+	//&quot;&lt;html&gt;&lt;font size='6'&gt;Exit&lt;/font&gt;&lt;/html&gt;&quot;
+<span class="nc" id="L103">	createButton(buttonExit, &quot;&quot;, c, layout);</span>
+<span class="nc" id="L104">	buttonExit.setMargin(new Insets(0, 0, 0, 0));</span>
+<span class="nc" id="L105">	buttonExit.setMaximumSize(new Dimension(400, 100));</span>
+<span class="nc" id="L106">	attachStateChanger(buttonExit, new Exit());</span>
+	
+<span class="nc" id="L108">	c.weightx = 0.5;</span>
+<span class="nc" id="L109">	c.gridheight = 6;</span>
+<span class="nc" id="L110">	c.gridwidth = 3;</span>
+<span class="nc" id="L111">	c.gridx = 2;</span>
+<span class="nc" id="L112">	c.gridy = 1;</span>
+<span class="nc" id="L113">	ImagePanel panel = new ImagePanel(new ImageIcon(&quot;C:\\Users\\Stefan\\Desktop\\GUIFiles\\FootbalStadiumSize.png&quot;).getImage(), c, layout);</span>
+<span class="nc" id="L114">	this.add(panel);</span>
+	
+	//System.out.println(result());
+<span class="nc" id="L117">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

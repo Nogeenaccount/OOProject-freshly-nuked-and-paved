@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MenuTeamManagement.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">states</a> &gt; <span class="el_source">MenuTeamManagement.java</span></div><h1>MenuTeamManagement.java</h1><pre class="source lang-java linenums">package states;
+
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
+@SuppressWarnings(&quot;serial&quot;)
+//WORKING WITH FILLER
+public class MenuTeamManagement extends State {
+
+<span class="nc" id="L17">	public MenuTeamManagement() {</span>
+<span class="nc" id="L18">    }</span>
+
+    @SuppressWarnings({ &quot;rawtypes&quot;, &quot;unchecked&quot; })
+	public void createGUI() {
+<span class="nc" id="L22">	layout = new GridBagLayout();</span>
+<span class="nc" id="L23">	this.setLayout(layout);</span>
+<span class="nc" id="L24">	c = new GridBagConstraints();</span>
+
+	//Initialise JComboBoxes
+<span class="nc" id="L27">	String[] playerNames = null;</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">	for(int i = 0; i &lt; StateManager.getLeague().getTeams().size(); i++) {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">		if(StateManager.getLeague().getChosenTeam().equals(StateManager.getLeague().getTeams().get(i).getTeamName())) {</span>
+<span class="nc" id="L30">			playerNames = new String[StateManager.getLeague().getTeams().get(i).getPlayers().size()];</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">			for (int j = 0; j &lt; StateManager.getLeague().getTeams().get(i).getPlayers().size(); j++) {</span>
+<span class="nc" id="L32">				playerNames[j] = StateManager.getLeague().getTeams().get(i).getPlayers().get(j).getPlayerName();</span>
+			}
+		}
+	}
+<span class="nc" id="L36">	JComboBox position1 = new JComboBox(playerNames);</span>
+<span class="nc" id="L37">	JComboBox position2 = new JComboBox(playerNames);</span>
+<span class="nc" id="L38">	JComboBox position3 = new JComboBox(playerNames);</span>
+<span class="nc" id="L39">	JComboBox position4 = new JComboBox(playerNames);</span>
+<span class="nc" id="L40">	JComboBox position5 = new JComboBox(playerNames);</span>
+<span class="nc" id="L41">	JComboBox position6 = new JComboBox(playerNames);</span>
+<span class="nc" id="L42">	JComboBox position7 = new JComboBox(playerNames);</span>
+<span class="nc" id="L43">	JComboBox position8 = new JComboBox(playerNames);</span>
+<span class="nc" id="L44">	JComboBox position9 = new JComboBox(playerNames);</span>
+<span class="nc" id="L45">	JComboBox position10 = new JComboBox(playerNames);</span>
+<span class="nc" id="L46">	JComboBox position11 = new JComboBox(playerNames);</span>
+<span class="nc" id="L47">	JButton buttonBack = new JButton();</span>
+
+	
+	//Position 1 JComboBox
+<span class="nc" id="L51">	c.weightx = 0.5;</span>
+<span class="nc" id="L52">	c.gridx = 2;</span>
+<span class="nc" id="L53">	c.gridy = 1;</span>
+<span class="nc" id="L54">	layout.setConstraints(position1, c);</span>
+<span class="nc" id="L55">	position1.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L56">	this.add(position1);</span>
+<span class="nc" id="L57">	position1.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L60">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L61">		}</span>
+	});
+	//Position 2 JComboBox
+<span class="nc" id="L64">	c.weightx = 0.5;</span>
+<span class="nc" id="L65">	c.gridx = 2;</span>
+<span class="nc" id="L66">	c.gridy = 2;</span>
+<span class="nc" id="L67">	layout.setConstraints(position2, c);</span>
+<span class="nc" id="L68">	position2.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L69">	this.add(position2);</span>
+<span class="nc" id="L70">	position2.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L73">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L74">		}</span>
+	});
+	
+	//Position 3 JComboBox
+<span class="nc" id="L78">	c.weightx = 0.5;</span>
+<span class="nc" id="L79">	c.gridx = 2;</span>
+<span class="nc" id="L80">	c.gridy = 3;</span>
+<span class="nc" id="L81">	layout.setConstraints(position3, c);</span>
+<span class="nc" id="L82">	this.add(position3);</span>
+<span class="nc" id="L83">	position3.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L84">	position3.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L87">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L88">		}</span>
+	});
+	
+	//Position 4 JComboBox
+<span class="nc" id="L92">	c.weightx = 0.5;</span>
+<span class="nc" id="L93">	c.gridx = 2;</span>
+<span class="nc" id="L94">	c.gridy = 4;</span>
+<span class="nc" id="L95">	layout.setConstraints(position4, c);</span>
+<span class="nc" id="L96">	this.add(position4);</span>
+<span class="nc" id="L97">	position4.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L98">	position4.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L101">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L102">		}</span>
+	});
+		
+	//Position 5 JComboBox
+<span class="nc" id="L106">	c.weightx = 0.5;</span>
+<span class="nc" id="L107">	c.gridx = 2;</span>
+<span class="nc" id="L108">	c.gridy = 5;</span>
+<span class="nc" id="L109">	layout.setConstraints(position5, c);</span>
+<span class="nc" id="L110">	this.add(position5);</span>
+<span class="nc" id="L111">	position5.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L112">	position5.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L115">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L116">		}</span>
+	});
+	
+	//Position 6 JComboBox
+<span class="nc" id="L120">	c.weightx = 0.5;</span>
+<span class="nc" id="L121">	c.gridx = 2;</span>
+<span class="nc" id="L122">	c.gridy = 6;</span>
+<span class="nc" id="L123">	layout.setConstraints(position6, c);</span>
+<span class="nc" id="L124">	this.add(position6);</span>
+<span class="nc" id="L125">	position6.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L126">	position6.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L129">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L130">		}</span>
+	});
+	
+	//Position 7 JComboBox
+<span class="nc" id="L134">	c.weightx = 0.5;</span>
+<span class="nc" id="L135">	c.gridx = 2;</span>
+<span class="nc" id="L136">	c.gridy = 7;</span>
+<span class="nc" id="L137">	layout.setConstraints(position7, c);</span>
+<span class="nc" id="L138">	this.add(position7);</span>
+<span class="nc" id="L139">	position7.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L140">	position7.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L143">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L144">		}</span>
+	});
+	
+	//Position 8 JComboBox
+<span class="nc" id="L148">	c.weightx = 0.5;</span>
+<span class="nc" id="L149">	c.gridx = 2;</span>
+<span class="nc" id="L150">	c.gridy = 8;</span>
+<span class="nc" id="L151">	layout.setConstraints(position8, c);</span>
+<span class="nc" id="L152">	this.add(position8);</span>
+<span class="nc" id="L153">	position8.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L154">	position8.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L157">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L158">		}</span>
+	});
+	
+	//Position 9 JComboBox
+<span class="nc" id="L162">	c.weightx = 0.5;</span>
+<span class="nc" id="L163">	c.gridx = 2;</span>
+<span class="nc" id="L164">	c.gridy = 9;</span>
+<span class="nc" id="L165">	layout.setConstraints(position9, c);</span>
+<span class="nc" id="L166">	this.add(position9);</span>
+<span class="nc" id="L167">	position9.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L168">	position9.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L171">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L172">		}</span>
+	});
+	
+	//Position 10 JComboBox
+<span class="nc" id="L176">	c.weightx = 0.5;</span>
+<span class="nc" id="L177">	c.gridx = 2;</span>
+<span class="nc" id="L178">	c.gridy = 10;</span>
+<span class="nc" id="L179">	layout.setConstraints(position10, c);</span>
+<span class="nc" id="L180">	this.add(position10);</span>
+<span class="nc" id="L181">	position10.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L182">	position10.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L185">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L186">		}</span>
+	});
+
+	//Position 11 JComboBox
+<span class="nc" id="L190">	c.weightx = 0.5;</span>
+<span class="nc" id="L191">	c.gridx = 2;</span>
+<span class="nc" id="L192">	c.gridy = 11;</span>
+<span class="nc" id="L193">	layout.setConstraints(position11, c);</span>
+<span class="nc" id="L194">	this.add(position11);</span>
+<span class="nc" id="L195">	position11.setPreferredSize(new Dimension(200,20));</span>
+<span class="nc" id="L196">	position11.addActionListener(new ActionListener() {</span>
+		@Override
+		public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L199">			MenuTeamManagement.backButton(position1, position2, position3, position4, position5, position6, position7, position8, position9, position10, position11, buttonBack);</span>
+<span class="nc" id="L200">		}</span>
+	});
+	
+	//Prompt position 1
+<span class="nc" id="L204">	JTextField prompt1 = new JTextField();</span>
+<span class="nc" id="L205">	prompt1.setOpaque(true);</span>
+<span class="nc" id="L206">	prompt1.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L207">	prompt1.setEditable(false);</span>
+<span class="nc" id="L208">	prompt1.setText(&quot;Forward 1: &quot;);</span>
+<span class="nc" id="L209">	c.weightx = 0.5;</span>
+<span class="nc" id="L210">	c.gridx = 1;</span>
+<span class="nc" id="L211">	c.gridy = 1;</span>
+<span class="nc" id="L212">	layout.setConstraints(prompt1, c);</span>
+<span class="nc" id="L213">	this.add(prompt1);</span>
+	
+	//Prompt position 2
+<span class="nc" id="L216">	JTextField prompt2 = new JTextField();</span>
+<span class="nc" id="L217">	prompt2.setOpaque(true);</span>
+<span class="nc" id="L218">	prompt2.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L219">	prompt2.setEditable(false);</span>
+<span class="nc" id="L220">	prompt2.setText(&quot;Forward 2: &quot;);</span>
+<span class="nc" id="L221">	c.weightx = 0.5;</span>
+<span class="nc" id="L222">	c.gridx = 1;</span>
+<span class="nc" id="L223">	c.gridy = 2;</span>
+<span class="nc" id="L224">	layout.setConstraints(prompt2, c);</span>
+<span class="nc" id="L225">	this.add(prompt2);</span>
+		
+	//Prompt position 3
+<span class="nc" id="L228">	JTextField prompt3 = new JTextField();</span>
+<span class="nc" id="L229">	prompt3.setOpaque(true);</span>
+<span class="nc" id="L230">	prompt3.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L231">	prompt3.setEditable(false);</span>
+<span class="nc" id="L232">	prompt3.setText(&quot;Forward 3: &quot;);</span>
+<span class="nc" id="L233">	c.weightx = 0.5;</span>
+<span class="nc" id="L234">	c.gridx = 1;</span>
+<span class="nc" id="L235">	c.gridy = 3;</span>
+<span class="nc" id="L236">	layout.setConstraints(prompt3, c);</span>
+<span class="nc" id="L237">	this.add(prompt3);</span>
+	
+	//Prompt position 4
+<span class="nc" id="L240">	JTextField prompt4 = new JTextField();</span>
+<span class="nc" id="L241">	prompt4.setOpaque(true);</span>
+<span class="nc" id="L242">	prompt4.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L243">	prompt4.setEditable(false);</span>
+<span class="nc" id="L244">	prompt4.setText(&quot;Midfielder 1: &quot;);</span>
+<span class="nc" id="L245">	c.weightx = 0.5;</span>
+<span class="nc" id="L246">	c.gridx = 1;</span>
+<span class="nc" id="L247">	c.gridy = 4;</span>
+<span class="nc" id="L248">	layout.setConstraints(prompt4, c);</span>
+<span class="nc" id="L249">	this.add(prompt4);</span>
+	
+	//Prompt position 5
+<span class="nc" id="L252">	JTextField prompt5 = new JTextField();</span>
+<span class="nc" id="L253">	prompt5.setOpaque(true);</span>
+<span class="nc" id="L254">	prompt5.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L255">	prompt5.setEditable(false);</span>
+<span class="nc" id="L256">	prompt5.setText(&quot;Midfielder 2: &quot;);</span>
+<span class="nc" id="L257">	c.weightx = 0.5;</span>
+<span class="nc" id="L258">	c.gridx = 1;</span>
+<span class="nc" id="L259">	c.gridy = 5;</span>
+<span class="nc" id="L260">	layout.setConstraints(prompt5, c);</span>
+<span class="nc" id="L261">	this.add(prompt5);</span>
+	
+	//Prompt position 6
+<span class="nc" id="L264">	JTextField prompt6 = new JTextField();</span>
+<span class="nc" id="L265">	prompt6.setOpaque(true);</span>
+<span class="nc" id="L266">	prompt6.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L267">	prompt6.setEditable(false);</span>
+<span class="nc" id="L268">	prompt6.setText(&quot;Midfielder 3: &quot;);</span>
+<span class="nc" id="L269">	c.weightx = 0.5;</span>
+<span class="nc" id="L270">	c.gridx = 1;</span>
+<span class="nc" id="L271">	c.gridy = 6;</span>
+<span class="nc" id="L272">	layout.setConstraints(prompt6, c);</span>
+<span class="nc" id="L273">	this.add(prompt6);</span>
+	
+	//Prompt position 7
+<span class="nc" id="L276">	JTextField prompt7 = new JTextField();</span>
+<span class="nc" id="L277">	prompt7.setOpaque(true);</span>
+<span class="nc" id="L278">	prompt7.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L279">	prompt7.setEditable(false);</span>
+<span class="nc" id="L280">	prompt7.setText(&quot;Defender 1: &quot;);</span>
+<span class="nc" id="L281">	c.weightx = 0.5;</span>
+<span class="nc" id="L282">	c.gridx = 1;</span>
+<span class="nc" id="L283">	c.gridy = 7;</span>
+<span class="nc" id="L284">	layout.setConstraints(prompt7, c);</span>
+<span class="nc" id="L285">	this.add(prompt7);</span>
+	
+	//Prompt position 8
+<span class="nc" id="L288">	JTextField prompt8 = new JTextField();</span>
+<span class="nc" id="L289">	prompt8.setOpaque(true);</span>
+<span class="nc" id="L290">	prompt8.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L291">	prompt8.setEditable(false);</span>
+<span class="nc" id="L292">	prompt8.setText(&quot;Defender 2: &quot;);</span>
+<span class="nc" id="L293">	c.weightx = 0.5;</span>
+<span class="nc" id="L294">	c.gridx = 1;</span>
+<span class="nc" id="L295">	c.gridy = 8;</span>
+<span class="nc" id="L296">	layout.setConstraints(prompt8, c);</span>
+<span class="nc" id="L297">	this.add(prompt8);</span>
+	
+	//Prompt position 9
+<span class="nc" id="L300">	JTextField prompt9 = new JTextField();</span>
+<span class="nc" id="L301">	prompt9.setOpaque(true);</span>
+<span class="nc" id="L302">	prompt9.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L303">	prompt9.setEditable(false);</span>
+<span class="nc" id="L304">	prompt9.setText(&quot;Defender 3: &quot;);</span>
+<span class="nc" id="L305">	c.weightx = 0.5;</span>
+<span class="nc" id="L306">	c.gridx = 1;</span>
+<span class="nc" id="L307">	c.gridy = 9;</span>
+<span class="nc" id="L308">	layout.setConstraints(prompt9, c);</span>
+<span class="nc" id="L309">	this.add(prompt9);</span>
+	
+	//Prompt position 10
+<span class="nc" id="L312">	JTextField prompt10 = new JTextField();</span>
+<span class="nc" id="L313">	prompt10.setOpaque(true);</span>
+<span class="nc" id="L314">	prompt10.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L315">	prompt10.setEditable(false);</span>
+<span class="nc" id="L316">	prompt10.setText(&quot;Defender 4: &quot;);</span>
+<span class="nc" id="L317">	c.weightx = 0.5;</span>
+<span class="nc" id="L318">	c.gridx = 1;</span>
+<span class="nc" id="L319">	c.gridy = 10;</span>
+<span class="nc" id="L320">	layout.setConstraints(prompt10, c);</span>
+<span class="nc" id="L321">	this.add(prompt10);</span>
+	
+	//Prompt position 11
+<span class="nc" id="L324">	JTextField prompt11 = new JTextField();</span>
+<span class="nc" id="L325">	prompt11.setOpaque(true);</span>
+<span class="nc" id="L326">	prompt11.setPreferredSize(new Dimension(200, 20));</span>
+<span class="nc" id="L327">	prompt11.setEditable(false);</span>
+<span class="nc" id="L328">	prompt11.setText(&quot;Goalkeeper: &quot;);</span>
+<span class="nc" id="L329">	c.weightx = 0.5;</span>
+<span class="nc" id="L330">	c.gridx = 1;</span>
+<span class="nc" id="L331">	c.gridy = 11;</span>
+<span class="nc" id="L332">	layout.setConstraints(prompt11, c);</span>
+<span class="nc" id="L333">	this.add(prompt11);</span>
+
+	//Go back
+<span class="nc" id="L336">	c.weightx = 0.5;</span>
+<span class="nc" id="L337">	c.gridx = 2;</span>
+<span class="nc" id="L338">	c.gridy = 12;</span>
+<span class="nc" id="L339">	createButton(buttonBack, &quot;Back&quot;, c, layout);</span>
+<span class="nc" id="L340">	buttonBack.setPreferredSize(new Dimension(130, 40));</span>
+<span class="nc" id="L341">	buttonBack.setEnabled(false);</span>
+<span class="nc" id="L342">	attachStateChanger(buttonBack, new MenuBetweenRounds());</span>
+	
+	
+	
+	
+//	for (j=0;j&lt;zipcodeList.length;j++)
+	//	  for (k=j+1;k&lt;zipcodeList.length;k++)
+//		    if (k!=j &amp;&amp; zipcodeList[k] == zipcodeList[j])
+//		      duplicates=true;
+<span class="nc" id="L351">    }</span>
+    
+    @SuppressWarnings(&quot;rawtypes&quot;)
+	public static void backButton(JComboBox position1, JComboBox position2, JComboBox position3, JComboBox position4, JComboBox position5, JComboBox position6, JComboBox position7, JComboBox position8, JComboBox position9, JComboBox position10, JComboBox position11, JButton buttonBack) {
+<span class="nc" id="L355">		String[] selectedPlayers = new String[11];</span>
+<span class="nc" id="L356">		selectedPlayers[0] = (String) position1.getSelectedItem();</span>
+<span class="nc" id="L357">		selectedPlayers[1] = (String) position2.getSelectedItem();</span>
+<span class="nc" id="L358">		selectedPlayers[2] = (String) position3.getSelectedItem();</span>
+<span class="nc" id="L359">		selectedPlayers[3] = (String) position4.getSelectedItem();</span>
+<span class="nc" id="L360">		selectedPlayers[4] = (String) position5.getSelectedItem();</span>
+<span class="nc" id="L361">		selectedPlayers[5] = (String) position6.getSelectedItem();</span>
+<span class="nc" id="L362">		selectedPlayers[6] = (String) position7.getSelectedItem();</span>
+<span class="nc" id="L363">		selectedPlayers[7] = (String) position8.getSelectedItem();</span>
+<span class="nc" id="L364">		selectedPlayers[8] = (String) position9.getSelectedItem();</span>
+<span class="nc" id="L365">		selectedPlayers[9] = (String) position10.getSelectedItem();</span>
+<span class="nc" id="L366">		selectedPlayers[10] = (String) position11.getSelectedItem();</span>
+		
+		//Back Button Logic
+<span class="nc" id="L369">		boolean duplicates = false;</span>
+<span class="nc bnc" id="L370" title="All 2 branches missed.">		for(int i = 0; i &lt; selectedPlayers.length; i++) {</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">			for (int j = i + 1; j &lt; selectedPlayers.length;j++) {</span>
+<span class="nc bnc" id="L372" title="All 4 branches missed.">				if (j != i &amp;&amp; selectedPlayers[i].equals(selectedPlayers[j])) {</span>
+<span class="nc" id="L373">					duplicates = true;</span>
+				}
+			}
+		}
+<span class="nc bnc" id="L377" title="All 2 branches missed.">		if(duplicates == false) {</span>
+<span class="nc" id="L378">			System.out.println(&quot;You can go back&quot;);</span>
+<span class="nc" id="L379">			buttonBack.setEnabled(true);</span>
+		}
+<span class="nc bnc" id="L381" title="All 2 branches missed.">		if(duplicates == true) {</span>
+<span class="nc" id="L382">			System.out.println(&quot;You can't go back&quot;);</span>
+<span class="nc" id="L383">			buttonBack.setEnabled(false);</span>
+		}
+<span class="nc" id="L385">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MenuAftermath.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;OOProject2.0&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">states</a> &gt; <span class="el_source">MenuAftermath.java</span></div><h1>MenuAftermath.java</h1><pre class="source lang-java linenums">package states;
+
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+@SuppressWarnings(&quot;serial&quot;)
+//WORKING WITH FILLER
+public class MenuAftermath extends State {
+
+<span class="nc" id="L15">	public MenuAftermath() {</span>
+<span class="nc" id="L16">    }</span>
+	
+    public void createGUI() {
+<span class="nc" id="L19">    layout = new GridBagLayout();</span>
+<span class="nc" id="L20">    this.setLayout(layout);</span>
+<span class="nc" id="L21">	c = new GridBagConstraints();</span>
+	
+	//Initialise
+<span class="nc" id="L24">		String[] array1 = new String[20];</span>
+<span class="nc" id="L25">		rest.League league1 = rest.League.readResources(&quot;SaveGame.xml&quot;);</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">	    for(int i = 0; i &lt; league1.getTeams().size(); i++) {</span>
+<span class="nc" id="L27">	    	array1[i] = league1.getTeams().get(i).getTeamName();</span>
+	    }
+	
+	//Prompt Round Results
+<span class="nc" id="L31">	JTextArea matchResults = new JTextArea();</span>
+<span class="nc" id="L32">	c.weightx = 0.5;</span>
+<span class="nc" id="L33">	c.gridx = 1;</span>
+<span class="nc" id="L34">	c.gridy = 2;</span>
+<span class="nc" id="L35">	layout.setConstraints(matchResults, c);</span>
+<span class="nc" id="L36">	matchResults.setPreferredSize(new Dimension(400, 400));</span>
+<span class="nc" id="L37">	matchResults.setEditable(false);</span>
+	
+<span class="nc" id="L39">	String yourRoundResult = &quot;Your team 2 - 2 Opponents&quot;;</span>
+	
+<span class="nc" id="L41">	String roundBookings = &quot;&quot;;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">	for(int i = 0; i &lt; 3; i++) {</span>
+<span class="nc" id="L43">		roundBookings = roundBookings + i + &quot;th booking&quot; + &quot;\n&quot;;</span>
+	}
+	
+<span class="nc" id="L46">	String roundInjuries = &quot;&quot;;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">	for(int i = 0; i &lt; 3; i++) {</span>
+<span class="nc" id="L48">		roundInjuries = roundInjuries + i + &quot;th injury&quot; + &quot;\n&quot;;</span>
+	}
+	
+<span class="nc" id="L51">	String otherMatches = &quot;&quot;;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">	for(int i = 0; i &lt; 20; i = i + 2) {</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">		if (array1[i].equals(StateManager.getLeague().getChosenTeam()) == false &amp;&amp; array1[i+1].equals(StateManager.getLeague().getChosenTeam()) == false) {</span>
+<span class="nc" id="L54">			otherMatches = otherMatches + array1[i] + &quot;  vs  &quot; + array1[i+1] + &quot;\n&quot;;</span>
+		}
+	}
+	
+<span class="nc" id="L58">	System.out.println(&quot;Set by filler: 'yourRoundResult' + 'roundBookings' + 'roundInjuries' + 'otherMatches'&quot;);	</span>
+<span class="nc" id="L59">	String roundResults =</span>
+	
+	&quot;Here is the result of your match:&quot; +&quot;\n&quot; +
+	yourRoundResult + &quot;\n&quot; + &quot;\n&quot; +
+			
+	&quot;Bookings:&quot; + &quot;\n&quot; +
+	roundBookings + &quot;\n&quot; +	&quot;\n&quot; +
+	
+	&quot;Injuries:&quot; + &quot;\n&quot; +
+	roundInjuries +&quot;\n&quot; + &quot;\n&quot; +
+	
+	&quot;And here are the results of the other matches:&quot; + &quot;\n&quot; +
+	otherMatches;
+	;
+	
+<span class="nc" id="L74">	matchResults.setText(roundResults);</span>
+<span class="nc" id="L75">	this.add(matchResults);</span>
+	
+	//Advance
+<span class="nc" id="L78">    JButton buttonAdvance = new JButton();</span>
+<span class="nc" id="L79">  	c.weightx = 0.5;</span>
+<span class="nc" id="L80">  	c.gridx = 1;</span>
+<span class="nc" id="L81">  	c.gridy = 4;</span>
+<span class="nc" id="L82">  	createButton(buttonAdvance, &quot;Advance&quot;, c, layout);</span>
+<span class="nc" id="L83">  	attachStateChanger(buttonAdvance, new MenuBetweenRounds());</span>
+<span class="nc" id="L84">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>
