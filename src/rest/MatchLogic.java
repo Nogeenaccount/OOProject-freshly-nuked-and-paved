@@ -12,10 +12,7 @@ public class MatchLogic extends Thread {
     private int score2;
     private Team team1;
     private Team team2;
-    private JLabel text;
-    private JLabel updateText;
-    private JProgressBar pBar;
-    private JButton button;
+    
 
     private double t1Offence;
     private double t1Defence;
@@ -34,7 +31,7 @@ public class MatchLogic extends Thread {
      * @param txt html text
      * @param bar loading bar
      */
-    public MatchLogic(int t, Team t1, Team t2, JLabel txt, JLabel updateTxt, JProgressBar bar, JButton bt) {
+    public MatchLogic(int t, Team t1, Team t2) {
 	tCurrent = 0;
 	tMax = t;
 	team1 = t1;
@@ -42,11 +39,6 @@ public class MatchLogic extends Thread {
 	score1 = 0;
 	score2 = 0;
 
-	text = txt;
-	updateText = updateTxt;
-	pBar = bar;
-
-	button = bt;
 
 	/*		t1Offence =  offenceSum(t1);
 	 t1Defence = defenceSum(t1);
@@ -57,68 +49,153 @@ public class MatchLogic extends Thread {
 	 t2Endurance = enduranceSum(t2);*/
     }
 
-    /**
-     * scored: return 1 or 0 depending on chance of scoring of the team
-     *
-     * @param O1
-     * @param D2
-     * @param E1
-     * @param E2
-     * @param t
-     * @return
-     */
-    public int scored(double O1, double D2, double E1, double E2, double t) {
-	double P;
-	double a = 5;
-	double b = 0.00015;
-	P = (O1 - D2 / 2) * Math.pow((E1 / E2), (t / a)) * b;
-
-	if (Math.random() < P) {
-	    return 1;
-	} else {
-	    return 0;
+   /**
+	 * offenceSum: returns the sum of offence in lineUp
+	 * @param t
+	 * @return S
+	 */
+	public double offenceSum(Team t){
+		double S = 0;
+		for (int i=0; i<t.getLineUp().getAanvallers().size(); i++){
+			S += t.getLineUp().getAanvallers().get(i).getOffence();
+		}
+		for (int i=0; i<t.getLineUp().getMiddenvelders().size(); i++){
+			S += ( t.getLineUp().getMiddenvelders().get(i).getOffence() )/2;
+		}
+		
+		return S;
 	}
-    }
-
-    /**
-     * run: new Thread
-     */
-    public void run() {
-
-	String html1 = "";
-	String html2 = "";
-	while (tCurrent <= 90) {
-	    if (scored(t1Offence, t2Defence, t1Endurance, t2Endurance, tCurrent) == 1) {
-		score1++;
-
-	    };
-	    if (scored(t2Offence, t1Defence, t2Endurance, t1Endurance, tCurrent) == 1) {
-		score2++;
-
-	    };
-
-	    pBar.setValue(tCurrent);
-	    html1 = team1.getTeamName() + " " + score1 + "-" + score2 + " " + team2.getTeamName() + "<br>" + tCurrent + "'<br>";
-	    text.setText("<html>" + html1 + "</html>");
-
-	    if (tCurrent % 10 == 0) {
-		html2 += "update" + (tCurrent / 10 + 1) + "<br>";
-	    }
-	    updateText.setText("<html><body><p>" + html2 + "</p></body></html>");
-
-	    tCurrent += 90 / tMax;
-
-	    if (tCurrent == tMax) {
-		button.setEnabled(true);
-		button.setVisible(true);
-	    }
-
-	    try {
-		java.lang.Thread.sleep(150);
-	    } catch (InterruptedException e) {
-		e.printStackTrace();
-	    }
+	
+	/**
+	 * defenceSum: returns the sum of defence in lineUp
+	 * @param t
+	 * @return S
+	 */
+	public double defenceSum(Team t){
+		double S = 0;
+		for (int i=0; i<t.getLineUp().getVerdedigers().size(); i++){
+			S += t.getLineUp().getVerdedigers().get(i).getDefence();
+		}
+		for (int i=0; i<t.getLineUp().getMiddenvelders().size(); i++){
+			S += ( t.getLineUp().getMiddenvelders().get(i).getDefence() )/2;
+		}
+		S += t.getLineUp().getKeeper().getDefence(); 
+		
+		return S;
 	}
-    }
+
+	/**
+	 * enduranceSum: returns the sum of endurance in lineUp
+	 * @param t
+	 * @return S
+	 */
+	public double enduranceSum(Team t){
+		double S = 0;
+		for (int i=0; i<t.getLineUp().getAanvallers().size(); i++){
+			S += t.getLineUp().getAanvallers().get(i).getEndurance();
+		}
+		for (int i=0; i<t.getLineUp().getVerdedigers().size(); i++){
+			S += t.getLineUp().getVerdedigers().get(i).getEndurance();
+		}
+		for (int i=0; i<t.getLineUp().getMiddenvelders().size(); i++){
+			S += t.getLineUp().getMiddenvelders().get(i).getEndurance();
+		}
+		S += t.getLineUp().getKeeper().getEndurance(); 
+		
+		return S;
+	}
+
+	/**
+	 * scored: return 1 or 0 depending on chance of scoring of the team
+	 * @param O1
+	 * @param D2
+	 * @param E1
+	 * @param E2
+	 * @param t
+	 * @return
+	 */
+	public boolean scored(double O1, double D2, double E1, double E2, double t) {
+		double P;
+		double a = 5;
+		double b = 0.00015;
+		P = (O1 - D2/2)*Math.pow((E1/E2),(t/a))*b;
+		
+		if (Math.random() < P)
+			return true;
+		else
+			return false;
+	}
+
+    
+    
+    public Update tickHome(){
+            int typ =0;
+            Player spelert = null;
+            int min=tCurrent;
+            
+             double p1=0.01;
+             double p2=0.005;
+             double p3=0.02;
+            
+            
+            if(scored(offenceSum(team1), defenceSum(team2), enduranceSum(team1), enduranceSum(team2),tCurrent)){
+                int a = (int)(Math.round(Math.random()*3-0.5));
+                spelert = team1.getLineUp().getAanvallers().get(a);
+                return new Update(4, spelert, tCurrent);
+            }
+            
+            else if(Math.random()>0.9){
+                
+                spelert=team1.getLineUp().getRandomPlayer();
+                double temp = Math.random();
+                
+                if(temp<p1){
+                    return new Update(1, spelert, tCurrent);
+                }
+                if(temp<p2){
+                    return new Update(2, spelert, tCurrent);
+                }
+                if(temp<p3){
+                    return new Update(3, spelert, tCurrent);
+                }
+            }
+                        
+            return new Update(typ, spelert, min);
+        }
+        
+        public Update tickAway(){
+            int typ =0;
+            Player spelert = null;
+            int min=tCurrent;
+            
+             double p1=0.01;
+             double p2=0.005;
+             double p3=0.02;
+            
+            
+            if(scored(offenceSum(team2), defenceSum(team1), enduranceSum(team2), enduranceSum(team1),tCurrent)){
+                int a = (int)(Math.round(Math.random()*3-0.5));
+                spelert = team2.getLineUp().getAanvallers().get(a);
+                return new Update(4, spelert, tCurrent);
+            }
+            
+            else if(Math.random()>0.9){
+                
+                spelert=team2.getLineUp().getRandomPlayer();
+                double temp = Math.random();
+                
+                if(temp<p1){
+                    return new Update(1, spelert, tCurrent);
+                }
+                if(temp<p2){
+                    return new Update(2, spelert, tCurrent);
+                }
+                if(temp<p3){
+                    return new Update(3, spelert, tCurrent);
+                }
+            }
+                        
+            return new Update(typ, spelert, min);
+        }
 
 }
