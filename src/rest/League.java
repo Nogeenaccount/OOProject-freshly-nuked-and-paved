@@ -328,5 +328,74 @@ public class League {
 	}
 
     }
+    
+    /**
+	 * Returns boolean if offer is accepted
+	 * @param bod the offer made for player x
+	 * @param x the player to buy
+	 * @return boolean
+	 */
+	public static boolean acceptOffer(int bod, Player x) {
 
+		int price = x.getPrice();
+
+		if (bod == price) {
+			if (Math.random() > 0.5) {
+				return true;
+			}
+		} else if (bod < price && bod > 0.8 * price) {
+			if (Math.random() > 0.7) {
+				return true;
+			}
+		} else if (bod > price && bod < 1.25 * price) {
+			if (Math.random() > 0.3) {
+				return true;
+			}
+		} else if (bod > 1.25 * price) {
+			return true;
+		}
+		return false;
+
+	}
+
+        /**
+	 * Generates an offer, randomly picks a team that is willing to buy a random player of you;
+	 * if the budget is insufficient the method is repeated
+	 * if the team picked is the same as your team the method is repeated
+	 * @return the offer in String format "team, player, offer"
+	 */
+	public String generateOffer() {
+
+		String offerString;
+               
+		int size = this.getTeams().size(); // the amount of teams in the league
+		Team buyer = this.getTeams().get((int) Math.floor(Math.random() * size)); // Math.floor(Math.random() * size returnes a value between [1,size]
+		Player attempt = this.chosenTeam().getPlayers().get((int) Math.floor(Math.random() * buyer.getPlayers().size()) );
+		int offer = (int) ((attempt.getPrice() * (Math.random() + 0.2)* 1.5));
+		if (buyer == this.chosenTeam() || (buyer.getBudget() < offer)) {
+			String offers = this.generateOffer();
+			return offers;
+
+		} else {
+			offerString = buyer.getTeamName() + " " + attempt.getPlayerName()
+					+ " " + offer;
+			return offerString;
+		}
+
+	}
+        /**
+         * Finds the chosen team by comparing the name to alle the team names.
+         * @return 
+         */
+        public Team chosenTeam() {
+	Team own = null;
+	for (int i = 0; i < this.getTeams().size(); i++) {
+		if (this.getTeams().get(i).getTeamName().equalsIgnoreCase(this.getChosenTeam())) {
+			own = this.getTeams().get(i);
+		}
+	}
+	return own;
+
+}
+   
 }
