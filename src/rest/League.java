@@ -2,6 +2,7 @@ package rest;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,6 +27,7 @@ public class League {
     //NEW Attributes
     private String gameName;
     private String chosenTeam;
+    private ArrayList<String> offersMade;
 
     public League(String name, int rounds, String gameName, String chosenTeam) {
 	leagueName = name;
@@ -186,6 +188,19 @@ public class League {
     public void setChosenTeam(String chosenTeam) {
 	this.chosenTeam = chosenTeam;
     }
+    
+    public ArrayList<String> getOffersMade( ) {
+        return offersMade;
+    }
+    
+    public void setOffersmade(ArrayList<String> s) {
+        this.offersMade = s;
+    }
+    
+    public void addOffersMade(String offerFormat) {
+        offersMade.add(offerFormat);
+    }
+    
 
     public void writeToXML(String filePath) {
 
@@ -362,7 +377,7 @@ public class League {
 	 * Generates an offer, randomly picks a team that is willing to buy a random player of you;
 	 * if the budget is insufficient the method is repeated
 	 * if the team picked is the same as your team the method is repeated
-	 * @return the offer in String format "team, player, offer"
+	 * @return the offer in String format "team,offer, player"
 	 */
 	public String generateOffer() {
 
@@ -377,8 +392,8 @@ public class League {
 			return offers;
 
 		} else {
-			offerString = buyer.getTeamName() + " " + attempt.getPlayerName()
-					+ " " + offer;
+			offerString = buyer.getTeamName() + " " + offer
+					+ " " + attempt.getPlayerName();
 			return offerString;
 		}
 
@@ -397,5 +412,51 @@ public class League {
 	return own;
 
 }
+        
+        public Team getTeamByString(String s) {
+            Team t;
+            t = null;
+            
+            for (Team team: this.teams ) {
+                if (s.equalsIgnoreCase(team.getTeamName()))
+                    t = team;            } 
+                
+            
+
+        return t;
+        } 
+
+
+       
+        /**
+         * Method to transfer a player given the formatted String
+         * @param soortTransactie String containing "SELL/BUY"
+         * @param offerFormat 
+         * @return 
+         */
+        public boolean Transfer(String soortTransactie, String offerFormat) {
+            Scanner sc = new Scanner(offerFormat);
+            String team1 = sc.next();
+            int bod = sc.nextInt();
+            String playerName = sc.nextLine();
+            Team team = this.getTeamByString(team1);
+            Player player = team.getPlayerByString(playerName);
+            
+
+            
+		if (soortTransactie.equalsIgnoreCase("buy")) {
+			if (League.acceptOffer(bod, player) == true) {
+				this.chosenTeam().buyPlayer(player, bod);
+				team.sellPlayer(player, bod);
+				return true;
+			}
+		} else if (soortTransactie.equalsIgnoreCase("sell")) {
+			this.chosenTeam().sellPlayer(player, bod);
+			team.buyPlayer(player, bod);
+			return true;
+		}
+		return false;
+	}
+        
    
 }
