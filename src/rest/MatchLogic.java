@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
-public class MatchLogic extends Thread {
+public class MatchLogic{
 
     private int tCurrent;
     private final int tMax;
@@ -56,11 +56,11 @@ public class MatchLogic extends Thread {
 	 */
 	public double offenceSum(Team t){
 		double S = 0;
-		for (int i=0; i<t.getLineUp().getAanvallers().size(); i++){
-			S += t.getLineUp().getAanvallers().get(i).getOffence();
+		for (int i=0; i<t.getDefaultLineUp().getAanvallers().size(); i++){
+			S += t.getDefaultLineUp().getAanvallers().get(i).getOffence();
 		}
-		for (int i=0; i<t.getLineUp().getMiddenvelders().size(); i++){
-			S += ( t.getLineUp().getMiddenvelders().get(i).getOffence() )/2;
+		for (int i=0; i<t.getDefaultLineUp().getMiddenvelders().size(); i++){
+			S += ( t.getDefaultLineUp().getMiddenvelders().get(i).getOffence() )/2;
 		}
 		
 		return S;
@@ -73,13 +73,13 @@ public class MatchLogic extends Thread {
 	 */
 	public double defenceSum(Team t){
 		double S = 0;
-		for (int i=0; i<t.getLineUp().getVerdedigers().size(); i++){
-			S += t.getLineUp().getVerdedigers().get(i).getDefence();
+		for (int i=0; i<t.getDefaultLineUp().getVerdedigers().size(); i++){
+			S += t.getDefaultLineUp().getVerdedigers().get(i).getDefence();
 		}
-		for (int i=0; i<t.getLineUp().getMiddenvelders().size(); i++){
-			S += ( t.getLineUp().getMiddenvelders().get(i).getDefence() )/2;
+		for (int i=0; i<t.getDefaultLineUp().getMiddenvelders().size(); i++){
+			S += ( t.getDefaultLineUp().getMiddenvelders().get(i).getDefence() )/2;
 		}
-		S += t.getLineUp().getKeeper().getDefence(); 
+		S += t.getDefaultLineUp().getKeeper().getDefence(); 
 		
 		return S;
 	}
@@ -91,16 +91,16 @@ public class MatchLogic extends Thread {
 	 */
 	public double enduranceSum(Team t){
 		double S = 0;
-		for (int i=0; i<t.getLineUp().getAanvallers().size(); i++){
-			S += t.getLineUp().getAanvallers().get(i).getEndurance();
+		for (int i=0; i<t.getDefaultLineUp().getAanvallers().size(); i++){
+			S += t.getDefaultLineUp().getAanvallers().get(i).getEndurance();
 		}
-		for (int i=0; i<t.getLineUp().getVerdedigers().size(); i++){
-			S += t.getLineUp().getVerdedigers().get(i).getEndurance();
+		for (int i=0; i<t.getDefaultLineUp().getVerdedigers().size(); i++){
+			S += t.getDefaultLineUp().getVerdedigers().get(i).getEndurance();
 		}
-		for (int i=0; i<t.getLineUp().getMiddenvelders().size(); i++){
-			S += t.getLineUp().getMiddenvelders().get(i).getEndurance();
+		for (int i=0; i<t.getDefaultLineUp().getMiddenvelders().size(); i++){
+			S += t.getDefaultLineUp().getMiddenvelders().get(i).getEndurance();
 		}
-		S += t.getLineUp().getKeeper().getEndurance(); 
+		S += t.getDefaultLineUp().getKeeper().getEndurance(); 
 		
 		return S;
 	}
@@ -140,13 +140,13 @@ public class MatchLogic extends Thread {
             
             if(scored(offenceSum(team1), defenceSum(team2), enduranceSum(team1), enduranceSum(team2),tCurrent)){
                 int a = (int)(Math.round(Math.random()*3-0.5));
-                spelert = team1.getLineUp().getAanvallers().get(a);
+                spelert = team1.getDefaultLineUp().getAanvallers().get(a);
                 return new Update(4, spelert, tCurrent);
             }
             
             else if(Math.random()>0.9){
                 
-                spelert=team1.getLineUp().getRandomPlayer();
+                spelert=team1.getDefaultLineUp().getRandomPlayer();
                 double temp = Math.random();
                 
                 if(temp<p1){
@@ -175,13 +175,13 @@ public class MatchLogic extends Thread {
             
             if(scored(offenceSum(team2), defenceSum(team1), enduranceSum(team2), enduranceSum(team1),tCurrent)){
                 int a = (int)(Math.round(Math.random()*3-0.5));
-                spelert = team2.getLineUp().getAanvallers().get(a);
+                spelert = team2.getDefaultLineUp().getAanvallers().get(a);
                 return new Update(4, spelert, tCurrent);
             }
             
             else if(Math.random()>0.9){
                 
-                spelert=team2.getLineUp().getRandomPlayer();
+                spelert=team2.getDefaultLineUp().getRandomPlayer();
                 double temp = Math.random();
                 
                 if(temp<p1){
