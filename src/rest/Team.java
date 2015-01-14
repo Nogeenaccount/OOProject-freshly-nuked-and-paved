@@ -42,6 +42,7 @@ public class Team {
 	goalsAgainst = 0;
     }
 
+    @Override
     public boolean equals(Object other){
             if(other instanceof Team){
                 Team that = (Team)other;
@@ -73,6 +74,7 @@ public class Team {
      *
      * @return String
      */
+    @Override
     public String toString() {
 	String str = "<Team(";
 	str += teamName + ", ";
@@ -95,17 +97,19 @@ public class Team {
      *
      * @param x the player to be sold
      */
-    public void sellPlayer(Player x) {
+    public boolean sellPlayer(Player x, int bod) {
 	for (int i = 0; i < this.players.size(); i++) {
 	    if (this.players.get(i).getPlayerName()
 		    .equalsIgnoreCase(x.getPlayerName())) {
 		int newBudget = this.budget + this.players.get(i).getPrice();
 		this.players.remove(i);
 
-		this.setBudget(newBudget);
+		this.setBudget(newBudget + bod);
+                return true;
 	    }
 
 	}
+        return false;
     }
 
     /**
@@ -113,17 +117,19 @@ public class Team {
      * buy the player Shirtnumber from player x is changed if shirtnumber is
      * already taken.
      *
-     * @param x
+     * @param bod the amount of money you pay
+     * @return 
      */
-    public void buyPlayer(Player x) {
-	if (this.getBudget() >= x.getPrice()) {
+    public boolean buyPlayer(Player x, int bod) {
+	if (bod < this.getBudget()) {
 	    if (this.shirtnumberFree(x) != true) {
 		x.setShirtNumber(this.availableShirtnumber());
 	    }
 	    this.add(x);
-	    this.setBudget((this.getBudget() - x.getPrice()));
-
+	    this.setBudget((this.getBudget() - bod));
+            return true;
 	}
+        return false;
     }
 
     /**
@@ -214,11 +220,11 @@ public class Team {
      * @return true if taken
      */
     public boolean shirtnumberTaken(int number) {
-	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getShirtNumber() == number) {
-		return true;
-	    }
-	}
+        for (Player player : this.players) {
+            if (player.getShirtNumber() == number) {
+                return true;
+            }
+        }
 	return false;
     }
 
@@ -231,12 +237,11 @@ public class Team {
     public boolean shirtnumberFree(Player x) {
 	int shirtNumber = x.getShirtNumber();
 
-	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getShirtNumber() == shirtNumber) {
-		return false;
-	    }
-
-	}
+        for (Player player : this.players) {
+            if (player.getShirtNumber() == shirtNumber) {
+                return false;
+            }
+        }
 	return true;
     }
 
@@ -326,9 +331,23 @@ public class Team {
 		
 		return l;
 	}
-
-	// transfers player x from team y to team this
-    // getters/setters
+        /**
+         * Method to get a Player by name, String must be in Player format.
+         * @param s The string containing the name.
+         * @return 
+         */
+        public Player getPlayerByString(String s) {
+            Player p;
+        p = null;
+        for (Player player : this.players) {
+            if (s.equalsIgnoreCase(player.getPlayerName())) {
+                p = player;
+            }
+        }
+        return p;
+        }
+            
+        
     public String getTeamName() {
 	return teamName;
     }
