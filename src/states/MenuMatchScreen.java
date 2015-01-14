@@ -31,9 +31,9 @@ public class MenuMatchScreen extends State {
 
 	//Initialise Images
 	String userDir = System.getProperty("user.home");
-	String labelImage = userDir + "\\Desktop\\GUIFiles\\labelNR.png";
-	String buttonNRAdvanceImage = userDir + "\\Desktop\\GUIFiles\\buttonNRAdvance.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String labelImage = "GUIFiles\\labelNR.png";
+	String buttonNRAdvanceImage = "GUIFiles\\buttonNRAdvance.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	//Prompt Matches
 	JLabel progress = new JLabel(new ImageIcon(labelImage));
@@ -65,12 +65,7 @@ public class MenuMatchScreen extends State {
 	matchProgress.setFont(new Font("Arial", Font.PLAIN, 14));
 	this.add(matchProgress);
 
-	Thread t = new Thread(new ThreadTest());
-	rest.ThreadTest.setWorkSpace(matchProgress);
-	t.start();
-	System.out.println("Tried: empty alreadyTried, Problem: filler data");
-
-	//Advance
+        //Advance
 	JButton buttonAdvance = new JButton(new ImageIcon(buttonNRAdvanceImage));
 	c.weightx = 0.5;
 	c.gridx = 1;
@@ -79,6 +74,11 @@ public class MenuMatchScreen extends State {
 	buttonAdvance.setEnabled(false);
 	buttonAdvance.setMinimumSize(new Dimension(400, 100));
 	attachStateChanger(buttonAdvance, new MenuAftermath());
+        
+	Thread t = new Thread(new ThreadTest(buttonAdvance));
+	rest.ThreadTest.setWorkSpace(matchProgress);
+	t.start();
+	System.out.println("Tried: empty alreadyTried, Problem: filler data");
 
 	//Padding
 	JTextArea invisi2 = new JTextArea();
@@ -101,10 +101,10 @@ public class MenuMatchScreen extends State {
 	this.add(panel);
 
 	//Advance button logic
-	while (t.isAlive()) {
-	    System.out.println("waiting...");
-	}
-	buttonAdvance.setEnabled(true);
+//	while (t.isAlive()) {
+//	    System.out.println("waiting...");
+//	}
+//	buttonAdvance.setEnabled(true);
 	System.out.println("Thread has finished, advance button has been enabled");
     }
 

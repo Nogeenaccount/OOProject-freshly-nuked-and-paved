@@ -48,6 +48,17 @@ public class Player {
 	this.injured = injured;
     }
 
+    public boolean equals(Object other){
+            if(other instanceof Player){
+                Player that = (Player)other;
+                if(playerName.equals(that.getPlayerName())){
+                    if((offence==that.getOffence()) && (defence == that.getDefence()) && endurance == that.getEndurance()){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     /**
      * toString: turns Player into a printable String
      *

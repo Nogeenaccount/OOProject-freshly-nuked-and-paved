@@ -54,11 +54,11 @@ public class MenuNew extends State {
 
 	//Initialise images
 	String userDir = System.getProperty("user.home");
-	String gameNameImage = userDir + "\\Desktop\\GUIFiles\\promptName1.png";
-	String teamNameImage = userDir + "\\Desktop\\GUIFiles\\promptTeam1.png";
-	String buttonAdvanceImage = userDir + "\\Desktop\\GUIFiles\\buttonAdvance2.png";
-	String buttonBackImage = userDir + "\\Desktop\\GUIFiles\\buttonBack2.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String gameNameImage = "GUIFiles\\promptName1.png";
+	String teamNameImage = "GUIFiles\\promptTeam1.png";
+	String buttonAdvanceImage = "GUIFiles\\buttonAdvance2.png";
+	String buttonBackImage = "GUIFiles\\buttonBack2.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 //	System.out.println(gameNameImage);
 
 	//Initialise components

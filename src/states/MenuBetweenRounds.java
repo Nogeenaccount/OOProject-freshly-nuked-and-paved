@@ -33,13 +33,13 @@ public class MenuBetweenRounds extends State {
 
 	//Initialise Images
 	String userDir = System.getProperty("user.home");
-	String buttonNextMatchImage = userDir + "\\Desktop\\GUIFiles\\buttonNextMatch.png";
-	String buttonTransfersImage = userDir + "\\Desktop\\GUIFiles\\buttonTransfers.png";
-	String buttonTeamManagementImage = userDir + "\\Desktop\\GUIFiles\\buttonTeamManagement.png";
-	String buttonTourneyOverviewImage = userDir + "\\Desktop\\GUIFiles\\buttonTourneyOverview.png";
-	String buttonSaveImage = userDir + "\\Desktop\\GUIFiles\\buttonSave.png";
-	String buttonHomeScreenImage = userDir + "\\Desktop\\GUIFiles\\buttonHomeScreen.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String buttonNextMatchImage = "GUIFiles\\buttonNextMatch.png";
+	String buttonTransfersImage = "GUIFiles\\buttonTransfers.png";
+	String buttonTeamManagementImage = "GUIFiles\\buttonTeamManagement.png";
+	String buttonTourneyOverviewImage = "GUIFiles\\buttonTourneyOverview.png";
+	String buttonSaveImage = "GUIFiles\\buttonSave.png";
+	String buttonHomeScreenImage = "GUIFiles\\buttonHomeScreen.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	JTextArea invisi2 = new JTextArea();
 	c.weightx = 0.5;

@@ -15,6 +15,25 @@ public class LineUp {
 	verdedigers = new ArrayList<Player>();
     }
 
+     public Player getRandomPlayer(){
+            double positie = Math.random();
+            double id = Math.random();
+            
+            if(positie<0.33){
+                return verdedigers.get((int)Math.floor(id*3.99));
+            }
+            
+            if(positie<0.66){
+                return middenvelders.get((int)Math.floor(id*2.99));
+            }
+            
+            if(positie<0.99){
+                return aanvallers.get((int)Math.floor(id*2.99));
+            }
+            return keeper;
+            
+            
+        }
     /**
      * addAanvaller: add an aanvaller to the lineup
      *
@@ -25,6 +44,22 @@ public class LineUp {
 	    aanvallers.add(p);
 	}
     }
+    
+         public String lineUpToXML(){
+            String res = "";
+            res += this.getKeeper().getShirtNumber()+", ";
+            for(int i = 0; i<4; i++){
+                res += this.getVerdedigers().get(i).getShirtNumber()+", ";
+            }
+               for(int i = 0; i<3; i++){
+                res += this.getMiddenvelders().get(i).getShirtNumber()+", ";
+            }
+                 for(int i = 0; i<3; i++){
+                res += this.getAanvallers().get(i).getShirtNumber()+", ";
+            }
+            
+            return res;
+        }
 
     /**
      * addMiddenvelder: add an middenvelder to the lineup

@@ -42,6 +42,22 @@ public class Team {
 	goalsAgainst = 0;
     }
 
+    @Override
+    public boolean equals(Object other){
+            if(other instanceof Team){
+                Team that = (Team)other;
+                if(teamName.equals(that.getTeamName())){
+                    for(int n=0;n<players.size();n++){
+                        if(!players.get(n).equals(that.getPlayers().get(n))){
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+    
     /**
      * add: adds player to the team
      *
@@ -58,6 +74,7 @@ public class Team {
      *
      * @return String
      */
+    @Override
     public String toString() {
 	String str = "<Team(";
 	str += teamName + ", ";
@@ -80,17 +97,19 @@ public class Team {
      *
      * @param x the player to be sold
      */
-    public void sellPlayer(Player x) {
+    public boolean sellPlayer(Player x, int bod) {
 	for (int i = 0; i < this.players.size(); i++) {
 	    if (this.players.get(i).getPlayerName()
 		    .equalsIgnoreCase(x.getPlayerName())) {
 		int newBudget = this.budget + this.players.get(i).getPrice();
 		this.players.remove(i);
 
-		this.setBudget(newBudget);
+		this.setBudget(newBudget + bod);
+                return true;
 	    }
 
 	}
+        return false;
     }
 
     /**
@@ -98,17 +117,19 @@ public class Team {
      * buy the player Shirtnumber from player x is changed if shirtnumber is
      * already taken.
      *
-     * @param x
+     * @param bod the amount of money you pay
+     * @return 
      */
-    public void buyPlayer(Player x) {
-	if (this.getBudget() >= x.getPrice()) {
+    public boolean buyPlayer(Player x, int bod) {
+	if (bod < this.getBudget()) {
 	    if (this.shirtnumberFree(x) != true) {
 		x.setShirtNumber(this.availableShirtnumber());
 	    }
 	    this.add(x);
-	    this.setBudget((this.getBudget() - x.getPrice()));
-
+	    this.setBudget((this.getBudget() - bod));
+            return true;
 	}
+        return false;
     }
 
     /**
@@ -126,6 +147,71 @@ public class Team {
 	return counter;
 
     }
+    /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+      public ArrayList<Player> getPlayersAttackers() {
+             ArrayList<Player> aanvallers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("F")){
+                     aanvallers.add(players.get(i));
+                 }
+             }
+             while(aanvallers.size() != 3){
+             aanvallers.remove(3);
+             }
+             return aanvallers;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersDefenders() {
+	  ArrayList<Player> verdedigers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("D")){
+                     verdedigers.add(players.get(i));
+                 }
+             }
+             
+             while( verdedigers.size() != 4){
+              verdedigers.remove(4);
+             }
+             return verdedigers;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersMidfielders() {
+		  ArrayList<Player> middenvelders = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("M")){
+                     middenvelders.add(players.get(i));
+                 }
+             }
+                 while( middenvelders.size() != 3){
+              middenvelders.remove(3);
+             }
+             return middenvelders;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersKeepers() {
+		  ArrayList<Player> keepers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("G")){
+                     keepers.add(players.get(i));
+                 }
+             }
+             while(keepers.size() != 1){
+              keepers.remove(1);
+             }
+             return keepers;
+	}
 
     /**
      * Find out where the specified shirtnumber is taken in your team
@@ -134,11 +220,11 @@ public class Team {
      * @return true if taken
      */
     public boolean shirtnumberTaken(int number) {
-	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getShirtNumber() == number) {
-		return true;
-	    }
-	}
+        for (Player player : this.players) {
+            if (player.getShirtNumber() == number) {
+                return true;
+            }
+        }
 	return false;
     }
 
@@ -151,12 +237,11 @@ public class Team {
     public boolean shirtnumberFree(Player x) {
 	int shirtNumber = x.getShirtNumber();
 
-	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getShirtNumber() == shirtNumber) {
-		return false;
-	    }
-
-	}
+        for (Player player : this.players) {
+            if (player.getShirtNumber() == shirtNumber) {
+                return false;
+            }
+        }
 	return true;
     }
 
@@ -174,32 +259,39 @@ public class Team {
 		// "geblesseerde spelers niet in lineup" nog niet geimplementeerd
 		for (int i =0; i<this.players.size(); i++){
 			switch (this.players.get(i).getPosition()){
-				case "GK" : keepers.add(this.players.get(i)); break;
-				case "MF" : middenvelders.add(this.players.get(i)); break;
-				case "AT" : aanvallers.add(this.players.get(i)); break;
-				case "DF" : verdedigers.add(this.players.get(i)); break; 
+				case "G" : keepers.add(this.players.get(i)); break;
+				case "M" : middenvelders.add(this.players.get(i)); break;
+				case "F" : aanvallers.add(this.players.get(i)); break;
+				case "D" : verdedigers.add(this.players.get(i)); break; 
 			}
 		}
+                String temp = "TESTTESTTEST";
+		temp = temp + keepers.size() + " " + verdedigers.size() + " " + middenvelders.size() + " " + aanvallers.size();
+		System.out.println(temp);
 		
-		
-		// eliminatie van mindere keepers
+
+// eliminatie van mindere keepers
 		int toBeEliminated = 0;
 		int lowestStats = 1000000;
-		do {
+                do {
+                        lowestStats = 100000;
 			for (int p = 0; p<keepers.size(); p++){
-			
+                            
 				if (keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance() < lowestStats) {
-					toBeEliminated = p;
+                                        toBeEliminated = p;
 					lowestStats = keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance();
 				}
 			}
 			keepers.remove(toBeEliminated);
 		} while(keepers.size()>1);
-		
+                System.out.println(toBeEliminated);
+                System.out.println(keepers.size());
+		System.out.println("Keepers: " + keepers.size());
 		// eliminatie van mindere verdedigers
 		toBeEliminated = 0;
 		lowestStats = 100000;
 		do {
+                        lowestStats = 100000;
 			for (int p = 0; p<verdedigers.size(); p++){
 			
 				if (verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance() < lowestStats) {
@@ -207,27 +299,33 @@ public class Team {
 					lowestStats = verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance();
 				}
 			}
+                        System.out.println(toBeEliminated);
+                        System.out.println(verdedigers.size());
 			verdedigers.remove(toBeEliminated);
 		} while(verdedigers.size()>4);
-		
+		System.out.println("Verdedigers: " + verdedigers.size());
 		// eliminatie van mindere middenvelders
 		toBeEliminated = 0;
 		lowestStats = 100000;
 		do {
-			for (int p = 0; p<middenvelders.size(); p++){
+                    lowestStats = 100000;
+                    for (int p = 0; p<middenvelders.size(); p++){
 			
 				if (middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance() < lowestStats) {
 					toBeEliminated = p;
 					lowestStats = middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance();
 				}
 			}
+                        System.out.println(toBeEliminated);
+                        System.out.println(middenvelders.size());
 			middenvelders.remove(toBeEliminated);
 		} while(middenvelders.size()>3);
-
+                System.out.println("middenvelders: " + middenvelders.size());
 		// eliminatie van mindere aanvallers
 		toBeEliminated = 0;
 		lowestStats = 100000;
 		do {
+                        lowestStats = 100000;
 			for (int p = 0; p<aanvallers.size(); p++){
 			
 				if (aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance() < lowestStats) {
@@ -235,9 +333,11 @@ public class Team {
 					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
 				}
 			}
+                        System.out.println(toBeEliminated);
+                        System.out.println(aanvallers.size());
 			aanvallers.remove(toBeEliminated);
 		} while(aanvallers.size()>3);
-		
+		System.out.println("Aanvallers: " + aanvallers.toString());
 		
 		l.setAanvallers(aanvallers);
 		l.setMiddenvelders(middenvelders);
@@ -246,9 +346,23 @@ public class Team {
 		
 		return l;
 	}
-
-	// transfers player x from team y to team this
-    // getters/setters
+        /**
+         * Method to get a Player by name, String must be in Player format.
+         * @param s The string containing the name.
+         * @return 
+         */
+        public Player getPlayerByString(String s) {
+            Player p;
+        p = null;
+        for (Player player : this.players) {
+            if (s.equalsIgnoreCase(player.getPlayerName())) {
+                p = player;
+            }
+        }
+        return p;
+        }
+            
+        
     public String getTeamName() {
 	return teamName;
     }

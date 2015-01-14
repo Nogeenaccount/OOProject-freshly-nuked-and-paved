@@ -28,8 +28,8 @@ public class MenuTourneyOverview extends State {
 
 	//Initialise Images
 	String userDir = System.getProperty("user.home");
-	String buttonBackImage = userDir + "\\Desktop\\GUIFiles\\buttonBack.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String buttonBackImage = "GUIFiles\\buttonBack.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	//Padding
 	JTextArea invisi2 = new JTextArea();

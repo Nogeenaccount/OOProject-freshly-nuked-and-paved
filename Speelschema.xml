@@ -1,0 +1,1639 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<speelschema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<fixtures>
+	<round>
+		<id>1</id>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>2</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>3</id>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>4</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>5</id>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>6</id>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>7</id>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>8</id>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>9</id>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>10</id>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>11</id>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>12</id>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>13</id>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>14</id>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>15</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>16</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>17</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>18</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>19</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>20</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>21</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>22</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>23</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>24</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>25</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>26</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		</round>
+	<round>
+		<id>27</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		</round>
+	<round>
+		<id>28</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		</round>
+	<round>
+		<id>29</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		</round>
+	<round>
+		<id>30</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		</round>
+	<round>
+		<id>31</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		</round>
+	<round>
+		<id>32</id>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		</round>
+	<round>
+		<id>33</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>34</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>35</id>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>36</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>37</id>
+		<fixture>
+			<homeTeam>Burnley</homeTeam>
+			<awayTeam>Stoke City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Liverpool</homeTeam>
+			<awayTeam>Crystal Palace</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester United</homeTeam>
+			<awayTeam>Arsenal</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Queens Park Rangers</homeTeam>
+			<awayTeam>Newcastle United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Southampton</homeTeam>
+			<awayTeam>Aston Villa</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Sunderland</homeTeam>
+			<awayTeam>Leicester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Swansea City</homeTeam>
+			<awayTeam>Manchester City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Tottenham Hotspur</homeTeam>
+			<awayTeam>Hull City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Bromwich Albion</homeTeam>
+			<awayTeam>Chelsea</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>West Ham United</homeTeam>
+			<awayTeam>Everton</awayTeam>
+		</fixture>
+	</round>
+	<round>
+		<id>38</id>
+		<fixture>
+			<homeTeam>Arsenal</homeTeam>
+			<awayTeam>West Bromwich Albion</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Aston Villa</homeTeam>
+			<awayTeam>Burnley</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Chelsea</homeTeam>
+			<awayTeam>Sunderland</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Crystal Palace</homeTeam>
+			<awayTeam>Swansea City</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Everton</homeTeam>
+			<awayTeam>Tottenham Hotspur</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Hull City</homeTeam>
+			<awayTeam>Manchester United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Leicester City</homeTeam>
+			<awayTeam>Queens Park Rangers</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Manchester City</homeTeam>
+			<awayTeam>Southampton</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Newcastle United</homeTeam>
+			<awayTeam>West Ham United</awayTeam>
+		</fixture>
+		<fixture>
+			<homeTeam>Stoke City</homeTeam>
+			<awayTeam>Liverpool</awayTeam>
+		</fixture>
+	</round>
+	</fixtures>
+</speelschema>

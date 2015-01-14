@@ -44,10 +44,10 @@ public class MenuTransfers extends State {
 
 	//Initialise images
 	String userDir = System.getProperty("user.home");
-	String buttonAttemptImage = userDir + "\\Desktop\\GUIFiles\\buttonAttempt.png";
-	String buttonOfferAcceptImage = userDir + "\\Desktop\\GUIFiles\\buttonBuyPlayer.png";
-	String buttonBackImage = userDir + "\\Desktop\\GUIFiles\\buttonDone.png";
-	String panelPanelImage = userDir + "\\Desktop\\GUIFiles\\FootbalStadiumSize.png";
+	String buttonAttemptImage = "GUIFiles\\buttonAttempt.png";
+	String buttonOfferAcceptImage = "GUIFiles\\buttonBuyPlayer.png";
+	String buttonBackImage = "GUIFiles\\buttonDone.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
 
 	//Initialise List Data
 	System.out.println("Initialise Offers: use filler data");
