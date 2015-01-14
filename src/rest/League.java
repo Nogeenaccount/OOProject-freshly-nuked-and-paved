@@ -179,7 +179,7 @@ public class League {
             }
             
             
-            return rondes.get(ronde-1);
+            return rondes.get(ronde);
         } catch (SAXException ex) {
             Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

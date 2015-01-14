@@ -28,7 +28,9 @@ public class ThreadTest implements Runnable {
         String methodeOutput = "";
         
 	System.out.println("Thread has set 'ongoingMatchText'");
-        
+        League league = states.StateManager.getLeague();
+        Team home = league.getByName(league.getChosenTeam());
+        Team away = league.nextRound("Speelschema.xml", (38-league.getRounds())).getOpponent(home);
         //Twee teams
         
         //Echte stuff

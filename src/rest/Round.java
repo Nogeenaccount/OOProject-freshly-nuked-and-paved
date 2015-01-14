@@ -26,6 +26,22 @@ public class Round {
         }
         return false;
     }
+   /**
+    * Method to get the team the chosenteam is playing against
+    * @param team your team
+    * @return the opponent, either home or away
+    */
+  public Team getOpponent(Team team){
+      Team opponent = new Team("","",0);
+      for(int i = 0; i< 10; i++){
+          if(list.get(i).getHomeTeam() == team){
+              opponent = list.get(i).getHomeTeam();
+          }else if(list.get(i).getAwayTeam() == team){
+              opponent = list.get(i).getAwayTeam();
+          }
+      }
+      return opponent;
+  }
     
     public void addMatch(Match mat){
         
