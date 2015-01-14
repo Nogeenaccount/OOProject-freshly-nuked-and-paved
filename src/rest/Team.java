@@ -147,6 +147,71 @@ public class Team {
 	return counter;
 
     }
+    /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+      public ArrayList<Player> getPlayersAttackers() {
+             ArrayList<Player> aanvallers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("F")){
+                     aanvallers.add(players.get(i));
+                 }
+             }
+             while(aanvallers.size() != 3){
+             aanvallers.remove(3);
+             }
+             return aanvallers;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersDefenders() {
+	  ArrayList<Player> verdedigers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("D")){
+                     verdedigers.add(players.get(i));
+                 }
+             }
+             
+             while( verdedigers.size() != 4){
+              verdedigers.remove(4);
+             }
+             return verdedigers;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersMidfielders() {
+		  ArrayList<Player> middenvelders = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("M")){
+                     middenvelders.add(players.get(i));
+                 }
+             }
+                 while( middenvelders.size() != 3){
+              middenvelders.remove(3);
+             }
+             return middenvelders;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersKeepers() {
+		  ArrayList<Player> keepers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("G")){
+                     keepers.add(players.get(i));
+                 }
+             }
+             while(keepers.size() != 1){
+              keepers.remove(1);
+             }
+             return keepers;
+	}
 
     /**
      * Find out where the specified shirtnumber is taken in your team
@@ -200,14 +265,17 @@ public class Team {
 				case "D" : verdedigers.add(this.players.get(i)); break; 
 			}
 		}
+                String temp = "TESTTESTTEST";
+		temp = temp + keepers.size() + " " + verdedigers.size() + " " + middenvelders.size() + " " + aanvallers.size();
+		System.out.println(temp);
 		
-		
-		// eliminatie van mindere keepers
+
+// eliminatie van mindere keepers
 		int toBeEliminated = 0;
 		int lowestStats = 1000000;
-		do {
+                do {
 			for (int p = 0; p<keepers.size(); p++){
-			
+                            System.out.println(keepers.size());
 				if (keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance() < lowestStats) {
 					toBeEliminated = p;
 					lowestStats = keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance();
@@ -215,7 +283,7 @@ public class Team {
 			}
 			keepers.remove(toBeEliminated);
 		} while(keepers.size()>1);
-		
+		System.out.println("Keepers: " + keepers.size());
 		// eliminatie van mindere verdedigers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -229,7 +297,7 @@ public class Team {
 			}
 			verdedigers.remove(toBeEliminated);
 		} while(verdedigers.size()>4);
-		
+		System.out.println("Verdedigers: " + verdedigers.size());
 		// eliminatie van mindere middenvelders
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -243,7 +311,7 @@ public class Team {
 			}
 			middenvelders.remove(toBeEliminated);
 		} while(middenvelders.size()>3);
-
+                System.out.println("middenvelders: " + middenvelders.size());
 		// eliminatie van mindere aanvallers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -254,10 +322,11 @@ public class Team {
 					toBeEliminated = p;
 					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
 				}
+                                System.out.println("Aanvallerstemp: " + aanvallers.toString());
 			}
 			aanvallers.remove(toBeEliminated);
 		} while(aanvallers.size()>3);
-		
+		System.out.println("Aanvallers: " + aanvallers.toString());
 		
 		l.setAanvallers(aanvallers);
 		l.setMiddenvelders(middenvelders);

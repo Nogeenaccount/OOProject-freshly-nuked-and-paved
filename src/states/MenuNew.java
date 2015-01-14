@@ -36,19 +36,6 @@ import javax.swing.event.ListSelectionListener;
 @SuppressWarnings("serial")
 public class MenuNew extends State {
 
-    //Initialise images
-    String userDir = System.getProperty("user.home");
-    String gameNameImage = "GUIFiles/promptName1.png";
-    String teamNameImage = "GUIFiles/promptTeam1.png";
-    String buttonAdvanceImage = "GUIFiles/buttonAdvance2.png";
-    String buttonBackImage = "GUIFiles/buttonBack2.png";
-    String panelPanelImage = "GUIFiles/FootbalStadiumSize.png";
-    
-    JTextField input = new JTextField();
-    JList teamList = new JList();
-    JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
-    JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
-    
     public MenuNew() {
 
     }
@@ -65,28 +52,81 @@ public class MenuNew extends State {
 	    array1[i] = league1.getTeams().get(i).getTeamName();
 	}
 
-	createSpace();
-	setBackground(panelPanelImage);
-	
+	//Initialise images
+	String userDir = System.getProperty("user.home");
+	String gameNameImage = "GUIFiles\\promptName1.png";
+	String teamNameImage = "GUIFiles\\promptTeam1.png";
+	String buttonAdvanceImage = "GUIFiles\\buttonAdvance2.png";
+	String buttonBackImage = "GUIFiles\\buttonBack2.png";
+	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
+//	System.out.println(gameNameImage);
+
+	//Initialise components
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	final JList teamList = new JList(array1);
+	final JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
+
+	//Padding
+	JTextArea invisi2 = new JTextArea();
+	c.weightx = 0.5;
+	c.gridx = 1;
+	c.gridy = 0;
+	layout.setConstraints(invisi2, c);
+	invisi2.setPreferredSize(new Dimension(200, 100));
+	invisi2.setOpaque(false);
+	invisi2.setEditable(false);
+	invisi2.setMargin(new Insets(100, 0, 0, 0));
+	this.add(invisi2);
+
 	//Prompt name	
 	JLabel gameName = new JLabel(new ImageIcon(gameNameImage));
+//	gameName.setOpaque(true);
+//	gameName.setEditable(false);
+	gameName.setPreferredSize(new Dimension(400, 40));
+	gameName.setMinimumSize(new Dimension(400, 40));
+//	gameName.setText("Please enter your name:");
 	c.gridx = 1;
 	c.gridy = 1;
-	createLabel(gameName,"",c,layout);
+	layout.setConstraints(gameName, c);
+	this.add(gameName);
 
 	//Enter your name
+	final JTextField input = new JTextField();
+	input.setOpaque(true);
+	input.setPreferredSize(new Dimension(400, 40));
+	input.setMinimumSize(new Dimension(400, 40));
+	input.setBackground(Color.decode("#525151"));
+	input.setForeground(Color.white);
+	input.setFont(new Font("Arial", Font.PLAIN, 20));
 	c.gridx = 1;
 	c.gridy = 2;
-	createInput(input,c,layout);
+	layout.setConstraints(input, c);
+	this.add(input);
+	input.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		if (teamList.isSelectionEmpty() == false && input.getText().equals("") == false) {
+		    buttonAdvance.setEnabled(true);
+		}
+		if (teamList.isSelectionEmpty() || input.getText().equals("")) {
+		    buttonAdvance.setEnabled(false);
+		}
+	    }
+	});
 
 	//Prompt team
 	JLabel teamName = new JLabel(new ImageIcon(teamNameImage));
+//	teamName.setOpaque(true);
+	teamName.setPreferredSize(new Dimension(400, 40));
+	teamName.setMinimumSize(new Dimension(400, 40));
+//	teamName.setEditable(false);
+//	teamName.setText("Please choose your team:");
 	c.gridx = 1;
 	c.gridy = 3;
-	createLabel(teamName,"",c,layout);
+	layout.setConstraints(teamName, c);
+	this.add(teamName);
 
 	//Team list
-	teamList = new JList(array1);
 	teamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	teamList.setVisibleRowCount(-1);
 	teamList.setBackground(Color.decode("#525151"));
@@ -99,38 +139,26 @@ public class MenuNew extends State {
 	layout.setConstraints(teamScroller, c);
 	this.add(teamScroller);
 	teamList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                enableButtons();
-            }
-        });
+	    @Override
+	    public void valueChanged(ListSelectionEvent e) {
+		if (teamList.isSelectionEmpty() == false && input.getText().equals("") == false) {
+		    buttonAdvance.setEnabled(true);
+		}
+		if (teamList.isSelectionEmpty() || input.getText().equals("")) {
+		    buttonAdvance.setEnabled(false);
+		}
+	    }
+	});
 
 	//Advance
 	c.weightx = 0.5;
 	c.gridx = 1;
 	c.gridy = 5;
-	createButton(buttonAdvance, "", c, layout);
+	createButton(buttonAdvance, "Advance", c, layout);
 	attachStateChanger(buttonAdvance, new MenuBetweenRounds());
-	advance();
-
-	//Go back
-	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 6;
-	createButton(buttonBack, "", c, layout);
-	attachStateChanger(buttonBack, new MenuMain());
-    }
-    
-    public void enableButtons(){
-	if(teamList.isSelectionEmpty() == false && input.getText().equals("") == false) {
-	    buttonAdvance.setEnabled(true);
-	}
-	else{
-	    buttonAdvance.setEnabled(false);
-	}
-    }
-    
-    public void advance(){
+	buttonAdvance.setEnabled(false);
+	buttonAdvance.setPreferredSize(new Dimension(400, 80));
+	buttonAdvance.setMinimumSize(new Dimension(400, 80));
 	buttonAdvance.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
@@ -149,5 +177,37 @@ public class MenuNew extends State {
 		StateManager.getLeague().writeToXML("SaveGame.xml");
 	    }
 	});
+
+	//Go back
+	JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
+	c.weightx = 0.5;
+	c.gridx = 1;
+	c.gridy = 6;
+	createButton(buttonBack, "Back", c, layout);
+	buttonBack.setPreferredSize(new Dimension(400, 80));
+	buttonBack.setMinimumSize(new Dimension(400, 80));
+	attachStateChanger(buttonBack, new MenuMain());
+
+	//Padding
+	JTextArea invisi3 = new JTextArea();
+	c.weightx = 0.5;
+	c.gridx = 1;
+	c.gridy = 7;
+	layout.setConstraints(invisi3, c);
+	invisi3.setPreferredSize(new Dimension(200, 100));
+	invisi3.setOpaque(false);
+	invisi3.setEditable(false);
+	invisi3.setMargin(new Insets(0, 0, 0, 200));
+	this.add(invisi3);
+
+	c.weightx = 0.5;
+	c.gridheight = 8;
+	c.gridwidth = 3;
+	c.gridx = 0;
+	c.gridy = 0;
+	ImagePanel panel = new ImagePanel(new ImageIcon(panelPanelImage).getImage(), c, layout);
+	this.add(panel);
     }
+    
+    
 }

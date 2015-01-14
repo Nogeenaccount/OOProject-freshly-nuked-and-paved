@@ -1,9 +1,11 @@
 package rest;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Scanner;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +20,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class League {
 
@@ -50,6 +53,18 @@ public class League {
      * @param filename name of to-be-read file
      * @return League league
      */
+    
+            public Team getByName(String teamname){
+          Team t = new Team("","",0);
+        for(int i = 0; i<teams.size(); i++){
+                if(teams.get(i).getTeamName().equals(teamname)){
+                t = teams.get(i);
+            }
+                
+        }
+        return t;
+    }
+            
     public static League readResources(String fileName) {
 	try {
 	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -126,7 +141,55 @@ public class League {
 	}
 	return new League("", 0, "", "");
     }
-
+    public Round nextRound(String fileName, int ronde) {
+        try {
+            int roundNr = 0;
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(new File(fileName));
+            doc.getDocumentElement().normalize();
+            NodeList roundsList = doc.getElementsByTagName("round");
+            NodeList matchList = doc.getElementsByTagName("fixture");
+            Node rNode;
+            ArrayList<Round> rondes = new ArrayList<Round>();
+            Round r;
+            int c = 0;
+            String at = "";
+            String ht = "";
+            Element rElement;
+            Node fNode;
+            Element fElement;
+                      
+            for(int i = 0; i< roundsList.getLength(); i++)
+            {
+                rNode = roundsList.item(i);
+                rElement = (Element) rNode;
+                roundNr = Integer.parseInt(rElement.getElementsByTagName("id").item(0).getTextContent());
+                r = new Round();
+                for(int m = c ; m< (c+10) ; m++){
+                    fNode = matchList.item(m);
+                    fElement = (Element) fNode;
+                    ht = fElement.getElementsByTagName("homeTeam").item(0).getTextContent();
+                    at = fElement.getElementsByTagName("awayTeam").item(0).getTextContent();
+                    Match ma = new Match(this.getByName(ht), this.getByName(at));
+                    r.addMatch(ma);
+                    }
+                c += 10;
+                rondes.add(r);
+            }
+            
+            
+            return rondes.get(ronde-1);
+        } catch (SAXException ex) {
+            Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Round();
+      
+    }
     /**
      * toString: turns League into a printable String
      *
@@ -160,6 +223,7 @@ public class League {
 	return rounds;
     }
 
+    
     public void setRounds(int rounds) {
 	this.rounds = rounds;
     }
@@ -282,7 +346,12 @@ public class League {
 		Element goalDifference = doc.createElement("goalsDifference");
 		goalDifference.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getGoalDifference())));
 		team.appendChild(goalDifference);
-
+                
+                /**
+                Element lineUp = doc.createElement("lineUp");
+		lineUp.appendChild(doc.createTextNode(teams.get(i).getLineUp().lineUpToXML()));
+		team.appendChild(lineUp);
+                **/
 		//Element players
 		for (int j = 0; j < teams.get(i).getPlayers().size(); j++) {
 		    Element player = doc.createElement("player");

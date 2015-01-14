@@ -44,6 +44,22 @@ public class LineUp {
 	    aanvallers.add(p);
 	}
     }
+    
+         public String lineUpToXML(){
+            String res = "";
+            res += this.getKeeper().getShirtNumber()+", ";
+            for(int i = 0; i<4; i++){
+                res += this.getVerdedigers().get(i).getShirtNumber()+", ";
+            }
+               for(int i = 0; i<3; i++){
+                res += this.getMiddenvelders().get(i).getShirtNumber()+", ";
+            }
+                 for(int i = 0; i<3; i++){
+                res += this.getAanvallers().get(i).getShirtNumber()+", ";
+            }
+            
+            return res;
+        }
 
     /**
      * addMiddenvelder: add an middenvelder to the lineup
