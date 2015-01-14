@@ -194,20 +194,23 @@ public class Team {
 		// "geblesseerde spelers niet in lineup" nog niet geimplementeerd
 		for (int i =0; i<this.players.size(); i++){
 			switch (this.players.get(i).getPosition()){
-				case "GK" : keepers.add(this.players.get(i)); break;
-				case "MF" : middenvelders.add(this.players.get(i)); break;
-				case "AT" : aanvallers.add(this.players.get(i)); break;
-				case "DF" : verdedigers.add(this.players.get(i)); break; 
+				case "G" : keepers.add(this.players.get(i)); break;
+				case "M" : middenvelders.add(this.players.get(i)); break;
+				case "F" : aanvallers.add(this.players.get(i)); break;
+				case "D" : verdedigers.add(this.players.get(i)); break; 
 			}
 		}
+                String temp = "TESTTESTTEST";
+		temp = temp + keepers.size() + " " + verdedigers.size() + " " + middenvelders.size() + " " + aanvallers.size();
+		System.out.println(temp);
 		
-		
-		// eliminatie van mindere keepers
+
+// eliminatie van mindere keepers
 		int toBeEliminated = 0;
 		int lowestStats = 1000000;
-		do {
+                do {
 			for (int p = 0; p<keepers.size(); p++){
-			
+                            System.out.println(keepers.size());
 				if (keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance() < lowestStats) {
 					toBeEliminated = p;
 					lowestStats = keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance();
@@ -215,7 +218,7 @@ public class Team {
 			}
 			keepers.remove(toBeEliminated);
 		} while(keepers.size()>1);
-		
+		System.out.println("Keepers: " + keepers.size());
 		// eliminatie van mindere verdedigers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -229,7 +232,7 @@ public class Team {
 			}
 			verdedigers.remove(toBeEliminated);
 		} while(verdedigers.size()>4);
-		
+		System.out.println("Verdedigers: " + verdedigers.size());
 		// eliminatie van mindere middenvelders
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -243,7 +246,7 @@ public class Team {
 			}
 			middenvelders.remove(toBeEliminated);
 		} while(middenvelders.size()>3);
-
+                System.out.println("middenvelders: " + middenvelders.size());
 		// eliminatie van mindere aanvallers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -254,10 +257,11 @@ public class Team {
 					toBeEliminated = p;
 					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
 				}
+                                System.out.println("Aanvallerstemp: " + aanvallers.toString());
 			}
 			aanvallers.remove(toBeEliminated);
 		} while(aanvallers.size()>3);
-		
+		System.out.println("Aanvallers: " + aanvallers.toString());
 		
 		l.setAanvallers(aanvallers);
 		l.setMiddenvelders(middenvelders);
