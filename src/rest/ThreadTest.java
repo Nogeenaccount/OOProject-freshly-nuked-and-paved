@@ -58,7 +58,7 @@ public class ThreadTest implements Runnable {
             String display = beginText + Math.round(6.4*n) + "e Minuut" + ", Stand: " +thisMatch.getTeam1().getTeamName()+ " "+HomeGoals + "-" + AwayGoals+" "+thisMatch.getTeam2().getTeamName()+ newLine + methodeOutput;
             workSpace.setText(display + newLine);
             try{
-                Thread.sleep(500);
+                Thread.sleep(100);
             }
             catch(InterruptedException e){
                 System.out.println(e);
