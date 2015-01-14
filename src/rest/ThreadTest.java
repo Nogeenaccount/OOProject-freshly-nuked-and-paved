@@ -18,12 +18,13 @@ public class ThreadTest implements Runnable {
         String methodeOutput = "";
         
 	System.out.println("Thread has set 'ongoingMatchText'");
-        
+        League league = states.StateManager.getLeague();
+        Team home = league.getByName(league.getChosenTeam());
+        Team away = league.nextRound("Speelschema.xml", (38-league.getRounds())).getOpponent(home);
         //Twee teams
         
         //Echte stuff
-        MatchLogic thisMatch = new MatchLogic(15,states.StateManager.getLeague().getTeams().get(0),states.StateManager.getLeague().getTeams().get(1));
-        
+        MatchLogic thisMatch = new MatchLogic(15, home, away);
         for(int n=0;n<15;n++){
             Update tickHome = thisMatch.tickHome();
             Update tickAway = thisMatch.tickAway();

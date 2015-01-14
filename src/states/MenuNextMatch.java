@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import rest.League;
+import rest.Round;
 
 //WORKING WITH FILLER
 @SuppressWarnings("serial")
@@ -30,7 +32,8 @@ public class MenuNextMatch extends State {
 	for (int i = 0; i < league1.getTeams().size(); i++) {
 	    array1[i] = league1.getTeams().get(i).getTeamName();
 	}
-
+        
+    
 	//Initialise Images
 	String userDir = System.getProperty("user.home");
 	String buttonAdvanceImage = "GUIFiles\\buttonNMAdvance.png";
@@ -47,9 +50,10 @@ public class MenuNextMatch extends State {
 	    }
 	}
 	System.out.println("Next round matches determined by: array2 //filler");
-	String[][] data = new String[10][];
+	String[] array3 = teamsToShow();
+        String[][] data = new String[10][];
 	for (int i = 0; i < 20; i = i + 2) {
-	    data[i / 2] = new String[]{array2[i], "vs", array2[i + 1]};
+	    data[i / 2] = new String[]{array3[i], "vs", array3[i + 1]};
 	}
 	String[] columnNames = {"First team", "vs", "Second team"};
 
@@ -112,4 +116,20 @@ public class MenuNextMatch extends State {
 	ImagePanel panel = new ImagePanel(new ImageIcon(panelPanelImage).getImage(), c, layout);
 	this.add(panel);
     }
+    
+        public static String[] teamsToShow(){
+            String[] teamList = new String[20];
+            String ht = "";
+            String at = "";
+            League l = states.StateManager.getLeague();
+            Round r = l.nextRound("Speelschema.xml", (38-l.getRounds()));
+            for(int i = 0; i < 10; i++){
+            ht = r.getMatch(i).getHomeTeam().getTeamName();
+            at = r.getMatch(i).getAwayTeam().getTeamName();
+            teamList[2*i] = ht;
+            teamList[2*i+1] = at;
+            }
+            
+            return teamList;
+        }
 }
