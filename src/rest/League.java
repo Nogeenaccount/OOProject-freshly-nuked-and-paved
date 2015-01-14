@@ -31,6 +31,7 @@ public class League {
     private String gameName;
     private String chosenTeam;
     private ArrayList<String> offersMade;
+    private Match lastResult;
 
     public League(String name, int rounds, String gameName, String chosenTeam) {
 	leagueName = name;

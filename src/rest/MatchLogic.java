@@ -3,6 +3,8 @@ package rest;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MatchLogic{
 
@@ -117,7 +119,7 @@ public class MatchLogic{
 	public boolean scored(double O1, double D2, double E1, double E2, double t) {
 		double P;
 		double a = 5;
-		double b = 0.0003;
+		double b = 0.0006;
 		P = (O1 - D2/2)*Math.pow((E1/E2),(t/a))*b;
 		
 		if (Math.random() < P)
@@ -131,11 +133,14 @@ public class MatchLogic{
     public Update tickHome(){
             int typ =0;
             Player spelert = null;
+            if(gettCurrent()==0){
+                tCurrent=2;
+            }
             int min=gettCurrent();
             
-             double p1=0.01;
-             double p2=0.005;
-             double p3=0.02;
+             double p1=0.01; //gele kaart thuisteam
+             double p2=0.005; //rode kaart thuisteam
+             double p3=0.02; //blessure thuisteam
             
             
             if(scored(offenceSum(getTeam1()), defenceSum(getTeam2()), enduranceSum(getTeam1()), enduranceSum(getTeam2()), gettCurrent())){
@@ -166,11 +171,16 @@ public class MatchLogic{
         public Update tickAway(){
             int typ =0;
             Player spelert = null;
+            if(gettCurrent()==0){
+                tCurrent=2;
+            }
+            
+            
             int min=gettCurrent();
             
-             double p1=0.01;
-             double p2=0.005;
-             double p3=0.02;
+             double p1=0.01; //gele kaart thuisteam
+             double p2=0.005; //rode kaart thuisteam
+             double p3=0.02; //blessure thuisteam
             
             
             if(scored(offenceSum(getTeam2()), defenceSum(getTeam1()), enduranceSum(getTeam2()), enduranceSum(getTeam1()), gettCurrent())){
@@ -179,7 +189,7 @@ public class MatchLogic{
                 return new Update(4, spelert, gettCurrent());
             }
             
-            else if(Math.random()>0.9){
+            else if(Math.random()>0.7){
                 
                 spelert=getTeam2().getDefaultLineUp().getRandomPlayer();
                 double temp = Math.random();
@@ -194,10 +204,61 @@ public class MatchLogic{
                     return new Update(3, spelert, gettCurrent());
                 }
             }
-                        
+                   
             return new Update(typ, spelert, min);
         }
 
+        public String LineGenerator(Update Update, Team t){
+            String newLine = System.getProperty("line.separator");
+            
+            String result = "";
+            switch(Update.getType()){
+                case 0: break;
+                case 1: result = result + Update.getMinuut() + "' " + "Gele kaart voor " + Update.getSpeler().getPlayerName() + "!" + newLine; 
+                        break;
+                case 2: result = result + Update.getMinuut() + "' " + "Rode kaart voor " + Update.getSpeler().getPlayerName() + "!" + newLine; 
+                        break;
+                case 3: result = result + Update.getMinuut() + "' " + Update.getSpeler().getPlayerName() + " is geblesseerd geraakt!" + newLine; 
+                        break;
+                case 4: result = result + Update.getMinuut() + "' " + "GOAL voor " + t.getTeamName() + "! Doelpuntenmaker: " +Update.getSpeler().getPlayerName() + "!" + newLine;
+                        break;
+            }       
+            
+            
+            return result;
+        }
+        
+        public ArrayList<Update> oneTick(){
+            Update updateHome = tickHome();
+            Update updateAway = tickAway();
+            if(tCurrent>45)
+                tCurrent++;
+            tCurrent+=6;
+            
+            switch(updateHome.getType()){
+                case 0: break;
+                case 1: updateHome.getSpeler().setCardCount(updateHome.getSpeler().getCardCount()+1); break;
+                case 2: updateHome.getSpeler().setCardCount(updateHome.getSpeler().getCardCount()+5); break;
+                case 3: updateHome.getSpeler().setInjured(1); break;
+                case 4: score1++;
+            }
+            
+            switch(updateAway.getType()){
+                case 0: break;
+                case 1: updateAway.getSpeler().setCardCount(updateAway.getSpeler().getCardCount()+1); break;
+                case 2: updateAway.getSpeler().setCardCount(updateAway.getSpeler().getCardCount()+5); break;
+                case 3: updateAway.getSpeler().setInjured(1); break;
+                case 4: score2++;
+            }
+            
+            ArrayList<Update> updateList = new ArrayList<Update>();
+            updateList.add(updateHome);
+            updateList.add(updateAway);
+            
+            
+            
+            return updateList;
+        }
     /**
      * @return the tCurrent
      */

@@ -265,10 +265,8 @@ public class Team {
 				case "D" : verdedigers.add(this.players.get(i)); break; 
 			}
 		}
-                String temp = "TESTTESTTEST";
-		temp = temp + keepers.size() + " " + verdedigers.size() + " " + middenvelders.size() + " " + aanvallers.size();
-		System.out.println(temp);
-		
+                
+				
 
 // eliminatie van mindere keepers
 		int toBeEliminated = 0;
@@ -284,9 +282,7 @@ public class Team {
 			}
 			keepers.remove(toBeEliminated);
 		} while(keepers.size()>1);
-                System.out.println(toBeEliminated);
-                System.out.println(keepers.size());
-		System.out.println("Keepers: " + keepers.size());
+                
 		// eliminatie van mindere verdedigers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -299,11 +295,10 @@ public class Team {
 					lowestStats = verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance();
 				}
 			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(verdedigers.size());
+                        
 			verdedigers.remove(toBeEliminated);
 		} while(verdedigers.size()>4);
-		System.out.println("Verdedigers: " + verdedigers.size());
+		
 		// eliminatie van mindere middenvelders
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -316,11 +311,10 @@ public class Team {
 					lowestStats = middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance();
 				}
 			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(middenvelders.size());
+                        
 			middenvelders.remove(toBeEliminated);
 		} while(middenvelders.size()>3);
-                System.out.println("middenvelders: " + middenvelders.size());
+              
 		// eliminatie van mindere aanvallers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -333,11 +327,10 @@ public class Team {
 					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
 				}
 			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(aanvallers.size());
+                        
 			aanvallers.remove(toBeEliminated);
 		} while(aanvallers.size()>3);
-		System.out.println("Aanvallers: " + aanvallers.toString());
+		
 		
 		l.setAanvallers(aanvallers);
 		l.setMiddenvelders(middenvelders);
