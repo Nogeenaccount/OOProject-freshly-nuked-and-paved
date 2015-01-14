@@ -274,20 +274,24 @@ public class Team {
 		int toBeEliminated = 0;
 		int lowestStats = 1000000;
                 do {
+                        lowestStats = 100000;
 			for (int p = 0; p<keepers.size(); p++){
-                            System.out.println(keepers.size());
+                            
 				if (keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance() < lowestStats) {
-					toBeEliminated = p;
+                                        toBeEliminated = p;
 					lowestStats = keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance();
 				}
 			}
 			keepers.remove(toBeEliminated);
 		} while(keepers.size()>1);
+                System.out.println(toBeEliminated);
+                System.out.println(keepers.size());
 		System.out.println("Keepers: " + keepers.size());
 		// eliminatie van mindere verdedigers
 		toBeEliminated = 0;
 		lowestStats = 100000;
 		do {
+                        lowestStats = 100000;
 			for (int p = 0; p<verdedigers.size(); p++){
 			
 				if (verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance() < lowestStats) {
@@ -295,6 +299,8 @@ public class Team {
 					lowestStats = verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance();
 				}
 			}
+                        System.out.println(toBeEliminated);
+                        System.out.println(verdedigers.size());
 			verdedigers.remove(toBeEliminated);
 		} while(verdedigers.size()>4);
 		System.out.println("Verdedigers: " + verdedigers.size());
@@ -302,13 +308,16 @@ public class Team {
 		toBeEliminated = 0;
 		lowestStats = 100000;
 		do {
-			for (int p = 0; p<middenvelders.size(); p++){
+                    lowestStats = 100000;
+                    for (int p = 0; p<middenvelders.size(); p++){
 			
 				if (middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance() < lowestStats) {
 					toBeEliminated = p;
 					lowestStats = middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance();
 				}
 			}
+                        System.out.println(toBeEliminated);
+                        System.out.println(middenvelders.size());
 			middenvelders.remove(toBeEliminated);
 		} while(middenvelders.size()>3);
                 System.out.println("middenvelders: " + middenvelders.size());
@@ -316,14 +325,16 @@ public class Team {
 		toBeEliminated = 0;
 		lowestStats = 100000;
 		do {
+                        lowestStats = 100000;
 			for (int p = 0; p<aanvallers.size(); p++){
 			
 				if (aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance() < lowestStats) {
 					toBeEliminated = p;
 					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
 				}
-                                System.out.println("Aanvallerstemp: " + aanvallers.toString());
 			}
+                        System.out.println(toBeEliminated);
+                        System.out.println(aanvallers.size());
 			aanvallers.remove(toBeEliminated);
 		} while(aanvallers.size()>3);
 		System.out.println("Aanvallers: " + aanvallers.toString());

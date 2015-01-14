@@ -101,9 +101,9 @@ public class MenuMatchScreen extends State {
 	this.add(panel);
 
 	//Advance button logic
-	while (t.isAlive()) {
-	    System.out.println("waiting...");
-	}
+//	while (t.isAlive()) {
+//	    System.out.println("waiting...");
+//	}
 	buttonAdvance.setEnabled(true);
 	System.out.println("Thread has finished, advance button has been enabled");
     }
