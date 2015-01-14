@@ -141,6 +141,71 @@ public class Team {
 	return counter;
 
     }
+    /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+      public ArrayList<Player> getPlayersAttackers() {
+             ArrayList<Player> aanvallers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("F")){
+                     aanvallers.add(players.get(i));
+                 }
+             }
+             while(aanvallers.size() != 3){
+             aanvallers.remove(3);
+             }
+             return aanvallers;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersDefenders() {
+	  ArrayList<Player> verdedigers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("D")){
+                     verdedigers.add(players.get(i));
+                 }
+             }
+             
+             while( verdedigers.size() != 4){
+              verdedigers.remove(4);
+             }
+             return verdedigers;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersMidfielders() {
+		  ArrayList<Player> middenvelders = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("M")){
+                     middenvelders.add(players.get(i));
+                 }
+             }
+                 while( middenvelders.size() != 3){
+              middenvelders.remove(3);
+             }
+             return middenvelders;
+	}
+           /**
+     * Returns a desired number of players that suits the lineup requirements
+     * @return list of either attackers/ midfielder/ defenders/ a keeper
+     */
+        public ArrayList<Player> getPlayersKeepers() {
+		  ArrayList<Player> keepers = new ArrayList<Player>();
+             for(int i = 0; i<players.size(); i++){
+                 if(players.get(i).getPosition().equals("G")){
+                     keepers.add(players.get(i));
+                 }
+             }
+             while(keepers.size() != 1){
+              keepers.remove(1);
+             }
+             return keepers;
+	}
 
     /**
      * Find out where the specified shirtnumber is taken in your team
