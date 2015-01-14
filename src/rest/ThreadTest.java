@@ -1,10 +1,20 @@
 package rest;
 
 import javax.swing.JTextArea;
-
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 public class ThreadTest implements Runnable {
 
+    
     private static JTextArea workSpace;
+    private static JButton button;
+    
+    public ThreadTest(JButton button2) {
+        button = button2;
+    }
 
     @Override
     public void run() {
@@ -52,6 +62,7 @@ public class ThreadTest implements Runnable {
                 System.out.println(e);
             }
             }
+        button.setEnabled(true);
     }
 
     public static JTextArea getWorkSpace() {
