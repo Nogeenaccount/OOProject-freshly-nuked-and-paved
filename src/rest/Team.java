@@ -194,10 +194,10 @@ public class Team {
 		// "geblesseerde spelers niet in lineup" nog niet geimplementeerd
 		for (int i =0; i<this.players.size(); i++){
 			switch (this.players.get(i).getPosition()){
-				case "GK" : keepers.add(this.players.get(i)); break;
-				case "MF" : middenvelders.add(this.players.get(i)); break;
-				case "AT" : aanvallers.add(this.players.get(i)); break;
-				case "DF" : verdedigers.add(this.players.get(i)); break; 
+				case "G" : keepers.add(this.players.get(i)); break;
+				case "M" : middenvelders.add(this.players.get(i)); break;
+				case "F" : aanvallers.add(this.players.get(i)); break;
+				case "D" : verdedigers.add(this.players.get(i)); break; 
 			}
 		}
 		
