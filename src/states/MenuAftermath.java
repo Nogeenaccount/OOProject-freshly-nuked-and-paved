@@ -13,6 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import java.util.ArrayList;
+import rest.Update;
+
 @SuppressWarnings("serial")
 //WORKING WITH FILLER
 public class MenuAftermath extends State {
@@ -65,38 +68,42 @@ public class MenuAftermath extends State {
 	matchResults.setFont(new Font("Arial", Font.PLAIN, 14));
 	matchResults.setEditable(false);
 
-	String yourRoundResult = "Your team 2 - 2 Opponents";
+        
+        //Preparing strings
+        String Bookings = "Kaarten:\n";
+        String injuries = "Blessures:\n";
+        
+        
+        ArrayList<Update> last = states.StateManager.getLeague().getLastResultDetailed();
+        String result = states.StateManager.getLeague().getLastResult();
+        for(int n=0;n<states.StateManager.getLeague().getLastResultDetailed().size();n++){
+            Update temp = states.StateManager.getLeague().getLastResultDetailed().get(n);
+            switch(temp.getType()){
+                case 1: Bookings = Bookings + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() + ": Gele kaart\n"; break;
+                case 2: Bookings = Bookings + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() + ": Rode kaart\n";break;
+                case 3: injuries = injuries + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() + ": " + rest.MatchLogic.randomInjury() + "\n";break;
+                default: break;
+            }
+        }
+        
+        
+	String yourRoundResult = states.StateManager.getLeague().getLastResult();
 
-	String roundBookings = "";
-	for (int i = 0; i < 3; i++) {
-	    roundBookings = roundBookings + i + "th booking" + "\n";
-	}
-
-	String roundInjuries = "";
-	for (int i = 0; i < 3; i++) {
-	    roundInjuries = roundInjuries + i + "th injury" + "\n";
-	}
-
-	String otherMatches = "";
-	for (int i = 0; i < 20; i = i + 2) {
-	    if (array1[i].equals(StateManager.getLeague().getChosenTeam()) == false && array1[i + 1].equals(StateManager.getLeague().getChosenTeam()) == false) {
-		otherMatches = otherMatches + array1[i] + "  vs  " + array1[i + 1] + "\n";
-	    }
-	}
-
-	System.out.println("Set by filler: 'yourRoundResult' + 'roundBookings' + 'roundInjuries' + 'otherMatches'");
+	
 	String roundResults
 		= "Here is the result of your match:" + "\n"
 		+ yourRoundResult + "\n" + "\n"
-		+ "Bookings:" + "\n"
-		+ roundBookings + "\n" + "\n"
-		+ "Injuries:" + "\n"
-		+ roundInjuries + "\n" + "\n"
-		+ "And here are the results of the other matches:" + "\n"
-		+ otherMatches;
+		+ Bookings + "\n" + "\n"
+		+ injuries + "\n" + "\n"
+		+ "And here are the results of the other matches:" + "\n";
+		//+ otherMatches;
 	;
 
-	matchResults.setText(roundResults);
+	
+        
+        
+        
+        matchResults.setText(roundResults);
 	this.add(matchResults);
 
 	//Advance

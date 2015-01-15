@@ -78,6 +78,10 @@ public class ThreadTest implements Runnable {
                     System.out.println(e);
                 }
             }
+        
+        states.StateManager.getLeague().setLastResult(thisMatch.getTeam1().getTeamName()+" "+thisMatch.getScore1() + "-" + thisMatch.getScore2()+" "+thisMatch.getTeam2().getTeamName());
+        
+        //League.setLastResultDetailed(thisMatch.get);
         button.setEnabled(true);
     }
 

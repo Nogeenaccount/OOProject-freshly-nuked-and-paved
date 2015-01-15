@@ -31,7 +31,8 @@ public class League {
     private String gameName;
     private String chosenTeam;
     private ArrayList<String> offersMade;
-    private Match lastResult;
+    private String lastResult;
+    private ArrayList<Update> LastResultDetailed = new ArrayList<Update>();
 
     public League(String name, int rounds, String gameName, String chosenTeam) {
 	leagueName = name;
@@ -527,6 +528,38 @@ public class League {
 		}
 		return false;
 	}
+    
+    public void addToLastResultDetailed(Update u){
+        LastResultDetailed.add(u);
+    }
+
+    /**
+     * @return the lastResult
+     */
+    public String getLastResult() {
+        return lastResult;
+    }
+
+    /**
+     * @param lastResult the lastResult to set
+     */
+    public void setLastResult(String lastResult) {
+        this.lastResult = lastResult;
+    }
+
+    /**
+     * @return the LastResultDetailed
+     */
+    public ArrayList<Update> getLastResultDetailed() {
+        return LastResultDetailed;
+    }
+
+    /**
+     * @param LastResultDetailed the LastResultDetailed to set
+     */
+    public void setLastResultDetailed(ArrayList<Update> LastResultDetailed) {
+        this.LastResultDetailed = LastResultDetailed;
+    }
         
    
 }
