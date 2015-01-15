@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.JTableHeader;
 import rest.League;
 import rest.Round;
 
@@ -55,13 +56,15 @@ public class MenuNextMatch extends State {
 	for (int i = 0; i < 20; i = i + 2) {
 	    data[i / 2] = new String[]{array3[i], "vs", array3[i + 1]};
 	}
-	String[] columnNames = {"First team", "vs", "Second team"};
+	String[] columnNames = {"Home team", "", "Away team"};
 
+       
+        
 	//Next matches table
 	JTable table = new JTable(data, columnNames);
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 1;
+	c.gridy = 2;
 	layout.setConstraints(table, c);
 	table.setPreferredSize(new Dimension(400, 160));
 	table.getColumnModel().getColumn(0).setPreferredWidth(170);
@@ -73,12 +76,25 @@ public class MenuNextMatch extends State {
 	table.setFont(new Font("Arial", Font.PLAIN, 14));
 	table.setEnabled(false);
 	this.add(table);
-
+        
+        //Table header
+        JTableHeader tableHeader = table.getTableHeader();
+	c.weightx = 0.5;
+	c.gridx = 1;
+	c.gridy = 1;
+	layout.setConstraints(tableHeader, c);
+	tableHeader.setEnabled(false);
+	tableHeader.setForeground(Color.white);
+	tableHeader.setBackground(Color.decode("#525151"));
+	tableHeader.setMinimumSize(new Dimension(400, 20));
+	tableHeader.setFont(new Font("Arial", Font.PLAIN, 18));
+	this.add(tableHeader);
+        
 	//Advance
 	JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 2;
+	c.gridy = 3;
 	createButton(buttonAdvance, "", c, layout);
 	buttonAdvance.setPreferredSize(new Dimension(400, 75));
 	buttonAdvance.setMinimumSize(new Dimension(400, 75));
@@ -89,7 +105,7 @@ public class MenuNextMatch extends State {
 	JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 3;
+	c.gridy = 4;
 	createButton(buttonBack, "", c, layout);
 	buttonBack.setPreferredSize(new Dimension(400, 75));
 	buttonBack.setMinimumSize(new Dimension(400, 75));
@@ -109,7 +125,7 @@ public class MenuNextMatch extends State {
 	this.add(invisi2);
 
 	c.weightx = 0.5;
-	c.gridheight = 6;
+	c.gridheight = 7;
 	c.gridwidth = 3;
 	c.gridx = 0;
 	c.gridy = 0;
