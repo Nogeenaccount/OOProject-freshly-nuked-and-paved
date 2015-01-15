@@ -171,9 +171,7 @@ public class MatchLogic{
         public Update tickAway(){
             int typ =0;
             Player spelert = null;
-            if(gettCurrent()==0){
-                tCurrent=2;
-            }
+            
             
             
             int min=gettCurrent();
@@ -208,19 +206,21 @@ public class MatchLogic{
             return new Update(typ, spelert, min);
         }
 
-        public String LineGenerator(Update Update, Team t){
+        public String LineGenerator(Update update, Team t){
             String newLine = System.getProperty("line.separator");
-            
+            if(update.getMinuut()==0){
+                update.setMinuut(2);
+            }
             String result = "";
-            switch(Update.getType()){
+            switch(update.getType()){
                 case 0: break;
-                case 1: result = result + Update.getMinuut() + "' " + "Gele kaart voor " + Update.getSpeler().getPlayerName() + "!" + newLine; 
+                case 1: result = result + update.getMinuut() + "' " + "Gele kaart voor " + update.getSpeler().getPlayerName() + "!" + newLine; 
                         break;
-                case 2: result = result + Update.getMinuut() + "' " + "Rode kaart voor " + Update.getSpeler().getPlayerName() + "!" + newLine; 
+                case 2: result = result + update.getMinuut() + "' " + "Rode kaart voor " + update.getSpeler().getPlayerName() + "!" + newLine; 
                         break;
-                case 3: result = result + Update.getMinuut() + "' " + Update.getSpeler().getPlayerName() + " is geblesseerd geraakt!" + newLine; 
+                case 3: result = result + update.getMinuut() + "' " + update.getSpeler().getPlayerName() + " is geblesseerd geraakt!" + newLine; 
                         break;
-                case 4: result = result + Update.getMinuut() + "' " + "GOAL voor " + t.getTeamName() + "! Doelpuntenmaker: " +Update.getSpeler().getPlayerName() + "!" + newLine;
+                case 4: result = result + update.getMinuut() + "' " + "GOAL voor " + t.getTeamName() + "! Doelpuntenmaker: " + update.getSpeler().getPlayerName() + "!" + newLine;
                         break;
             }       
             
@@ -231,7 +231,7 @@ public class MatchLogic{
         public ArrayList<Update> oneTick(){
             Update updateHome = tickHome();
             Update updateAway = tickAway();
-            if(tCurrent>45)
+            if(tCurrent>60)
                 tCurrent++;
             tCurrent+=6;
             
@@ -259,6 +259,18 @@ public class MatchLogic{
             
             return updateList;
         }
+        
+        
+    public static Match findOwnMatch(int round){
+       Round temp = states.StateManager.getLeague().nextRound("Speelschema.xml",round);
+       Team myTeam = states.StateManager.getLeague().getTeamByString(states.StateManager.getLeague().getChosenTeam());
+       for(int n=0;n<10;n++){
+           if(temp.getMatch(n).getHomeTeam().equals(myTeam)||temp.getMatch(n).getAwayTeam().equals(myTeam)){
+               return temp.getMatch(n);
+           }
+       }
+       return new Match();
+    }
     /**
      * @return the tCurrent
      */

@@ -15,6 +15,9 @@ public class Match {
     private int HomeScore;
     private int AwayScore;
     
+    public Match(){
+        
+    }
     
     public Match(Team Home, Team Away){
         HomeTeam = Home;

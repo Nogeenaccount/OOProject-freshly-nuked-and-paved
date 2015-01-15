@@ -30,17 +30,21 @@ public class ThreadTest implements Runnable {
         System.out.println("Thread has set 'ongoingMatchText'");
         League league = states.StateManager.getLeague();
         Team home = league.getByName(league.getChosenTeam());
-        Team away = league.nextRound("Speelschema.xml", (38-league.getRounds())).getOpponent(home);
+        Team away = league.nextRound("Speelschema.xml", (league.getRounds())).getOpponent(home);
         //Twee teams
         
         //Echte stuff
-        MatchLogic thisMatch = new MatchLogic(15,states.StateManager.getLeague().getTeams().get(0),states.StateManager.getLeague().getTeams().get(11));
+        int round = states.StateManager.getLeague().getRounds();
+        Match weddie = MatchLogic.findOwnMatch(round);
+        Team homeTeam = weddie.getHomeTeam();
+        Team awayTeam = weddie.getAwayTeam();
+        MatchLogic thisMatch = new MatchLogic(15,homeTeam,awayTeam);
         String newLine = System.getProperty("line.separator");
-        
+        System.out.println(thisMatch.getTeam1().getTeamName().toString());
         String updateText = "";
         for(int n=0;n<15;n++){
                       
-            String MainText = thisMatch.gettCurrent()
+            String mainText = thisMatch.gettCurrent()
                       + "e Minuut" + ", Stand: " 
                       + thisMatch.getTeam1().getTeamName()
                       + " "+thisMatch.getScore1()
@@ -56,7 +60,9 @@ public class ThreadTest implements Runnable {
                         + thisMatch.LineGenerator(tick.get(0),thisMatch.getTeam1())
                         + thisMatch.LineGenerator(tick.get(1),thisMatch.getTeam2());
             
-                workSpace.setText(beginText + MainText + updateText);
+            
+            
+                workSpace.setText(beginText + mainText + updateText);
                 try{
                     Thread.sleep(100);
                 }

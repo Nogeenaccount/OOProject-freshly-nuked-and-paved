@@ -178,7 +178,7 @@ public class League {
                 c += 10;
                 rondes.add(r);
             }
-            
+            ronde = 39-ronde;
             
             return rondes.get(ronde);
         } catch (SAXException ex) {

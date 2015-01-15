@@ -122,7 +122,7 @@ public class MenuNextMatch extends State {
             String ht = "";
             String at = "";
             League l = states.StateManager.getLeague();
-            Round r = l.nextRound("Speelschema.xml", (38-l.getRounds()));
+            Round r = l.nextRound("Speelschema.xml", (l.getRounds()));
             for(int i = 0; i < 10; i++){
             ht = r.getMatch(i).getHomeTeam().getTeamName();
             at = r.getMatch(i).getAwayTeam().getTeamName();
