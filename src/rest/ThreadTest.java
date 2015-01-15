@@ -20,8 +20,10 @@ public class ThreadTest implements Runnable {
 
     @Override
     public void run() {
+        int round = states.StateManager.getLeague().getRounds();
+        Match weddie = MatchLogic.findOwnMatch(round);
         String newLine = System.getProperty("line.separator");
-	String beginText = "Welkom bij de wedstrijd!" + newLine;
+	String beginText = "Welkom in " + weddie.getHomeTeam().getStadiumName() + "!" + newLine;
 	workSpace.setText(beginText);
 
 	//String advancedText = "You lost";
@@ -34,8 +36,7 @@ public class ThreadTest implements Runnable {
         //Twee teams
         
         //Echte stuff
-        int round = states.StateManager.getLeague().getRounds();
-        Match weddie = MatchLogic.findOwnMatch(round);
+        
         Team homeTeam = weddie.getHomeTeam();
         Team awayTeam = weddie.getAwayTeam();
         MatchLogic thisMatch = new MatchLogic(15,homeTeam,awayTeam);

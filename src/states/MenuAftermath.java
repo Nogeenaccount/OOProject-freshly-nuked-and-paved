@@ -14,7 +14,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import java.util.ArrayList;
+import rest.Match;
+import rest.MatchLogic;
 import rest.Update;
+import rest.Round;
+import rest.Team;
+import rest.MatchResult;
 
 @SuppressWarnings("serial")
 //WORKING WITH FILLER
@@ -78,9 +83,18 @@ public class MenuAftermath extends State {
         String result = states.StateManager.getLeague().getLastResult();
         for(int n=0;n<states.StateManager.getLeague().getLastResultDetailed().size();n++){
             Update temp = states.StateManager.getLeague().getLastResultDetailed().get(n);
+            String name = "";
+            if(n%2 == 0){
+                name = MatchLogic.findOwnMatch(states.StateManager.getLeague().getRounds()).getHomeTeam().getTeamName();
+            }
+            else{
+                name = MatchLogic.findOwnMatch(states.StateManager.getLeague().getRounds()).getAwayTeam().getTeamName();
+            }
+            
+            
             switch(temp.getType()){
-                case 1: Bookings = Bookings + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() + ": Gele kaart\n"; break;
-                case 2: Bookings = Bookings + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() + ": Rode kaart\n";break;
+                case 1: Bookings = Bookings + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() +" (" + name +")"+ ": Gele kaart\n"; break;
+                case 2: Bookings = Bookings + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() +" (" + name +")"+ ": Rode kaart\n";break;
                 case 3: injuries = injuries + temp.getMinuut() + "' " + temp.getSpeler().getPlayerName() + ": " + rest.MatchLogic.randomInjury() + "\n";break;
                 default: break;
             }
@@ -89,6 +103,25 @@ public class MenuAftermath extends State {
         
 	String yourRoundResult = states.StateManager.getLeague().getLastResult();
 
+        //Find other results
+        String othermatches = "";
+        Round thisRound = states.StateManager.getLeague().nextRound("Speelschema.xml",states.StateManager.getLeague().getRounds());
+        for(int n=0;n<10;n++){
+            Match temp = thisRound.getMatch(n);
+            if(!temp.equals(MatchLogic.findOwnMatch(states.StateManager.getLeague().getRounds()))){
+                Team home = temp.getHomeTeam();
+                Team away = temp.getAwayTeam();
+                temp = MatchResult.getResult(home,away,15);
+                states.StateManager.getLeague().processResult(temp.getHomeTeam(), temp.getAwayTeam(), temp.getHomeScore(), temp.getAwayScore());
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
 	
 	String roundResults
 		= "Here is the result of your match:" + "\n"
@@ -97,11 +130,12 @@ public class MenuAftermath extends State {
 		+ injuries + "\n" + "\n"
 		+ "And here are the results of the other matches:" + "\n";
 		//+ otherMatches;
-	;
-
 	
+        int round = states.StateManager.getLeague().getRounds();
+        Match weddie = MatchLogic.findOwnMatch(round);
+	states.StateManager.getLeague().processResult(weddie.getHomeTeam(),weddie.getAwayTeam(),weddie.getHomeScore(),weddie.getAwayScore());
         
-        
+        states.StateManager.getLeague().setRounds(states.StateManager.getLeague().getRounds()-2);
         
         matchResults.setText(roundResults);
 	this.add(matchResults);

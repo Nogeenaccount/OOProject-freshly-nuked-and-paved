@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import rest.Match;
+import rest.MatchLogic;
 
 //FINISHED
 @SuppressWarnings("serial")
@@ -155,8 +157,18 @@ public class MenuBetweenRounds extends State {
 	    }
 	}
 
+        
+        Match nextMatch = MatchLogic.findOwnMatch(StateManager.getLeague().getRounds()+1);
+        String nextOpp = nextMatch.getHomeTeam().getTeamName() + " (Home)";
+        if(!nextMatch.getHomeTeam().equals(StateManager.getLeague().getChosenTeam())){
+            nextOpp = nextMatch.getAwayTeam().getTeamName() + "  (Away)";
+        }
+        String lastRes = states.StateManager.getLeague().getLastResult();
+        if(lastRes == null){
+            lastRes = "No matches played yet!";
+        }
 	//Get SomeResult and 
-	String display = "Name: " + StateManager.getLeague().getGameName() + "\n" + "Your team: " + StateManager.getLeague().getChosenTeam() + "\n" + "Budget: " + yourBudget + "\n" + "Last Result: " + "++Some result++" + "\n" + "Next Opponent: " + "++Some opponent++";
+	String display = "Name: " + StateManager.getLeague().getGameName() + "\n" + "Your team: " + StateManager.getLeague().getChosenTeam() + "\n" + "Budget: " + yourBudget + "\n" + "Last Result: " + lastRes + "\n" + "Next Opponent: " + nextOpp;
 
 	textFieldBudget.setText(display);
 	textFieldBudget.setEditable(false);
