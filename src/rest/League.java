@@ -179,8 +179,9 @@ public class League {
                 c += 10;
                 rondes.add(r);
             }
+            System.out.println(ronde);
             ronde = 39-ronde;
-            
+            System.out.println(ronde);
             return rondes.get(ronde);
         } catch (SAXException ex) {
             Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
@@ -529,6 +530,41 @@ public class League {
 		return false;
 	}
     
+    public void processResult(Team t1, Team t2, int h, int a){
+        t1.setPlayed(t1.getPlayed()+1);
+        t2.setPlayed(t2.getPlayed()+1);
+        t1.setGoalsMade(t1.getGoalsMade()+h);
+        t1.setGoalsAgainst(t1.getGoalsAgainst()+a);
+        t2.setGoalsMade(t2.getGoalsMade()+a);
+        t2.setGoalsAgainst(t2.getGoalsAgainst()+h);
+        
+        //HomeTeam won
+        if(h>a){
+            t1.setWins(t1.getWins()+1);
+            t2.setLosses(t2.getLosses()+1);
+            t1.setWinStreak(t1.getWinStreak()+1);
+            t2.setWinStreak(0);
+        }
+        //AwayTeam won
+        else if(h<a){
+            t2.setWins(t2.getWins()+1);
+            t1.setLosses(t1.getLosses()+1);
+            t2.setWinStreak(t2.getWinStreak()+1);
+            t1.setWinStreak(0);
+                }
+        //draw
+        else if(h==a){
+            t2.setDraws(t2.getDraws()+1);
+            t1.setDraws(t1.getDraws()+1);
+            t2.setWinStreak(0);
+            t1.setWinStreak(0);
+        }
+        else{
+            System.out.println("Not a valid result.");
+        }
+    }
+        
+        
     public void addToLastResultDetailed(Update u){
         LastResultDetailed.add(u);
     }
