@@ -20,7 +20,8 @@ public class ThreadTest implements Runnable {
 
     @Override
     public void run() {
-	String beginText = "Here is the progress of your match:\n\n";
+        String newLine = System.getProperty("line.separator");
+	String beginText = "Welkom bij de wedstrijd!" + newLine;
 	workSpace.setText(beginText);
 
 	//String advancedText = "You lost";
@@ -28,9 +29,8 @@ public class ThreadTest implements Runnable {
 	//workSpace.setText(beginText);
 
         System.out.println("Thread has set 'ongoingMatchText'");
-        League league = states.StateManager.getLeague();
-        Team home = league.getByName(league.getChosenTeam());
-        Team away = league.nextRound("Speelschema.xml", (league.getRounds())).getOpponent(home);
+        
+        
         //Twee teams
         
         //Echte stuff
@@ -39,12 +39,28 @@ public class ThreadTest implements Runnable {
         Team homeTeam = weddie.getHomeTeam();
         Team awayTeam = weddie.getAwayTeam();
         MatchLogic thisMatch = new MatchLogic(15,homeTeam,awayTeam);
-        String newLine = System.getProperty("line.separator");
-        System.out.println(thisMatch.getTeam1().getTeamName().toString());
+        
+        //Setting standard String Values
+        
         String updateText = "";
-        for(int n=0;n<15;n++){
-                      
-            String mainText = thisMatch.gettCurrent()
+        String mainText = thisMatch.gettCurrent()
+                      + "e Minuut" + ", Stand: " 
+                      + thisMatch.getTeam1().getTeamName()
+                      + " "+thisMatch.getScore1()
+                      + "-" 
+                      + thisMatch.getScore2()
+                      + " "
+                      +thisMatch.getTeam2().getTeamName()
+                      + newLine;
+        
+        for(int n=0;n<14;n++){
+            ArrayList<Update> tick = thisMatch.oneTick();
+            
+            updateText = updateText 
+                        + thisMatch.LineGenerator(tick.get(0),thisMatch.getTeam1(),thisMatch.getTeam2())
+                        + thisMatch.LineGenerator(tick.get(1),thisMatch.getTeam2(),thisMatch.getTeam1());
+            
+            mainText = thisMatch.gettCurrent()
                       + "e Minuut" + ", Stand: " 
                       + thisMatch.getTeam1().getTeamName()
                       + " "+thisMatch.getScore1()
@@ -54,15 +70,7 @@ public class ThreadTest implements Runnable {
                       +thisMatch.getTeam2().getTeamName()
                       + newLine;
             
-            ArrayList<Update> tick = thisMatch.oneTick();
-            
-            updateText = updateText 
-                        + thisMatch.LineGenerator(tick.get(0),thisMatch.getTeam1())
-                        + thisMatch.LineGenerator(tick.get(1),thisMatch.getTeam2());
-            
-            
-            
-                workSpace.setText(beginText + mainText + updateText);
+                workSpace.setText(beginText + newLine + mainText + newLine + updateText);
                 try{
                     Thread.sleep(100);
                 }

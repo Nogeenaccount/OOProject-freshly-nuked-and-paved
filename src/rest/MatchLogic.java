@@ -205,22 +205,45 @@ public class MatchLogic{
                    
             return new Update(typ, spelert, min);
         }
+        
+        public String getScoreMethod(){
+           double r = Math.random();
+           if(r<0.25){
+            return "een prachtige pass van ";
+           }
+           if(r<0.5){
+               return "een mooie actie van ";
+           }
+           if(r<0.75){
+               return ("een goed genomen corner van ");
+           }
+           return "een scherpe steekpass van ";
+        }
 
-        public String LineGenerator(Update update, Team t){
+        public String LineGenerator(Update update, Team t, Team s){
             String newLine = System.getProperty("line.separator");
+            String tab = "\t";
             if(update.getMinuut()==0){
                 update.setMinuut(2);
             }
             String result = "";
             switch(update.getType()){
                 case 0: break;
-                case 1: result = result + update.getMinuut() + "' " + "Gele kaart voor " + update.getSpeler().getPlayerName() + "!" + newLine; 
+                case 1: result = result + update.getMinuut() + "' " + "Gele kaart bij " + t.getTeamName() + "!" 
+                            + newLine + tab + update.getSpeler().getPlayerName() + " krijgt geel na een harde " + newLine + tab + "tackle op " + s.getDefaultLineUp().getRandomPlayer().getPlayerName() + "!" + newLine + newLine; 
                         break;
-                case 2: result = result + update.getMinuut() + "' " + "Rode kaart voor " + update.getSpeler().getPlayerName() + "!" + newLine; 
+                case 2: result = result + update.getMinuut() + "' " + "Rode kaart bij " + t.getTeamName() + "!" 
+                        + newLine + tab + update.getSpeler().getPlayerName() + " krijgt rood na een schandalige overtreding op " + s.getDefaultLineUp().getRandomPlayer().getPlayerName() + "!" + newLine + newLine; 
                         break;
-                case 3: result = result + update.getMinuut() + "' " + update.getSpeler().getPlayerName() + " is geblesseerd geraakt!" + newLine; 
+                case 3: result = result + update.getMinuut() + "' " + "Blessure bij " + t.getTeamName() + "!" 
+                            + newLine + tab + update.getSpeler().getPlayerName() + " stort dramatisch ten " + newLine + tab + "aarde en kan de volgende wedstrijd " + newLine + tab + "waarschijnlijk niet spelen!" + newLine + newLine; 
                         break;
-                case 4: result = result + update.getMinuut() + "' " + "GOAL voor " + t.getTeamName() + "! Doelpuntenmaker: " + update.getSpeler().getPlayerName() + "!" + newLine;
+                case 4: 
+                    Player assistMan=new Player();
+                    do{
+                    assistMan = t.getDefaultLineUp().getRandomPlayer();
+                    }while (assistMan.equals(update.getSpeler()));
+                    result = result + update.getMinuut() + "' " + "GOAL voor " + t.getTeamName() + "!" + newLine + tab + update.getSpeler().getPlayerName() + " scoort na " + newLine + tab + getScoreMethod() + assistMan.getPlayerName() + "!" + newLine + newLine;
                         break;
             }       
             

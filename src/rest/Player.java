@@ -47,6 +47,10 @@ public class Player {
 	cardCount = cc;
 	this.injured = injured;
     }
+    
+    public Player(){
+        
+    }
 
     public boolean equals(Object other){
             if(other instanceof Player){
