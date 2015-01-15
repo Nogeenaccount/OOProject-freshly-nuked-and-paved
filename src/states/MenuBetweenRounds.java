@@ -22,6 +22,23 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class MenuBetweenRounds extends State {
 
+    //Initialise Images
+    String buttonNextMatchImage = "GUIFiles/buttonNextMatch.png";
+    String buttonTransfersImage = "GUIFiles/buttonTransfers.png";
+    String buttonTeamManagementImage = "GUIFiles/buttonTeamManagement.png";
+    String buttonTourneyOverviewImage = "GUIFiles/buttonTourneyOverview.png";
+    String buttonSaveImage = "GUIFiles/buttonSave.png";
+    String buttonHomeScreenImage = "GUIFiles/buttonHomeScreen.png";
+    String panelPanelImage = "GUIFiles/FootbalStadiumSize.png";
+    
+    JTextArea textFieldBudget = new JTextArea();
+    JButton buttonNextMatch = new JButton(new ImageIcon(buttonNextMatchImage));
+    JButton buttonTransfers = new JButton(new ImageIcon(buttonTransfersImage));
+    JButton buttonTeamManagement = new JButton(new ImageIcon(buttonTeamManagementImage));
+    JButton buttonTourneyOverview = new JButton(new ImageIcon(buttonTourneyOverviewImage));
+    JButton buttonSave = new JButton(new ImageIcon(buttonSaveImage));
+    JButton buttonHomeScreen = new JButton(new ImageIcon(buttonHomeScreenImage));
+    
     public MenuBetweenRounds() {
 
     }
@@ -31,80 +48,29 @@ public class MenuBetweenRounds extends State {
 	this.setLayout(layout);
 	c = new GridBagConstraints();
 
-	//Initialise Images
-	String userDir = System.getProperty("user.home");
-	String buttonNextMatchImage = "GUIFiles\\buttonNextMatch.png";
-	String buttonTransfersImage = "GUIFiles\\buttonTransfers.png";
-	String buttonTeamManagementImage = "GUIFiles\\buttonTeamManagement.png";
-	String buttonTourneyOverviewImage = "GUIFiles\\buttonTourneyOverview.png";
-	String buttonSaveImage = "GUIFiles\\buttonSave.png";
-	String buttonHomeScreenImage = "GUIFiles\\buttonHomeScreen.png";
-	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
-
-	JTextArea invisi2 = new JTextArea();
+	createSpace();
+	
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 0;
-	layout.setConstraints(invisi2, c);
-	invisi2.setPreferredSize(new Dimension(200, 200));
-	invisi2.setOpaque(false);
-	invisi2.setEditable(false);
-	invisi2.setMargin(new Insets(200, 0, 0, 0));
-	this.add(invisi2);
-
-	JTextArea invisi3 = new JTextArea();
-	c.weightx = 0.5;
-	c.gridx = 0;
-	c.gridy = 1;
-	layout.setConstraints(invisi3, c);
-	invisi3.setPreferredSize(new Dimension(200, 200));
-	invisi3.setOpaque(false);
-	invisi3.setEditable(false);
-	invisi3.setMargin(new Insets(0, 200, 0, 0));
-	this.add(invisi3);
-
-	JTextArea invisi4 = new JTextArea();
-	c.weightx = 0.5;
-	c.gridx = 3;
-	c.gridy = 1;
-	layout.setConstraints(invisi4, c);
-	invisi4.setPreferredSize(new Dimension(200, 200));
-	invisi4.setOpaque(false);
-	invisi4.setEditable(false);
-	invisi4.setMargin(new Insets(0, 0, 0, 200));
-	this.add(invisi4);
-
-	JButton buttonNextMatch = new JButton(new ImageIcon(buttonNextMatchImage));
-	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 2;
-	buttonNextMatch.setMargin(new Insets(0, 0, 0, 0));
-	buttonNextMatch.setMaximumSize(new Dimension(400, 100));
+	c.gridy = 4;
 	createButton(buttonNextMatch, "", c, layout);
 	attachStateChanger(buttonNextMatch, new MenuNextMatch());
 
-	JButton buttonTransfers = new JButton(new ImageIcon(buttonTransfersImage));
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 2;
-	buttonTransfers.setMargin(new Insets(0, 0, 0, 0));
-	buttonTransfers.setMaximumSize(new Dimension(400, 100));
+	c.gridy = 4;
 	createButton(buttonTransfers, "", c, layout);
 	attachStateChanger(buttonTransfers, new MenuTransfers());
 
-	JButton buttonTeamManagement = new JButton(new ImageIcon(buttonTeamManagementImage));
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 3;
-	buttonTeamManagement.setMargin(new Insets(0, 0, 0, 0));
-	buttonTeamManagement.setMaximumSize(new Dimension(400, 100));
+	c.gridy = 5;
 	createButton(buttonTeamManagement, "", c, layout);
 	attachStateChanger(buttonTeamManagement, new MenuTeamManagement());
 
-	JButton buttonTourneyOverview = new JButton(new ImageIcon(buttonTourneyOverviewImage));
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 3;
+	c.gridy = 5;
 	//Reference to non-existent state
 	//StateManager.States.TRANSFERS
 	buttonTourneyOverview.setMargin(new Insets(0, 0, 0, 0));
@@ -112,12 +78,9 @@ public class MenuBetweenRounds extends State {
 	createButton(buttonTourneyOverview, "", c, layout);
 	attachStateChanger(buttonTourneyOverview, new MenuTourneyOverview());
 
-	JButton buttonSave = new JButton(new ImageIcon(buttonSaveImage));
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 4;
-	buttonSave.setMargin(new Insets(0, 0, 0, 0));
-	buttonSave.setMaximumSize(new Dimension(400, 100));
+	c.gridy = 6;
 	createButton(buttonSave, "", c, layout);
 	//attachStateChanger(buttonSave, StateManager.States.BETWEEN_ROUNDS);
 	buttonSave.addActionListener(new ActionListener() {
@@ -127,21 +90,16 @@ public class MenuBetweenRounds extends State {
 	    }
 	});
 
-	JButton buttonHomeScreen = new JButton(new ImageIcon(buttonHomeScreenImage));
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 4;
-	buttonHomeScreen.setMargin(new Insets(0, 0, 0, 0));
-	buttonHomeScreen.setMaximumSize(new Dimension(400, 100));
+	c.gridy = 6;
 	createButton(buttonHomeScreen, "", c, layout);
 	attachStateChanger(buttonHomeScreen, new MenuMain());
 
-	JTextArea textFieldBudget = new JTextArea();
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 1;
+	c.gridy = 3;
 	c.gridwidth = 2;
-
 	textFieldBudget.setOpaque(true);
 	textFieldBudget.setBackground(Color.decode("#525151"));
 	textFieldBudget.setForeground(Color.white);
@@ -164,14 +122,6 @@ public class MenuBetweenRounds extends State {
 	this.add(textFieldBudget);
 	layout.setConstraints(textFieldBudget, c);
 
-	System.out.println("Assuming default opstelling");
-
-	c.weightx = 0.5;
-	c.gridheight = 6;
-	c.gridwidth = 4;
-	c.gridx = 0;
-	c.gridy = 0;
-	ImagePanel panel = new ImagePanel(new ImageIcon(panelPanelImage).getImage(), c, layout);
-	this.add(panel);
+	setBackground(panelPanelImage);
     }
 }

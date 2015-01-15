@@ -78,6 +78,15 @@ public abstract class State extends JPanel {
         this.add(label);
     }
     
+    protected void createSmallLabel(JLabel label, String text,
+                               GridBagConstraints constraints, GridBagLayout layout){
+        label.setText(text);
+        label.setPreferredSize(new Dimension(200, 35));
+        label.setMinimumSize(new Dimension(200, 35));
+        layout.setConstraints(label, constraints);
+        this.add(label);
+    }
+    
     protected void createInput(JTextField input,
                                GridBagConstraints constraints, GridBagLayout layout){
         input.setOpaque(true);
@@ -94,8 +103,8 @@ public abstract class State extends JPanel {
     protected void setBackground(String path){
         GridBagConstraints back = new GridBagConstraints();
         back.weightx = 0.5;
-        back.gridheight = 8;
-        back.gridwidth = 3;
+        back.gridheight = 10;
+        back.gridwidth = 5;
         back.gridx = 0;
         back.gridy = 0;
         ImagePanel panel = new ImagePanel(new ImageIcon(path).getImage(), back, layout);

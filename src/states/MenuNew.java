@@ -37,14 +37,15 @@ import javax.swing.event.ListSelectionListener;
 public class MenuNew extends State {
     
     //Initialise images
-    String userDir = System.getProperty("user.home");
     String gameNameImage = "GUIFiles/promptName1.png";
     String teamNameImage = "GUIFiles/promptTeam1.png";
     String buttonAdvanceImage = "GUIFiles/buttonAdvance2.png";
     String buttonBackImage = "GUIFiles/buttonBack2.png";
     String panelPanelImage = "GUIFiles/FootbalStadiumSize.png";
     
+    JLabel gameName = new JLabel(new ImageIcon(gameNameImage));
     JTextField input = new JTextField();
+    JLabel teamName = new JLabel(new ImageIcon(teamNameImage));
     JList teamList = new JList();
     JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
     JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
@@ -66,23 +67,20 @@ public class MenuNew extends State {
         }
         
         createSpace();
-        setBackground(panelPanelImage);
         
         //Prompt name
-        JLabel gameName = new JLabel(new ImageIcon(gameNameImage));
-        c.gridx = 1;
-        c.gridy = 1;
+        c.gridx = 2;
+        c.gridy = 3;
         createLabel(gameName,"",c,layout);
         
         //Enter your name
-        c.gridx = 1;
-        c.gridy = 2;
+        c.gridx = 2;
+        c.gridy = 4;
         createInput(input,c,layout);
         
         //Prompt team
-        JLabel teamName = new JLabel(new ImageIcon(teamNameImage));
-        c.gridx = 1;
-        c.gridy = 3;
+        c.gridx = 2;
+        c.gridy = 5;
         createLabel(teamName,"",c,layout);
         
         //Team list
@@ -94,8 +92,8 @@ public class MenuNew extends State {
         JScrollPane teamScroller = new JScrollPane(teamList);
         teamScroller.setPreferredSize(new Dimension(400, 200));
         teamScroller.setMinimumSize(new Dimension(400, 200));
-        c.gridx = 1;
-        c.gridy = 4;
+        c.gridx = 2;
+        c.gridy = 6;
         layout.setConstraints(teamScroller, c);
         this.add(teamScroller);
         teamList.addListSelectionListener(new ListSelectionListener() {
@@ -107,18 +105,20 @@ public class MenuNew extends State {
         
         //Advance
         c.weightx = 0.5;
-        c.gridx = 1;
-        c.gridy = 5;
+        c.gridx = 2;
+        c.gridy = 7;
         createButton(buttonAdvance, "", c, layout);
         attachStateChanger(buttonAdvance, new MenuBetweenRounds());
         advance();
         
         //Go back
         c.weightx = 0.5;
-        c.gridx = 1;
-        c.gridy = 6;
+        c.gridx = 2;
+        c.gridy = 8;
         createButton(buttonBack, "", c, layout);
         attachStateChanger(buttonBack, new MenuMain());
+	
+	setBackground(panelPanelImage);
     }
     
     public void enableButtons(){

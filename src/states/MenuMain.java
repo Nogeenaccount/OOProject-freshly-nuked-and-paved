@@ -60,7 +60,6 @@ public class MenuMain extends State {
         c = new GridBagConstraints();
         
         createSpace();
-        setBackground(panelPanelImage);
         
         //c = new GridBagConstraints();
         c.weightx = 0.5;
@@ -87,6 +86,8 @@ public class MenuMain extends State {
         c.gridy = 5;
         createButton(buttonExit, "", c, layout);
         attachStateChanger(buttonExit, new Exit());
+	
+	setBackground(panelPanelImage);
     }
     
     public void enableButtons(){
