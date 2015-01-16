@@ -25,6 +25,13 @@ import rest.MatchResult;
 //WORKING WITH FILLER
 public class MenuAftermath extends State {
 
+    String labelImage = "GUIFiles/labelNR2.png";
+    String buttonNRAdvanceImage = "GUIFiles/buttonNRAdvance.png";
+    String panelPanelImage = "GUIFiles/FootbalStadiumSize.png";
+    
+    JTextArea matchResults = new JTextArea();
+    JButton buttonAdvance = new JButton(new ImageIcon(buttonNRAdvanceImage));
+    
     public MenuAftermath() {
     }
 
@@ -32,6 +39,8 @@ public class MenuAftermath extends State {
 	layout = new GridBagLayout();
 	this.setLayout(layout);
 	c = new GridBagConstraints();
+	
+	createSpace();
 
 	//Initialise
 	String[] array1 = new String[20];
@@ -40,31 +49,23 @@ public class MenuAftermath extends State {
 	    array1[i] = league1.getTeams().get(i).getTeamName();
 	}
 
-	//Initialise Images
-	String userDir = System.getProperty("user.home");
-	String labelImage = "GUIFiles\\labelNR2.png";
-	String buttonNRAdvanceImage = "GUIFiles\\buttonNRAdvance.png";
-	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
-
 	//Prompt Matches
 	JLabel progress = new JLabel(new ImageIcon(labelImage));
 	progress.setOpaque(true);
 	progress.setPreferredSize(new Dimension(400, 50));
 	progress.setMinimumSize(new Dimension(400, 50));
 	progress.setMaximumSize(new Dimension(400, 50));
-//  progress.setEditable(false);
 	progress.setText("");
 	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 1;
+	c.gridx = 2;
+	c.gridy = 3;
 	layout.setConstraints(progress, c);
 	this.add(progress);
 
 	//Prompt Round Results
-	JTextArea matchResults = new JTextArea();
 	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 2;
+	c.gridx = 2;
+	c.gridy = 4;
 	layout.setConstraints(matchResults, c);
 	matchResults.setPreferredSize(new Dimension(400, 500));
 	matchResults.setMinimumSize(new Dimension(400, 500));
@@ -73,11 +74,9 @@ public class MenuAftermath extends State {
 	matchResults.setFont(new Font("Arial", Font.PLAIN, 14));
 	matchResults.setEditable(false);
 
-        
         //Preparing strings
         String Bookings = "Kaarten:\n";
         String injuries = "Blessures:\n";
-        
         
         ArrayList<Update> last = states.StateManager.getLeague().getLastResultDetailed();
         String result = states.StateManager.getLeague().getLastResult();
@@ -99,12 +98,12 @@ public class MenuAftermath extends State {
                 default: break;
             }
         }
-        
-        
-	String yourRoundResult = states.StateManager.getLeague().getLastResult();
 
+	String yourRoundResult = states.StateManager.getLeague().getLastResult();
         //Find other results
         String othermatches = "";
+	
+	//DIT IS ALLEMAAL LOGIC JONGENS, MAAK HIERVOOR KLASSES IN BIJV LEAGUE AAN.
         Round thisRound = states.StateManager.getLeague().nextRound("Speelschema.xml",states.StateManager.getLeague().getRounds());
         for(int n=0;n<10;n++){
             Match temp = thisRound.getMatch(n);
@@ -116,13 +115,6 @@ public class MenuAftermath extends State {
             }
             
         }
-        
-        
-        
-        
-        
-        
-	
 	String roundResults
 		= "Here is the result of your match:" + "\n"
 		+ yourRoundResult + "\n" + "\n"
@@ -130,44 +122,24 @@ public class MenuAftermath extends State {
 		+ injuries + "\n" + "\n"
 		+ "And here are the results of the other matches:" + "\n";
 		//+ otherMatches;
-	
+	;
         int round = states.StateManager.getLeague().getRounds();
         Match weddie = MatchLogic.findOwnMatch(round);
 	states.StateManager.getLeague().processResult(weddie.getHomeTeam(),weddie.getAwayTeam(),weddie.getHomeScore(),weddie.getAwayScore());
         
+
         states.StateManager.getLeague().setRounds(states.StateManager.getLeague().getRounds()-1);
         
         matchResults.setText(roundResults);
 	this.add(matchResults);
 
 	//Advance
-	JButton buttonAdvance = new JButton(new ImageIcon(buttonNRAdvanceImage));
 	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 3;
-	buttonAdvance.setMinimumSize(new Dimension(400, 100));
-	buttonAdvance.setPreferredSize(new Dimension(400, 100));
+	c.gridx = 2;
+	c.gridy = 6;
 	createButton(buttonAdvance, "", c, layout);
 	attachStateChanger(buttonAdvance, new MenuBetweenRounds());
 
-	//Padding
-	JTextArea invisi2 = new JTextArea();
-	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 0;
-	layout.setConstraints(invisi2, c);
-	invisi2.setPreferredSize(new Dimension(200, 100));
-	invisi2.setOpaque(false);
-	invisi2.setEditable(false);
-	invisi2.setMargin(new Insets(50, 0, 0, 0));
-	this.add(invisi2);
-
-	c.weightx = 0.5;
-	c.gridheight = 6;
-	c.gridwidth = 3;
-	c.gridx = 0;
-	c.gridy = 0;
-	ImagePanel panel = new ImagePanel(new ImageIcon(panelPanelImage).getImage(), c, layout);
-	this.add(panel);
+	setBackground(panelPanelImage);
     }
 }
