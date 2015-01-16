@@ -135,7 +135,7 @@ public class MenuAftermath extends State {
         Match weddie = MatchLogic.findOwnMatch(round);
 	states.StateManager.getLeague().processResult(weddie.getHomeTeam(),weddie.getAwayTeam(),weddie.getHomeScore(),weddie.getAwayScore());
         
-        states.StateManager.getLeague().setRounds(states.StateManager.getLeague().getRounds()-2);
+        states.StateManager.getLeague().setRounds(states.StateManager.getLeague().getRounds()-1);
         
         matchResults.setText(roundResults);
 	this.add(matchResults);
