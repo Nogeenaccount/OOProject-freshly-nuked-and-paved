@@ -54,13 +54,12 @@ public class League {
      * @return League league
      */
     
-            public Team getByName(String teamname){
-          Team t = new Team("","",0);
+    public Team getByName(String teamname){
+        Team t = new Team("","",0);
         for(int i = 0; i<teams.size(); i++){
                 if(teams.get(i).getTeamName().equals(teamname)){
                 t = teams.get(i);
-            }
-                
+            }          
         }
         return t;
     }
@@ -91,9 +90,11 @@ public class League {
 	    String stadiumName;
 	    int budget;
 	    Team team;
+            LineUp lu;
 	    Node pNode;
 	    Element pElement;
 	    String playerName;
+            String lineUpString;
 	    int number;
 	    int price;
 	    int end;
@@ -110,8 +111,9 @@ public class League {
 		teamName = tElement.getAttribute("name");
 		stadiumName = tElement.getElementsByTagName("stadiumName").item(0).getTextContent();
 		budget = Integer.parseInt(tElement.getElementsByTagName("budget").item(0).getTextContent());
+                lineUpString = tElement.getElementsByTagName("lineUp").item(0).getTextContent();
 		team = new Team(teamName, stadiumName, budget);
-		int j = tElement.getElementsByTagName("player").getLength();
+                int j = tElement.getElementsByTagName("player").getLength();
 		for (int p = c; p < (c + j); p++) {
 		    pNode = playerlistxml.item(p);
 		    pElement = (Element) pNode;
@@ -127,9 +129,9 @@ public class League {
 		    player = new Player(playerName, number, price, end, off, def, pos, cc, inj);
 		    team.add(player);
 		}
-
 		c += j;
-
+                lu = team.convertToLineUp(lineUpString);
+                team.setLineUp(lu);
 		league.add(team);
 
 	    }
@@ -177,9 +179,8 @@ public class League {
                 c += 10;
                 rondes.add(r);
             }
-            
-            
-            return rondes.get(ronde);
+           return rondes.get(ronde);
+           
         } catch (SAXException ex) {
             Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -188,8 +189,7 @@ public class League {
             Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
         }
         return new Round();
-      
-    }
+        }
     /**
      * toString: turns League into a printable String
      *
@@ -347,11 +347,10 @@ public class League {
 		goalDifference.appendChild(doc.createTextNode(Integer.toString(teams.get(i).getGoalDifference())));
 		team.appendChild(goalDifference);
                 
-                /**
                 Element lineUp = doc.createElement("lineUp");
 		lineUp.appendChild(doc.createTextNode(teams.get(i).getLineUp().lineUpToXML()));
 		team.appendChild(lineUp);
-                **/
+                
 		//Element players
 		for (int j = 0; j < teams.get(i).getPlayers().size(); j++) {
 		    Element player = doc.createElement("player");
@@ -424,9 +423,8 @@ public class League {
 		int price = x.getPrice();
 
 		if (bod == price) {
-			if (Math.random() > 0.5) {
-				return true;
-			}
+			return (Math.random() > 0.5);
+	
 		} else if (bod < price && bod > 0.8 * price) {
 			if (Math.random() > 0.7) {
 				return true;
@@ -493,7 +491,9 @@ public class League {
             
 
         return t;
-        } 
+        }
+        
+
 
 
        
