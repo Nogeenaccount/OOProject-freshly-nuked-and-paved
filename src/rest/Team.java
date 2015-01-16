@@ -245,114 +245,77 @@ public class Team {
 	return true;
     }
 
-	/**
-	 * getDefaultLineUp: returns default optimal lineUp from team this
-	 * @return LineUp
-	 */
-	public LineUp getDefaultLineUp(){
-		LineUp l = new LineUp();
-		ArrayList<Player> aanvallers = new ArrayList<>();
-		ArrayList<Player> middenvelders = new ArrayList<>();
-		ArrayList<Player> verdedigers = new ArrayList<>();
-		ArrayList<Player> keepers = new ArrayList<>();
-		
-		// "geblesseerde spelers niet in lineup" nog niet geimplementeerd
-		for (int i =0; i<this.players.size(); i++){
-			switch (this.players.get(i).getPosition()){
-				case "G" : keepers.add(this.players.get(i)); break;
-				case "M" : middenvelders.add(this.players.get(i)); break;
-				case "F" : aanvallers.add(this.players.get(i)); break;
-				case "D" : verdedigers.add(this.players.get(i)); break; 
-			}
-		}
-                String temp = "TESTTESTTEST";
-		temp = temp + keepers.size() + " " + verdedigers.size() + " " + middenvelders.size() + " " + aanvallers.size();
-		System.out.println(temp);
-		
-
-// eliminatie van mindere keepers
-		int toBeEliminated = 0;
-		int lowestStats = 1000000;
-                do {
-                        lowestStats = 100000;
-			for (int p = 0; p<keepers.size(); p++){
-                            
-				if (keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance() < lowestStats) {
-                                        toBeEliminated = p;
-					lowestStats = keepers.get(p).getOffence() + keepers.get(p).getDefence() + keepers.get(p).getEndurance();
-				}
-			}
-			keepers.remove(toBeEliminated);
-		} while(keepers.size()>1);
-                System.out.println(toBeEliminated);
-                System.out.println(keepers.size());
-		System.out.println("Keepers: " + keepers.size());
-		// eliminatie van mindere verdedigers
-		toBeEliminated = 0;
-		lowestStats = 100000;
-		do {
-                        lowestStats = 100000;
-			for (int p = 0; p<verdedigers.size(); p++){
-			
-				if (verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance() < lowestStats) {
-					toBeEliminated = p;
-					lowestStats = verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance();
-				}
-			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(verdedigers.size());
-			verdedigers.remove(toBeEliminated);
-		} while(verdedigers.size()>4);
-		System.out.println("Verdedigers: " + verdedigers.size());
-		// eliminatie van mindere middenvelders
-		toBeEliminated = 0;
-		lowestStats = 100000;
-		do {
-                    lowestStats = 100000;
-                    for (int p = 0; p<middenvelders.size(); p++){
-			
-				if (middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance() < lowestStats) {
-					toBeEliminated = p;
-					lowestStats = middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance();
-				}
-			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(middenvelders.size());
-			middenvelders.remove(toBeEliminated);
-		} while(middenvelders.size()>3);
-                System.out.println("middenvelders: " + middenvelders.size());
-		// eliminatie van mindere aanvallers
-		toBeEliminated = 0;
-		lowestStats = 100000;
-		do {
-                        lowestStats = 100000;
-			for (int p = 0; p<aanvallers.size(); p++){
-			
-				if (aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance() < lowestStats) {
-					toBeEliminated = p;
-					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
-				}
-			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(aanvallers.size());
-			aanvallers.remove(toBeEliminated);
-		} while(aanvallers.size()>3);
-		System.out.println("Aanvallers: " + aanvallers.toString());
-		
-		l.setAanvallers(aanvallers);
-		l.setMiddenvelders(middenvelders);
-		l.setVerdedigers(verdedigers);
-		l.setKeeper(keepers.get(0));
-		
-		return l;
+    public static ArrayList<Player> eliminateWorstPlayer(ArrayList<Player> List){
+        ArrayList<Player> tempList = List;
+        int toBeEliminated = 0;
+	int lowestStats = 1000000;
+	for (int p = 0; p<tempList.size(); p++){           
+            if (tempList.get(p).getOffence() + tempList.get(p).getDefence() + tempList.get(p).getEndurance() < lowestStats) {
+                toBeEliminated = p;
+		lowestStats = tempList.get(p).getOffence() + tempList.get(p).getDefence() + tempList.get(p).getEndurance();
+            }
 	}
-        /**
-         * Method to get a Player by name, String must be in Player format.
-         * @param s The string containing the name.
-         * @return 
-         */
-        public Player getPlayerByString(String s) {
-            Player p;
+	tempList.remove(toBeEliminated);
+        
+        return tempList;
+    }
+    
+    /**
+    * getDefaultLineUp: returns default optimal lineUp from team this
+    * @return LineUp
+    */
+    public LineUp getDefaultLineUp(){
+        LineUp l = new LineUp();
+	ArrayList<Player> aanvallers = new ArrayList<>();
+	ArrayList<Player> middenvelders = new ArrayList<>();
+	ArrayList<Player> verdedigers = new ArrayList<>();
+	ArrayList<Player> keepers = new ArrayList<>();
+	
+	// "geblesseerde spelers niet in lineup" nog niet geimplementeerd
+	for (int i =0; i<this.players.size(); i++){
+		switch (this.players.get(i).getPosition()){
+			case "G" : keepers.add(this.players.get(i)); break;
+			case "M" : middenvelders.add(this.players.get(i)); break;
+			case "F" : aanvallers.add(this.players.get(i)); break;
+			case "D" : verdedigers.add(this.players.get(i)); break; 
+		}
+	}		
+
+        // eliminatie van mindere keepers
+        do {
+            keepers = eliminateWorstPlayer(keepers);
+        } while(keepers.size()>1);
+
+        // eliminatie van mindere verdedigers
+        do {
+            verdedigers = eliminateWorstPlayer(verdedigers);
+	} while(verdedigers.size()>4);
+
+        // eliminatie van mindere middenvelders
+        do {
+            middenvelders = eliminateWorstPlayer(middenvelders);
+        } while(middenvelders.size()>3);
+
+        // eliminatie van mindere aanvallers
+        do {
+            aanvallers = eliminateWorstPlayer(aanvallers);
+        } while(aanvallers.size()>3);
+		
+	l.setAanvallers(aanvallers);
+	l.setMiddenvelders(middenvelders);
+	l.setVerdedigers(verdedigers);
+	l.setKeeper(keepers.get(0));
+		
+	return l;
+    }
+        
+    /**
+    * Method to get a Player by name, String must be in Player format.
+    * @param s The string containing the name.
+    * @return 
+    */
+    public Player getPlayerByString(String s) {
+        Player p;
         p = null;
         for (Player player : this.players) {
             if (s.equalsIgnoreCase(player.getPlayerName())) {

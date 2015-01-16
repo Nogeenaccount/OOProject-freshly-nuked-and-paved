@@ -15,7 +15,7 @@ public class LineUp {
 	verdedigers = new ArrayList<Player>();
     }
 
-     public Player getRandomPlayer(){
+    public Player getRandomPlayer(){
             double positie = Math.random();
             double id = Math.random();
             
@@ -34,6 +34,7 @@ public class LineUp {
             
             
         }
+    
     /**
      * addAanvaller: add an aanvaller to the lineup
      *
@@ -45,7 +46,7 @@ public class LineUp {
 	}
     }
     
-         public String lineUpToXML(){
+    public String lineUpToXML(){
             String res = "";
             res += this.getKeeper().getShirtNumber()+", ";
             for(int i = 0; i<4; i++){
@@ -83,6 +84,21 @@ public class LineUp {
 	}
     }
 
+    
+    /**
+     * equals: tests if two LineUp instances are equal
+     * @param obj
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof LineUp){
+            LineUp L = (LineUp) obj;
+            if (this.getAanvallers().equals(L.getAanvallers()) && this.getMiddenvelders().equals(L.getMiddenvelders()) && this.getVerdedigers().equals(L.getVerdedigers()) && this.getKeeper().equals(L.getKeeper()))
+                return true;
+        }
+        return false;
+    }
     /*
      * GETTERS AND SETTERS
      */
