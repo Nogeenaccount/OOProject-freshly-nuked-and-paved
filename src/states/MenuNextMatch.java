@@ -19,6 +19,15 @@ import rest.Round;
 @SuppressWarnings("serial")
 public class MenuNextMatch extends State {
 
+    //Initialise Images
+    String buttonAdvanceImage = "GUIFiles/buttonNMAdvance.png";
+    String buttonBackImage = "GUIFiles/buttonNMBack.png";
+    String panelPanelImage = "GUIFiles/FootbalStadiumSize.png";
+    
+    JTable table;
+    JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
+    JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
+    
     public MenuNextMatch() {
     }
 
@@ -27,6 +36,8 @@ public class MenuNextMatch extends State {
 	this.setLayout(layout);
 	c = new GridBagConstraints();
 
+	createSpace();
+	
 	//Initialise
 	String[] array1 = new String[20];
 	rest.League league1 = rest.League.readResources("SaveGame.xml");
@@ -34,13 +45,6 @@ public class MenuNextMatch extends State {
 	    array1[i] = league1.getTeams().get(i).getTeamName();
 	}
         
-    
-	//Initialise Images
-	String userDir = System.getProperty("user.home");
-	String buttonAdvanceImage = "GUIFiles\\buttonNMAdvance.png";
-	String buttonBackImage = "GUIFiles\\buttonNMBack.png";
-	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
-
 	//Next matches table Initialise
 	String[] array2 = new String[20];
 	for (int i = 0; i < array1.length; i++) {
@@ -61,10 +65,15 @@ public class MenuNextMatch extends State {
        
         
 	//Next matches table
-	JTable table = new JTable(data, columnNames);
+	table = new JTable(data, columnNames);
 	c.weightx = 0.5;
+<<<<<<< HEAD
 	c.gridx = 1;
 	c.gridy = 2;
+=======
+	c.gridx = 2;
+	c.gridy = 3;
+>>>>>>> 868086d8d1002a371587bd1647d794d475002129
 	layout.setConstraints(table, c);
 	table.setPreferredSize(new Dimension(400, 160));
 	table.getColumnModel().getColumn(0).setPreferredWidth(170);
@@ -91,27 +100,30 @@ public class MenuNextMatch extends State {
 	this.add(tableHeader);
         
 	//Advance
-	JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
 	c.weightx = 0.5;
+<<<<<<< HEAD
 	c.gridx = 1;
 	c.gridy = 3;
+=======
+	c.gridx = 2;
+	c.gridy = 4;
+>>>>>>> 868086d8d1002a371587bd1647d794d475002129
 	createButton(buttonAdvance, "", c, layout);
-	buttonAdvance.setPreferredSize(new Dimension(400, 75));
-	buttonAdvance.setMinimumSize(new Dimension(400, 75));
-	buttonAdvance.setMargin(new Insets(0, 0, 0, 0));
 	attachStateChanger(buttonAdvance, new MenuMatchScreen());
 
 	//Go back
-	JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
 	c.weightx = 0.5;
+<<<<<<< HEAD
 	c.gridx = 1;
 	c.gridy = 4;
+=======
+	c.gridx = 2;
+	c.gridy = 5;
+>>>>>>> 868086d8d1002a371587bd1647d794d475002129
 	createButton(buttonBack, "", c, layout);
-	buttonBack.setPreferredSize(new Dimension(400, 75));
-	buttonBack.setMinimumSize(new Dimension(400, 75));
-	buttonBack.setMargin(new Insets(0, 0, 0, 0));
 	attachStateChanger(buttonBack, new MenuBetweenRounds());
 
+<<<<<<< HEAD
 	//Padding
 	JTextArea invisi2 = new JTextArea();
 	c.weightx = 0.5;
@@ -131,6 +143,9 @@ public class MenuNextMatch extends State {
 	c.gridy = 0;
 	ImagePanel panel = new ImagePanel(new ImageIcon(panelPanelImage).getImage(), c, layout);
 	this.add(panel);
+=======
+	setBackground(panelPanelImage);
+>>>>>>> 868086d8d1002a371587bd1647d794d475002129
     }
     
         public static String[] teamsToShow(){
@@ -138,12 +153,12 @@ public class MenuNextMatch extends State {
             String ht = "";
             String at = "";
             League l = states.StateManager.getLeague();
-            Round r = l.nextRound("Speelschema.xml", (38-l.getRounds()));
+            Round r = l.nextRound("Speelschema.xml", (l.getRounds()));
             for(int i = 0; i < 10; i++){
-            ht = r.getMatch(i).getHomeTeam().getTeamName();
-            at = r.getMatch(i).getAwayTeam().getTeamName();
-            teamList[2*i] = ht;
-            teamList[2*i+1] = at;
+		ht = r.getMatch(i).getHomeTeam().getTeamName();
+		at = r.getMatch(i).getAwayTeam().getTeamName();
+		teamList[2*i] = ht;
+		teamList[2*i+1] = at;
             }
             
             return teamList;

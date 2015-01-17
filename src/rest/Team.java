@@ -58,6 +58,16 @@ public class Team {
             return false;
         }
     
+    public Player getPlayerByName(String name) {
+        Player player = null;
+        for(int i = 0; i < this.getPlayers().size(); i++) {
+           if (name.equals(this.getPlayers().get(i).getPlayerName())) {
+               player = this.getPlayers().get(i);
+           }
+       }
+       return player;
+    }
+    
     /**
      * add: adds player to the team
      *
@@ -99,16 +109,15 @@ public class Team {
      */
     public boolean sellPlayer(Player x, int bod) {
 	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getPlayerName()
-		    .equalsIgnoreCase(x.getPlayerName())) {
-		int newBudget = this.budget + this.players.get(i).getPrice();
+	    if (this.players.get(i).getPlayerName().equalsIgnoreCase(x.getPlayerName())) {
+		//int newBudget = this.budget + this.players.get(i).getPrice(); Don't think
 		this.players.remove(i);
-
-		this.setBudget(newBudget + bod);
+		this.setBudget(this.budget + bod);
+                System.out.println("Sell player succes");
                 return true;
 	    }
-
 	}
+        System.out.println("Sell player failed - No such player");
         return false;
     }
 
@@ -121,15 +130,18 @@ public class Team {
      * @return 
      */
     public boolean buyPlayer(Player x, int bod) {
-	if (bod < this.getBudget()) {
+	//if (bod < this.getBudget()) {
 	    if (this.shirtnumberFree(x) != true) {
 		x.setShirtNumber(this.availableShirtnumber());
 	    }
 	    this.add(x);
 	    this.setBudget((this.getBudget() - bod));
+            System.out.println("Buy player succeeds");
+
             return true;
-	}
-        return false;
+	//}
+        //System.out.println("Buy player fails");
+       // return false;
     }
 
     /**
@@ -143,6 +155,7 @@ public class Team {
 	    counter++;
 
 	}
+               System.out.println("available shirtnumer " + counter);
 
 	return counter;
 

@@ -8,8 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -35,6 +33,20 @@ public class MenuTransfers extends State {
 	this.setLayout(layout);
 	c = new GridBagConstraints();
 
+        //!!!!!!
+        StateManager.getLeague().setOffersmade(new ArrayList<String>());
+        
+        for(int i = 0; i < 3; i ++) {
+            StateManager.getLeague().generateOffer();
+                    }
+        //!!!!!
+        
+        String[] array2 = new String[StateManager.getLeague().getOffersMade().size()];
+        for(int j = 0; j < StateManager.getLeague().getOffersMade().size(); j++) {
+            System.out.println(StateManager.getLeague().getOffersMade().get(j));
+            array2[j] = StateManager.getLeague().getOffersMade().get(j);
+        }
+        
 	//Initialise
 	String[] array1 = new String[20];
 	rest.League league1 = rest.League.readResources("SaveGame.xml");
@@ -51,11 +63,12 @@ public class MenuTransfers extends State {
 
 	//Initialise List Data
 	System.out.println("Initialise Offers: use filler data");
-	String[] array2 = {"hey", "bye"};
+	//String[] array2 = {"hey", "bye"};
 	//Eventually empty alreadyTried and alreadyTried if next match takes place
 	final ArrayList<String> playerArray = new ArrayList();
 	String[] buyOrSell = {"Buy", "Sell"};
 	final ArrayList<String> alreadyTried = new ArrayList();
+        final ArrayList<String> tempOffersTried = new ArrayList ();
 
 	//Initialise Components
 	final JTextField teamPrompt = new JTextField();
@@ -68,21 +81,12 @@ public class MenuTransfers extends State {
 	final JButton buttonAttempt = new JButton(new ImageIcon(buttonAttemptImage));
 	final JList offerList = new JList(array2);
 	final JButton offerAccept = new JButton(new ImageIcon(buttonOfferAcceptImage));
-
-	//Prompt Budget
-	int yourBudget = 0;
-	String yourTeam = StateManager.getLeague().getChosenTeam();
-	for (int i = 0; i < StateManager.getLeague().getTeams().size(); i++) {
-	    if (StateManager.getLeague().getTeams().get(i).getTeamName().equals(yourTeam)) {
-		yourBudget = StateManager.getLeague().getTeams().get(i).getBudget();
-	    }
-	}
-	String budgetDisplayText = "Your budget: " + yourBudget;
-	JTextField budgetDisplay = new JTextField();
+	final JTextField budgetDisplay = new JTextField();
+        
 	budgetDisplay.setOpaque(true);
 	budgetDisplay.setPreferredSize(new Dimension(400, 20));
 	budgetDisplay.setEditable(false);
-	budgetDisplay.setText(budgetDisplayText);
+	budgetDisplay.setText("Your budget: " + StateManager.getLeague().getTeamByName(StateManager.getLeague().getChosenTeam()).getBudget());
 	budgetDisplay.setBackground(Color.decode("#525151"));
 	budgetDisplay.setForeground(Color.white);
 	budgetDisplay.setMinimumSize(new Dimension(400, 20));
@@ -353,6 +357,12 @@ public class MenuTransfers extends State {
 		    System.out.println("Attempt to buy or sell made: " + buyOrSellList.getSelectedValue() + ", " + playerList.getSelectedValue() + " from/to " + teamList.getSelectedValue());
 		    alreadyTried.add((String) playerList.getSelectedValue());
 		    System.out.println(alreadyTried);
+                    
+                    String soortTransactie = (String) buyOrSellList.getSelectedValue();
+                    String offerFormat = (String) teamList.getSelectedValue() + " " + (String) attemptPrice.getText() + " " + (String) playerList.getSelectedValue();
+                    System.out.println(soortTransactie + offerFormat);
+                    StateManager.getLeague().Transfer(soortTransactie, offerFormat);
+                    budgetDisplay.setText("Your budget: " + StateManager.getLeague().getTeamByName(StateManager.getLeague().getChosenTeam()).getBudget());
 		}
 	    }
 	});
@@ -363,14 +373,25 @@ public class MenuTransfers extends State {
 	c.gridx = 2;
 	c.gridy = 8;
 	c.gridheight = 4;
-	buttonBack.setMinimumSize(new Dimension(400, 240));
-	buttonBack.setMaximumSize(new Dimension(400, 240));
+	buttonBack.setPreferredSize(new Dimension(400, 240));
+        buttonBack.setMinimumSize(new Dimension(400, 240));
 	buttonBack.setMargin(new Insets(0, 0, 0, 0));
 	createButton(buttonBack, "", c, layout);
-	buttonBack.setPreferredSize(new Dimension(400, 240));
+	
 	attachStateChanger(buttonBack, new MenuBetweenRounds());
 	c.gridheight = 1;
-
+        buttonBack.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+                for(int i = 0; i < tempOffersTried.size(); i++) {
+                    System.out.println("Offers in store: " + StateManager.getLeague().getOffersMade());
+                    StateManager.getLeague().getOffersMade().remove(tempOffersTried.get(i));
+                    System.out.println("Removing offer: " + tempOffersTried.get(i));
+                }
+                
+	    }
+	});
+        
 	//Prompt Offers
 	JTextField lookAtOffersPrompt = new JTextField();
 	lookAtOffersPrompt.setOpaque(true);
@@ -399,10 +420,14 @@ public class MenuTransfers extends State {
 	offerAccept.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		if (alreadyTried.contains(offerList.getSelectedValue()) == false) {
-		    System.out.println("Offer accepted: " + offerList.getSelectedValue());
-		    alreadyTried.add((String) offerList.getSelectedValue());
-		    System.out.println(alreadyTried);
+                if (tempOffersTried.contains((String)offerList.getSelectedValue()) == false) {
+                    String offer = (String) offerList.getSelectedValue();
+                    //StateManager.getLeague().getOffersMade().remove(offerList.getSelectedIndex());
+                    //offerList.removeSelectionInterval(offerList.getSelectedIndex(), offerList.getSelectedIndex());
+                    StateManager.getLeague().TransferOffer("Buy", offer);
+                    System.out.println("Offer accepted: " + tempOffersTried);
+		    tempOffersTried.add((String) offerList.getSelectedValue());
+                    budgetDisplay.setText("Your budget: " + StateManager.getLeague().getTeamByName(StateManager.getLeague().getChosenTeam()).getBudget());
 		}
 	    }
 	});
@@ -426,7 +451,8 @@ public class MenuTransfers extends State {
 	offerList.addListSelectionListener(new ListSelectionListener() {
 	    @Override
 	    public void valueChanged(ListSelectionEvent e) {
-		if (offerList.isSelectionEmpty() == false && alreadyTried.contains(offerList.getSelectedValue()) == false) {
+		if (offerList.isSelectionEmpty() == false && tempOffersTried.contains((String) offerList.getSelectedValue()) == false) {
+                    //System.out.println("Enable that button");
 		    offerAccept.setEnabled(true);
 		} else {
 		    offerAccept.setEnabled(false);
@@ -442,7 +468,7 @@ public class MenuTransfers extends State {
 	c.gridx = 1;
 	c.gridy = 0;
 	layout.setConstraints(invisi2, c);
-	invisi2.setPreferredSize(new Dimension(200, 100));
+	invisi2.setPreferredSize(new Dimension(100, 100));
 	invisi2.setOpaque(false);
 	invisi2.setEditable(false);
 	invisi2.setMargin(new Insets(50, 0, 0, 0));

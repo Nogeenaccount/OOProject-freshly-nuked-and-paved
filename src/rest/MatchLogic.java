@@ -24,6 +24,8 @@ public class MatchLogic{
     private double t2Defence;
     private double t2Endurance;
 
+    private ArrayList<Update> fullUpdateList = new ArrayList<Update>();
+    
     /**
      * matchLogic: constructor
      *
@@ -138,9 +140,9 @@ public class MatchLogic{
             }
             int min=gettCurrent();
             
-             double p1=0.01; //gele kaart thuisteam
+             double p1=0.05; //gele kaart thuisteam
              double p2=0.005; //rode kaart thuisteam
-             double p3=0.02; //blessure thuisteam
+             double p3=0.04; //blessure thuisteam
             
             
             if(scored(offenceSum(getTeam1()), defenceSum(getTeam2()), enduranceSum(getTeam1()), enduranceSum(getTeam2()), gettCurrent())){
@@ -149,7 +151,7 @@ public class MatchLogic{
                 return new Update(4, spelert, gettCurrent());
             }
             
-            else if(Math.random()>0.9){
+            else{
                 
                 spelert=getTeam1().getDefaultLineUp().getRandomPlayer();
                 double temp = Math.random();
@@ -171,16 +173,14 @@ public class MatchLogic{
         public Update tickAway(){
             int typ =0;
             Player spelert = null;
-            if(gettCurrent()==0){
-                tCurrent=2;
-            }
+            
             
             
             int min=gettCurrent();
             
-             double p1=0.01; //gele kaart thuisteam
-             double p2=0.005; //rode kaart thuisteam
-             double p3=0.02; //blessure thuisteam
+             double p1=0.07; //gele kaart uitteam
+             double p2=0.005; //rode kaart uitteam
+             double p3=0.05; //blessure uitteam
             
             
             if(scored(offenceSum(getTeam2()), defenceSum(getTeam1()), enduranceSum(getTeam2()), enduranceSum(getTeam1()), gettCurrent())){
@@ -189,7 +189,7 @@ public class MatchLogic{
                 return new Update(4, spelert, gettCurrent());
             }
             
-            else if(Math.random()>0.7){
+            else{
                 
                 spelert=getTeam2().getDefaultLineUp().getRandomPlayer();
                 double temp = Math.random();
@@ -207,20 +207,45 @@ public class MatchLogic{
                    
             return new Update(typ, spelert, min);
         }
+        
+        public String getScoreMethod(){
+           double r = Math.random();
+           if(r<0.25){
+            return "een prachtige pass van ";
+           }
+           if(r<0.5){
+               return "een mooie actie van ";
+           }
+           if(r<0.75){
+               return ("een goed genomen corner van ");
+           }
+           return "een scherpe steekpass van ";
+        }
 
-        public String LineGenerator(Update Update, Team t){
+        public String LineGenerator(Update update, Team t, Team s){
             String newLine = System.getProperty("line.separator");
-            
+            String tab = "\t";
+            if(update.getMinuut()==0){
+                update.setMinuut(2);
+            }
             String result = "";
-            switch(Update.getType()){
+            switch(update.getType()){
                 case 0: break;
-                case 1: result = result + Update.getMinuut() + "' " + "Gele kaart voor " + Update.getSpeler().getPlayerName() + "!" + newLine; 
+                case 1: result = result + update.getMinuut() + "' " + "Gele kaart bij " + t.getTeamName() + "!" 
+                            + newLine + tab + update.getSpeler().getPlayerName() + " krijgt geel na een harde " + newLine + tab + "tackle op " + s.getDefaultLineUp().getRandomPlayer().getPlayerName() + "!" + newLine + newLine; 
                         break;
-                case 2: result = result + Update.getMinuut() + "' " + "Rode kaart voor " + Update.getSpeler().getPlayerName() + "!" + newLine; 
+                case 2: result = result + update.getMinuut() + "' " + "Rode kaart bij " + t.getTeamName() + "!" 
+                        + newLine + tab + update.getSpeler().getPlayerName() + " krijgt rood na een schandalige overtreding op " + s.getDefaultLineUp().getRandomPlayer().getPlayerName() + "!" + newLine + newLine; 
                         break;
-                case 3: result = result + Update.getMinuut() + "' " + Update.getSpeler().getPlayerName() + " is geblesseerd geraakt!" + newLine; 
+                case 3: result = result + update.getMinuut() + "' " + "Blessure bij " + t.getTeamName() + "!" 
+                            + newLine + tab + update.getSpeler().getPlayerName() + " stort dramatisch ten " + newLine + tab + "aarde en kan de volgende wedstrijd " + newLine + tab + "waarschijnlijk niet spelen!" + newLine + newLine; 
                         break;
-                case 4: result = result + Update.getMinuut() + "' " + "GOAL voor " + t.getTeamName() + "! Doelpuntenmaker: " +Update.getSpeler().getPlayerName() + "!" + newLine;
+                case 4: 
+                    Player assistMan=new Player();
+                    do{
+                    assistMan = t.getDefaultLineUp().getRandomPlayer();
+                    }while (assistMan.equals(update.getSpeler()));
+                    result = result + update.getMinuut() + "' " + "GOAL voor " + t.getTeamName() + "!" + newLine + tab + update.getSpeler().getPlayerName() + " scoort na " + newLine + tab + getScoreMethod() + assistMan.getPlayerName() + "!" + newLine + newLine;
                         break;
             }       
             
@@ -231,7 +256,7 @@ public class MatchLogic{
         public ArrayList<Update> oneTick(){
             Update updateHome = tickHome();
             Update updateAway = tickAway();
-            if(tCurrent>45)
+            if(tCurrent>60)
                 tCurrent++;
             tCurrent+=6;
             
@@ -254,11 +279,44 @@ public class MatchLogic{
             ArrayList<Update> updateList = new ArrayList<Update>();
             updateList.add(updateHome);
             updateList.add(updateAway);
-            
+            states.StateManager.getLeague().addToLastResultDetailed(updateList.get(0));
+            states.StateManager.getLeague().addToLastResultDetailed(updateList.get(1));
             
             
             return updateList;
         }
+        
+        
+    public static Match findOwnMatch(int round){
+       Round temp = states.StateManager.getLeague().nextRound("Speelschema.xml",round);
+       Team myTeam = states.StateManager.getLeague().getTeamByString(states.StateManager.getLeague().getChosenTeam());
+       for(int n=0;n<10;n++){
+           if(temp.getMatch(n).getHomeTeam().equals(myTeam)||temp.getMatch(n).getAwayTeam().equals(myTeam)){
+               return temp.getMatch(n);
+           }
+       }
+       return new Match();
+    }
+    
+    public static String randomInjury(){
+        int aantal = 5;
+        double a = Math.random();
+        if(a<1/aantal){
+            return "Kniebanden verrekt";
+        }
+        if(a<2/aantal){
+            return "Schouder uit de kom";
+        }
+        if(a<3/aantal){
+            return "Gebroken middenvoetsbeentje";
+        }
+        if(a<4/aantal){
+            return "Teen gestoten";
+        }
+        return "Aanstelleritus";
+        
+    }
+    
     /**
      * @return the tCurrent
      */
@@ -426,5 +484,9 @@ public class MatchLogic{
     public void setT2Endurance(double t2Endurance) {
         this.t2Endurance = t2Endurance;
     }
+
+    
+
+   
         
 }

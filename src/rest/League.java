@@ -30,8 +30,9 @@ public class League {
     //NEW Attributes
     private String gameName;
     private String chosenTeam;
-    private ArrayList<String> offersMade;
-    private Match lastResult;
+    private ArrayList<String> offersMade = new ArrayList<String>();
+    private String lastResult;
+    private ArrayList<Update> LastResultDetailed = new ArrayList<Update>();
 
     public League(String name, int rounds, String gameName, String chosenTeam) {
 	leagueName = name;
@@ -64,6 +65,34 @@ public class League {
                 
         }
         return t;
+    }
+            
+    public Team getTeamByName (String name) {
+        Team team = null;
+        for (int i = 0; i < this.getTeams().size(); i++) {
+            if (name.equals(this.getTeams().get(i).getTeamName())) {
+                team = this.getTeams().get(i);
+            }
+        }
+        return team;
+    }
+    
+    
+    public static void setCustomLineUp(Team team, String[] players) {
+        LineUp l = new LineUp();
+        l.addAanvaller(team.getPlayerByName(players[0]));
+        l.addAanvaller(team.getPlayerByName(players[1]));
+        l.addAanvaller(team.getPlayerByName(players[2]));
+        l.addMiddenvelder(team.getPlayerByName(players[3]));
+        l.addMiddenvelder(team.getPlayerByName(players[4]));
+        l.addMiddenvelder(team.getPlayerByName(players[5]));
+        l.addMiddenvelder(team.getPlayerByName(players[6]));
+        l.addVerdediger(team.getPlayerByName(players[7]));
+        l.addVerdediger(team.getPlayerByName(players[8]));
+        l.addVerdediger(team.getPlayerByName(players[9]));
+        l.setKeeper(team.getPlayerByName(players[10]));
+
+        team.setLineUp(l);
     }
             
     public static League readResources(String fileName) {
@@ -178,8 +207,9 @@ public class League {
                 c += 10;
                 rondes.add(r);
             }
-            
-            
+            System.out.println("League round method, ronde: " + ronde);
+            ronde = 39-ronde;
+            System.out.println("League round method, real ronde: " + ronde);
             return rondes.get(ronde);
         } catch (SAXException ex) {
             Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
@@ -263,7 +293,10 @@ public class League {
     }
     
     public void addOffersMade(String offerFormat) {
+      //  System.out.println(offersMade + " "+offerFormat);
         offersMade.add(offerFormat);
+       //
+        System.out.println(offersMade + " "+offerFormat);
     }
     
 
@@ -426,21 +459,52 @@ public class League {
 
 		if (bod == price) {
 			if (Math.random() > 0.5) {
+                            System.out.println("case1");
 				return true;
 			}
 		} else if (bod < price && bod > 0.8 * price) {
 			if (Math.random() > 0.7) {
+                            System.out.println("case2");
+
 				return true;
 			}
 		} else if (bod > price && bod < 1.25 * price) {
 			if (Math.random() > 0.3) {
+                            System.out.println("case3");
 				return true;
 			}
 		} else if (bod > 1.25 * price) {
+                    System.out.println("case4");
 			return true;
 		}
 		return false;
 
+	}
+        
+        public static boolean acceptOffer2(int bod, Player x) {
+
+		int price = x.getPrice();
+
+		if (bod == price) {
+                        if (Math.random() > 0.5) {
+                            System.out.println("case3");
+                            return true;
+			}
+		} else if (bod < price && bod > 0.8 * price) {
+                        if (Math.random() > 0.3) {
+                            System.out.println("case2");
+                            return true;
+			}
+		} else if (bod > price && bod < 1.25 * price) {
+			if (Math.random() > 0.7) {
+                            System.out.println("case1");
+                            return true;
+                        }
+		} else if (bod > 1.25 * price) {
+                        System.out.println("case2");
+                        return false;
+		}
+		return true;
 	}
 
         /**
@@ -450,23 +514,26 @@ public class League {
 	 * @return the offer in String format "team,offer, player"
 	 */
 	public String generateOffer() {
-
-		String offerString;
+                // Math.floor(Math.random() * size returnes a value between [1,size]
+		//Player attempt = this.chosenTeam().getPlayers().get((int) Math.floor(Math.random() * buyer.getPlayers().size()) );
+		
+                String offerString;
                
-		int size = this.getTeams().size(); // the amount of teams in the league
-		Team buyer = this.getTeams().get((int) Math.floor(Math.random() * size)); // Math.floor(Math.random() * size returnes a value between [1,size]
-		Player attempt = this.chosenTeam().getPlayers().get((int) Math.floor(Math.random() * buyer.getPlayers().size()) );
+		Team seller = this.getTeams().get((int) Math.floor(Math.random() * this.getTeams().size()));
+                System.out.println("Team selling:" + seller.getTeamName());
+                Player attempt = seller.getPlayers().get((int) Math.floor(Math.random() * seller.getPlayers().size()));
+                System.out.println("Player they're selling: " + attempt);
+                
 		int offer = (int) ((attempt.getPrice() * (Math.random() + 0.2)* 1.5));
-		if (buyer == this.chosenTeam() || (buyer.getBudget() < offer)) {
+		if (seller == this.chosenTeam() || (seller.getBudget() < offer)) {
 			String offers = this.generateOffer();
+                        //this.addOffersMade(offers);
 			return offers;
-
 		} else {
-			offerString = buyer.getTeamName() + " " + offer
-					+ " " + attempt.getPlayerName();
+			offerString = seller.getTeamName() + " " + offer + " " + attempt.getPlayerName();
+                        this.addOffersMade((String)offerString);
 			return offerString;
 		}
-
 	}
         /**
          * Finds the chosen team by comparing the name to alle the team names.
@@ -505,28 +572,162 @@ public class League {
          * @return 
          */
         public boolean Transfer(String soortTransactie, String offerFormat) {
+            System.out.println();
             Scanner sc = new Scanner(offerFormat);
+            
             String team1 = sc.next();
+            if (sc.hasNextInt() == false) {
+                team1 = team1 + " " + sc.next();
+            }
+            if (sc.hasNextInt() == false) {
+                team1 = team1 + " " + sc.next();
+            }
+            System.out.println("Team:" + team1);
+            
             int bod = sc.nextInt();
-            String playerName = sc.nextLine();
+            System.out.println("Price:" + bod);
+            
+            String playerName = sc.next();
+            if (sc.hasNext() == true) {
+                playerName = playerName + " " + sc.next();
+            }
+            if (sc.hasNext() == true) {
+                playerName = playerName + " " + sc.next();
+            }
+            System.out.println("|"+playerName+"|");
+            
             Team team = this.getTeamByString(team1);
-            Player player = team.getPlayerByString(playerName);
-            
-
-            
+            System.out.println(team.getTeamName());
+                        
 		if (soortTransactie.equalsIgnoreCase("buy")) {
-			if (League.acceptOffer(bod, player) == true) {
-				this.chosenTeam().buyPlayer(player, bod);
-				team.sellPlayer(player, bod);
-				return true;
-			}
-		} else if (soortTransactie.equalsIgnoreCase("sell")) {
+                    Player player = team.getPlayerByName(playerName);
+                    System.out.println("Check name:" + player);
+                    if (League.acceptOffer(bod, player) == true && this.chosenTeam().getBudget() >= bod) {
+                        this.chosenTeam().buyPlayer(player, bod);
+                        team.sellPlayer(player, bod);
+                        return true;
+                    }
+		}
+                else if (soortTransactie.equalsIgnoreCase("sell")) {
+                    Player player = this.chosenTeam().getPlayerByName(playerName);
+                    System.out.println("Check name:" + player);
+                    if (League.acceptOffer2(bod, player) == true && team.getBudget() >= bod) {
+                        //I would write an acceptOffer for selling player (polar opposite of for buying players)
 			this.chosenTeam().sellPlayer(player, bod);
 			team.buyPlayer(player, bod);
 			return true;
+                    }
 		}
+                System.out.println("SHOULD NEVER BE SEEN");
 		return false;
 	}
+        
+        public boolean TransferOffer(String soortTransactie, String offerFormat) {
+            System.out.println();
+            Scanner sc = new Scanner(offerFormat);
+            
+            String team1 = sc.next();
+            if (sc.hasNextInt() == false) {
+                team1 = team1 + " " + sc.next();
+            }
+            if (sc.hasNextInt() == false) {
+                team1 = team1 + " " + sc.next();
+            }
+            System.out.println("Team:" + team1);
+            
+            int bod = sc.nextInt();
+            System.out.println("Price:" + bod);
+            
+            String playerName = sc.next();
+            if (sc.hasNext() == true) {
+                playerName = playerName + " " + sc.next();
+            }
+            if (sc.hasNext() == true) {
+                playerName = playerName + " " + sc.next();
+            }
+            
+            Team team = this.getTeamByString(team1);
+            System.out.println("Team from the string above: " + team.getTeamName());
+            
+            if (soortTransactie.equalsIgnoreCase("buy")) {
+                    Player player = team.getPlayerByName(playerName);
+                    System.out.println("Check name: " + player);
+                    if (this.chosenTeam().getBudget() >= bod) {
+                        this.chosenTeam().buyPlayer(player, bod);
+                        team.sellPlayer(player, bod);
+                        return true;
+                    }
+		}
+            System.out.println("SHOULD NEVER BE SEEN");
+            return false;
+	}
+    
+    public void processResult(Team t1, Team t2, int h, int a){
+        t1.setPlayed(t1.getPlayed()+1);
+        t2.setPlayed(t2.getPlayed()+1);
+        t1.setGoalsMade(t1.getGoalsMade()+h);
+        t1.setGoalsAgainst(t1.getGoalsAgainst()+a);
+        t2.setGoalsMade(t2.getGoalsMade()+a);
+        t2.setGoalsAgainst(t2.getGoalsAgainst()+h);
+        
+        //HomeTeam won
+        if(h>a){
+            t1.setWins(t1.getWins()+1);
+            t2.setLosses(t2.getLosses()+1);
+            t1.setWinStreak(t1.getWinStreak()+1);
+            t2.setWinStreak(0);
+        }
+        //AwayTeam won
+        else if(h<a){
+            t2.setWins(t2.getWins()+1);
+            t1.setLosses(t1.getLosses()+1);
+            t2.setWinStreak(t2.getWinStreak()+1);
+            t1.setWinStreak(0);
+                }
+        //draw
+        else if(h==a){
+            t2.setDraws(t2.getDraws()+1);
+            t1.setDraws(t1.getDraws()+1);
+            t2.setWinStreak(0);
+            t1.setWinStreak(0);
+        }
+        else{
+            System.out.println("Not a valid result.");
+        }
+    }
+        
+        
+    public void addToLastResultDetailed(Update u){
+        LastResultDetailed.add(u);
+    }
+
+    /**
+     * @return the lastResult
+     */
+    public String getLastResult() {
+        return lastResult;
+    }
+
+    /**
+     * @param lastResult the lastResult to set
+     */
+    public void setLastResult(String lastResult) {
+        this.lastResult = lastResult;
+    }
+
+    /**
+     * @return the LastResultDetailed
+     */
+    public ArrayList<Update> getLastResultDetailed() {
+        return LastResultDetailed;
+    }
+
+    /**
+     * @param LastResultDetailed the LastResultDetailed to set
+     */
+    public void setLastResultDetailed(ArrayList<Update> LastResultDetailed) {
+        this.LastResultDetailed = LastResultDetailed;
+    }
         
    
 }

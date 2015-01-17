@@ -28,7 +28,7 @@ public class LineUp {
             }
             
             if(positie<0.99){
-                return aanvallers.get((int)Math.floor(id*2.99));
+                return aanvallers.get((int)Math.floor(id*1.99));
             }
             return keeper;
             
