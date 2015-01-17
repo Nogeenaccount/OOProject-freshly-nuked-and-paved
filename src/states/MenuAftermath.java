@@ -69,6 +69,7 @@ public class MenuAftermath extends State {
 	layout.setConstraints(matchResults, c);
 	matchResults.setPreferredSize(new Dimension(400, 500));
 	matchResults.setMinimumSize(new Dimension(400, 500));
+        matchResults.setMaximumSize(new Dimension(400, 500));
 	matchResults.setBackground(Color.decode("#525151"));
 	matchResults.setForeground(Color.white);
 	matchResults.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -104,6 +105,7 @@ public class MenuAftermath extends State {
         String othermatches = "";
 	
 	//DIT IS ALLEMAAL LOGIC JONGENS, MAAK HIERVOOR KLASSES IN BIJV LEAGUE AAN.
+        //Nee.
         Round thisRound = states.StateManager.getLeague().nextRound("Speelschema.xml",states.StateManager.getLeague().getRounds());
         for(int n=0;n<10;n++){
             Match temp = thisRound.getMatch(n);
@@ -112,6 +114,7 @@ public class MenuAftermath extends State {
                 Team away = temp.getAwayTeam();
                 temp = MatchResult.getResult(home,away,15);
                 states.StateManager.getLeague().processResult(temp.getHomeTeam(), temp.getAwayTeam(), temp.getHomeScore(), temp.getAwayScore());
+                othermatches = othermatches + temp.getHomeTeam().getTeamName() + " " + temp.getHomeScore() + "-" + temp.getAwayScore() + " " + temp.getHomeTeam().getTeamName()+"\n";
             }
             
         }
@@ -122,12 +125,14 @@ public class MenuAftermath extends State {
 		+ injuries + "\n" + "\n"
 		+ "And here are the results of the other matches:" + "\n";
 		//+ otherMatches;
-	
+
         int round = states.StateManager.getLeague().getRounds();
         Match weddie = MatchLogic.findOwnMatch(round);
 	states.StateManager.getLeague().processResult(weddie.getHomeTeam(),weddie.getAwayTeam(),weddie.getHomeScore(),weddie.getAwayScore());
         
-        states.StateManager.getLeague().setRounds(states.StateManager.getLeague().getRounds()-2);
+
+        states.StateManager.getLeague().setRounds(states.StateManager.getLeague().getRounds()-1);
+        
         matchResults.setText(roundResults);
 	this.add(matchResults);
 

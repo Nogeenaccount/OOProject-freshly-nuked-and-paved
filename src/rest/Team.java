@@ -472,4 +472,8 @@ public class Team {
     public void setLineUp(LineUp lineUp) {
 	this.lineUp = lineUp;
     }
+    
+    public int getMoney(){
+        return budget;
+    }
 }
