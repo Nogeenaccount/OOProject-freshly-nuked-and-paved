@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.util.ArrayList;
+import java.util.List;
 public class ThreadTest implements Runnable {
 
     
@@ -18,52 +20,69 @@ public class ThreadTest implements Runnable {
 
     @Override
     public void run() {
-	String beginText = "Here is the progress of your match:\n\n";
+        int round = states.StateManager.getLeague().getRounds();
+        Match weddie = MatchLogic.findOwnMatch(round);
+        String newLine = System.getProperty("line.separator");
+	String beginText = "Welkom in " + weddie.getHomeTeam().getStadiumName() + "!" + newLine;
 	workSpace.setText(beginText);
 
 	//String advancedText = "You lost";
 	//beginText = beginText + advancedText;
 	//workSpace.setText(beginText);
 
-        String methodeOutput = "";
+        System.out.println("Thread has set 'ongoingMatchText'");
         
-	System.out.println("Thread has set 'ongoingMatchText'");
-        League league = states.StateManager.getLeague();
-        Team home = league.getByName(league.getChosenTeam());
-        Team away = league.nextRound("Speelschema.xml", (38-league.getRounds())).getOpponent(home);
+        
         //Twee teams
         
         //Echte stuff
-        MatchLogic thisMatch = new MatchLogic(15,states.StateManager.getLeague().getTeams().get(0),states.StateManager.getLeague().getTeams().get(1));
-        String newLine = System.getProperty("line.separator");
-        int HomeGoals =0;
-        int AwayGoals =0;
-        for(int n=0;n<15;n++){
-            Update tickHome = thisMatch.tickHome();
-            Update tickAway = thisMatch.tickAway();
-            switch(tickHome.getType()){
-                case 0: break;
-                case 1: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + "Gele kaart voor " + tickHome.getSpeler().getPlayerName() + "!"+newLine; break;
-                case 2: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + "Rode kaart voor " + tickHome.getSpeler().getPlayerName() + "!"+newLine; break;
-                case 3: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + tickHome.getSpeler().getPlayerName() + " is geblesseerd geraakt!"+newLine; break;
-                case 4: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + "GOAL voor " + thisMatch.getTeam1().getTeamName() + "! Doelpuntenmaker: " +tickHome.getSpeler().getPlayerName() + "!"+newLine; HomeGoals ++; break;
+        
+        Team homeTeam = weddie.getHomeTeam();
+        Team awayTeam = weddie.getAwayTeam();
+        MatchLogic thisMatch = new MatchLogic(15,homeTeam,awayTeam);
+        
+        //Setting standard String Values
+        
+        String updateText = "";
+        String mainText = thisMatch.gettCurrent()
+                      + "e Minuut" + ", Stand: " 
+                      + thisMatch.getTeam1().getTeamName()
+                      + " "+thisMatch.getScore1()
+                      + "-" 
+                      + thisMatch.getScore2()
+                      + " "
+                      +thisMatch.getTeam2().getTeamName()
+                      + newLine;
+        
+        for(int n=0;n<14;n++){
+            ArrayList<Update> tick = thisMatch.oneTick();
+            
+            updateText = updateText 
+                        + thisMatch.LineGenerator(tick.get(0),thisMatch.getTeam1(),thisMatch.getTeam2())
+                        + thisMatch.LineGenerator(tick.get(1),thisMatch.getTeam2(),thisMatch.getTeam1());
+            
+            mainText = thisMatch.gettCurrent()
+                      + "e Minuut" + ", Stand: " 
+                      + thisMatch.getTeam1().getTeamName()
+                      + " "+thisMatch.getScore1()
+                      + "-" 
+                      + thisMatch.getScore2()
+                      + " "
+                      +thisMatch.getTeam2().getTeamName()
+                      + newLine;
+            
+                workSpace.setText(beginText + newLine + mainText + newLine + updateText);
+                try{
+                    Thread.sleep(100);
+                }
+                catch(InterruptedException e){
+                    System.out.println(e);
+                }
             }
-            switch(tickAway.getType()){
-                case 0: break;
-                case 1: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + "Gele kaart voor " + tickAway.getSpeler().getPlayerName() + "!"+newLine; break;
-                case 2: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + "Rode kaart voor " + tickAway.getSpeler().getPlayerName() + "!"+newLine; break;
-                case 3: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + tickAway.getSpeler().getPlayerName() + " is geblesseerd geraakt!"+newLine; break;
-                case 4: methodeOutput = methodeOutput + Math.round(6.4*n) + "' " + "GOAL voor " + thisMatch.getTeam2().getTeamName() + " ! Doelpuntenmaker: " +tickAway.getSpeler().getPlayerName() + "!"+newLine; AwayGoals++; break;
-            }
-            String display = beginText + Math.round(6.4*n) + "e Minuut" + ", Stand: " +thisMatch.getTeam1().getTeamName()+ " "+HomeGoals + "-" + AwayGoals+" "+thisMatch.getTeam2().getTeamName()+ newLine + methodeOutput;
-            workSpace.setText(display + newLine);
-            try{
-                Thread.sleep(500);
-            }
-            catch(InterruptedException e){
-                System.out.println(e);
-            }
-            }
+        
+        states.StateManager.getLeague().setLastResult(thisMatch.getTeam1().getTeamName()+" "+thisMatch.getScore1() + "-" + thisMatch.getScore2()+" "+thisMatch.getTeam2().getTeamName());
+        
+        //League.setLastResultDetailed(thisMatch.get);
         button.setEnabled(true);
     }
 

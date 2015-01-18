@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.JTableHeader;
 import rest.League;
 import rest.Round;
 
@@ -18,6 +19,15 @@ import rest.Round;
 @SuppressWarnings("serial")
 public class MenuNextMatch extends State {
 
+    //Initialise Images
+    String buttonAdvanceImage = "GUIFiles/buttonNMAdvance.png";
+    String buttonBackImage = "GUIFiles/buttonNMBack.png";
+    String panelPanelImage = "GUIFiles/FootbalStadiumSize.png";
+    
+    JTable table;
+    JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
+    JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
+    
     public MenuNextMatch() {
     }
 
@@ -26,6 +36,8 @@ public class MenuNextMatch extends State {
 	this.setLayout(layout);
 	c = new GridBagConstraints();
 
+	createSpace();
+	
 	//Initialise
 	String[] array1 = new String[20];
 	rest.League league1 = rest.League.readResources("SaveGame.xml");
@@ -33,13 +45,6 @@ public class MenuNextMatch extends State {
 	    array1[i] = league1.getTeams().get(i).getTeamName();
 	}
         
-    
-	//Initialise Images
-	String userDir = System.getProperty("user.home");
-	String buttonAdvanceImage = "GUIFiles\\buttonNMAdvance.png";
-	String buttonBackImage = "GUIFiles\\buttonNMBack.png";
-	String panelPanelImage = "GUIFiles\\FootbalStadiumSize.png";
-
 	//Next matches table Initialise
 	String[] array2 = new String[20];
 	for (int i = 0; i < array1.length; i++) {
@@ -55,13 +60,15 @@ public class MenuNextMatch extends State {
 	for (int i = 0; i < 20; i = i + 2) {
 	    data[i / 2] = new String[]{array3[i], "vs", array3[i + 1]};
 	}
-	String[] columnNames = {"First team", "vs", "Second team"};
+	String[] columnNames = {"Home team", "", "Away team"};
 
+       
+        
 	//Next matches table
-	JTable table = new JTable(data, columnNames);
+	table = new JTable(data, columnNames);
 	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 1;
+	c.gridx = 2;
+	c.gridy = 3;
 	layout.setConstraints(table, c);
 	table.setPreferredSize(new Dimension(400, 160));
 	table.getColumnModel().getColumn(0).setPreferredWidth(170);
@@ -73,48 +80,35 @@ public class MenuNextMatch extends State {
 	table.setFont(new Font("Arial", Font.PLAIN, 14));
 	table.setEnabled(false);
 	this.add(table);
-
-	//Advance
-	JButton buttonAdvance = new JButton(new ImageIcon(buttonAdvanceImage));
+        
+        //Table header
+        JTableHeader tableHeader = table.getTableHeader();
 	c.weightx = 0.5;
 	c.gridx = 1;
-	c.gridy = 2;
+	c.gridy = 1;
+	layout.setConstraints(tableHeader, c);
+	tableHeader.setEnabled(false);
+	tableHeader.setForeground(Color.white);
+	tableHeader.setBackground(Color.decode("#525151"));
+	tableHeader.setMinimumSize(new Dimension(400, 20));
+	tableHeader.setFont(new Font("Arial", Font.PLAIN, 18));
+	this.add(tableHeader);
+        
+	//Advance
+	c.weightx = 0.5;
+	c.gridx = 2;
+	c.gridy = 4;
 	createButton(buttonAdvance, "", c, layout);
-	buttonAdvance.setPreferredSize(new Dimension(400, 75));
-	buttonAdvance.setMinimumSize(new Dimension(400, 75));
-	buttonAdvance.setMargin(new Insets(0, 0, 0, 0));
 	attachStateChanger(buttonAdvance, new MenuMatchScreen());
 
 	//Go back
-	JButton buttonBack = new JButton(new ImageIcon(buttonBackImage));
 	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 3;
+	c.gridx = 2;
+	c.gridy = 5;
 	createButton(buttonBack, "", c, layout);
-	buttonBack.setPreferredSize(new Dimension(400, 75));
-	buttonBack.setMinimumSize(new Dimension(400, 75));
-	buttonBack.setMargin(new Insets(0, 0, 0, 0));
 	attachStateChanger(buttonBack, new MenuBetweenRounds());
 
-	//Padding
-	JTextArea invisi2 = new JTextArea();
-	c.weightx = 0.5;
-	c.gridx = 1;
-	c.gridy = 0;
-	layout.setConstraints(invisi2, c);
-	invisi2.setPreferredSize(new Dimension(200, 100));
-	invisi2.setOpaque(false);
-	invisi2.setEditable(false);
-	invisi2.setMargin(new Insets(250, 0, 0, 0));
-	this.add(invisi2);
-
-	c.weightx = 0.5;
-	c.gridheight = 6;
-	c.gridwidth = 3;
-	c.gridx = 0;
-	c.gridy = 0;
-	ImagePanel panel = new ImagePanel(new ImageIcon(panelPanelImage).getImage(), c, layout);
-	this.add(panel);
+	setBackground(panelPanelImage);
     }
     
         public static String[] teamsToShow(){
@@ -122,12 +116,12 @@ public class MenuNextMatch extends State {
             String ht = "";
             String at = "";
             League l = states.StateManager.getLeague();
-            Round r = l.nextRound("Speelschema.xml", (38-l.getRounds()));
+            Round r = l.nextRound("Speelschema.xml", (l.getRounds()));
             for(int i = 0; i < 10; i++){
-            ht = r.getMatch(i).getHomeTeam().getTeamName();
-            at = r.getMatch(i).getAwayTeam().getTeamName();
-            teamList[2*i] = ht;
-            teamList[2*i+1] = at;
+		ht = r.getMatch(i).getHomeTeam().getTeamName();
+		at = r.getMatch(i).getAwayTeam().getTeamName();
+		teamList[2*i] = ht;
+		teamList[2*i+1] = at;
             }
             
             return teamList;

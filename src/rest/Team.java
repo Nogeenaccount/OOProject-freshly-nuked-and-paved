@@ -58,6 +58,16 @@ public class Team {
             return false;
         }
     
+    public Player getPlayerByName(String name) {
+        Player player = null;
+        for(int i = 0; i < this.getPlayers().size(); i++) {
+           if (name.equals(this.getPlayers().get(i).getPlayerName())) {
+               player = this.getPlayers().get(i);
+           }
+       }
+       return player;
+    }
+    
     /**
      * add: adds player to the team
      *
@@ -98,16 +108,15 @@ public class Team {
      */
     public boolean sellPlayer(Player x, int bod) {
 	for (int i = 0; i < this.players.size(); i++) {
-	    if (this.players.get(i).getPlayerName()
-		    .equalsIgnoreCase(x.getPlayerName())) {
-		int newBudget = this.budget + this.players.get(i).getPrice();
+	    if (this.players.get(i).getPlayerName().equalsIgnoreCase(x.getPlayerName())) {
+		//int newBudget = this.budget + this.players.get(i).getPrice(); Don't think
 		this.players.remove(i);
-
-		this.setBudget(newBudget + bod);
+		this.setBudget(this.budget + bod);
+                System.out.println("Sell player succes");
                 return true;
 	    }
-
 	}
+        System.out.println("Sell player failed - No such player");
         return false;
     }
 
@@ -120,15 +129,18 @@ public class Team {
      * @return 
      */
     public boolean buyPlayer(Player x, int bod) {
-	if (bod < this.getBudget()) {
+	//if (bod < this.getBudget()) {
 	    if (this.shirtnumberFree(x) != true) {
 		x.setShirtNumber(this.availableShirtnumber());
 	    }
 	    this.add(x);
 	    this.setBudget((this.getBudget() - bod));
+            System.out.println("Buy player succeeds");
+
             return true;
-	}
-        return false;
+	//}
+        //System.out.println("Buy player fails");
+       // return false;
     }
 
     /**
@@ -142,6 +154,7 @@ public class Team {
 	    counter++;
 
 	}
+               System.out.println("available shirtnumer " + counter);
 
 	return counter;
 
@@ -328,10 +341,8 @@ public class Team {
 				case "D" : verdedigers.add(this.players.get(i)); break; 
 			}
 		}
-                String temp = "TESTTESTTEST";
-		temp = temp + keepers.size() + " " + verdedigers.size() + " " + middenvelders.size() + " " + aanvallers.size();
-		System.out.println(temp);
-		
+                
+				
 
 // eliminatie van mindere keepers
 		int toBeEliminated = 0;
@@ -347,9 +358,7 @@ public class Team {
 			}
 			keepers.remove(toBeEliminated);
 		} while(keepers.size()>1);
-                System.out.println(toBeEliminated);
-                System.out.println(keepers.size());
-		System.out.println("Keepers: " + keepers.size());
+                
 		// eliminatie van mindere verdedigers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -362,11 +371,10 @@ public class Team {
 					lowestStats = verdedigers.get(p).getOffence() + verdedigers.get(p).getDefence() + verdedigers.get(p).getEndurance();
 				}
 			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(verdedigers.size());
+                        
 			verdedigers.remove(toBeEliminated);
 		} while(verdedigers.size()>4);
-		System.out.println("Verdedigers: " + verdedigers.size());
+		
 		// eliminatie van mindere middenvelders
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -379,11 +387,10 @@ public class Team {
 					lowestStats = middenvelders.get(p).getOffence() + middenvelders.get(p).getDefence() + middenvelders.get(p).getEndurance();
 				}
 			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(middenvelders.size());
+                        
 			middenvelders.remove(toBeEliminated);
 		} while(middenvelders.size()>3);
-                System.out.println("middenvelders: " + middenvelders.size());
+              
 		// eliminatie van mindere aanvallers
 		toBeEliminated = 0;
 		lowestStats = 100000;
@@ -396,11 +403,15 @@ public class Team {
 					lowestStats = aanvallers.get(p).getOffence() + aanvallers.get(p).getDefence() + aanvallers.get(p).getEndurance();
 				}
 			}
-                        System.out.println(toBeEliminated);
-                        System.out.println(aanvallers.size());
+                        
 			aanvallers.remove(toBeEliminated);
+<<<<<<< HEAD
 		} 
 		System.out.println("Aanvallers: "+aanvallers.size()+"aantal" + aanvallers.toString());
+=======
+		} while(aanvallers.size()>3);
+		
+>>>>>>> 977b2d78ca431fcac3e3df8f34a2aa1c33a64f88
 		
 		l.setAanvallers(aanvallers);
 		l.setMiddenvelders(middenvelders);
@@ -528,5 +539,9 @@ public class Team {
 
     public void setLineUp(LineUp lineUp) {
 	this.lineUp = lineUp;
+    }
+    
+    public int getMoney(){
+        return budget;
     }
 }

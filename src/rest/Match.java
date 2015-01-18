@@ -15,6 +15,9 @@ public class Match {
     private int HomeScore;
     private int AwayScore;
     
+    public Match(){
+        
+    }
     
     public Match(Team Home, Team Away){
         HomeTeam = Home;
@@ -56,7 +59,7 @@ public class Match {
     }
     
     public String toString(){
-        return HomeTeam + " " + HomeScore + "-" + AwayScore + " " + AwayTeam;
+        return HomeTeam.getTeamName() + " " + HomeScore + "-" + AwayScore + " " + AwayTeam.getTeamName();
     }
     
     public String Fixture(){
@@ -67,12 +70,10 @@ public class Match {
         if(other instanceof Match){
             Match that = (Match)other;
             if(this.HomeTeam.equals(that.getHomeTeam()) && this.AwayTeam.equals(that.getAwayTeam())){
-                if(HomeScore==that.getHomeScore() && AwayScore == that.getAwayScore()){
-                    return true;
-                }
+                return true;
             }
         }
         return false;
     }
-    
+        
 }
