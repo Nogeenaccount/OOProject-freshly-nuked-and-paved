@@ -9,13 +9,7 @@ public class MatchResult {
      * @return S
      */
     public static double offenceSum(Team t) {
-        LineUp temp = new LineUp();
-        if(t.equals(states.StateManager.getLeague().getChosenTeam())){
-            temp = t.getLineUp();
-        }
-        else{
-            temp = t.getDefaultLineUp();
-        }
+        LineUp temp = t.getLineUp();
 	double S = 0;
 	for (int i = 0; i < temp.getAanvallers().size(); i++) {
 	    S += temp.getAanvallers().get(i).getOffence();
@@ -34,13 +28,7 @@ public class MatchResult {
      * @return S
      */
     public static double defenceSum(Team t) {
-	LineUp temp = new LineUp();
-        if(t.equals(states.StateManager.getLeague().getChosenTeam())){
-            temp = t.getLineUp();
-        }
-        else{
-            temp = t.getDefaultLineUp();
-        }
+        LineUp temp = t.getLineUp();
         double S = 0;
 	for (int i = 0; i < temp.getVerdedigers().size(); i++) {
 	    S += temp.getVerdedigers().get(i).getDefence();
@@ -60,13 +48,7 @@ public class MatchResult {
      * @return S
      */
     public static double enduranceSum(Team t) {
-        LineUp temp = new LineUp();
-        if(t.equals(states.StateManager.getLeague().getChosenTeam())){
-            temp = t.getLineUp();
-        }
-        else{
-            temp = t.getDefaultLineUp();
-        }
+        LineUp temp = t.getLineUp();
 	double S = 0;
 	for (int i = 0; i < temp.getAanvallers().size(); i++) {
 	    S += temp.getAanvallers().get(i).getEndurance();
