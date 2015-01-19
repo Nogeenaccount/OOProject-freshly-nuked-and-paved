@@ -88,6 +88,150 @@ public class TeamTest {
 	assertEquals(a.getPlayers().size(), 4);
     }
 
+        /**
+     * test eliminatWorstPlayer
+     */
+    @Test
+    public void eliminatWorstPlayerTest(){
+        ArrayList players = new ArrayList<Player>();
+        
+        Player p1 = new Player("p1", 1, 500, 20, 99, 99, "gk", 0, 0);
+        Player p2 = new Player("p2", 2, 500, 10, 99, 99, "gk", 0, 0);
+        Player p3 = new Player("p3", 3, 500, 50, 99, 99, "gk", 0, 0);
+        Player p4 = new Player("p4", 4, 500, 40, 99, 99, "gk", 0, 0);
+        Player p5 = new Player("p5", 5, 500, 30, 99, 99, "gk", 0, 0);
+        
+        players.add(p1);
+        players.add(p2);
+        players.add(p3);
+        players.add(p4);
+        players.add(p5);
+        
+        assertTrue(players.contains(p1) &&
+                    players.contains(p2) &&
+                     players.contains(p3) &&
+                      players.contains(p4) &&
+                       players.contains(p5));
+        
+        players = Team.eliminateWorstPlayer(players);
+        
+        assertTrue(players.contains(p1) &&
+                   !players.contains(p2) &&
+                     players.contains(p3) &&
+                      players.contains(p4) &&
+                       players.contains(p5));
+
+        players = Team.eliminateWorstPlayer(players);
+        
+        assertTrue(!players.contains(p1) &&
+                    !players.contains(p2) &&
+                      players.contains(p3) &&
+                       players.contains(p4) &&
+                        players.contains(p5));
+
+        players = Team.eliminateWorstPlayer(players);
+        
+        assertTrue(!players.contains(p1) &&
+                    !players.contains(p2) &&
+                      players.contains(p3) &&
+                       players.contains(p4) &&
+                       !players.contains(p5));
+
+        players = Team.eliminateWorstPlayer(players);
+        
+        assertTrue(!players.contains(p1) &&
+                    !players.contains(p2) &&
+                      players.contains(p3) &&
+                       players.contains(p4) &&
+                       !players.contains(p5));
+        
+        players = Team.eliminateWorstPlayer(players);
+        
+        assertTrue(!players.contains(p1) &&
+                    !players.contains(p2) &&
+                      players.contains(p3) &&
+                       !players.contains(p4) &&
+                        !players.contains(p5));
+
+        players = Team.eliminateWorstPlayer(players);
+        
+        assertTrue(!players.contains(p1) &&
+                    !players.contains(p2) &&
+                     !players.contains(p3) &&
+                      !players.contains(p4) &&
+                       !players.contains(p5));
+    }
+    
+    /**
+     * test getDefaultLineUp
+     */
+    @Test
+    public void getDefaultLineUpTest(){
+        Team tempTeam = new Team("Chelsea", "Arena", 10000);
+
+        Player p1  = new Player("p1",  1, 500, 10, 99, 99, "G", 0, 0);
+        Player p2  = new Player("p2",  2, 500, 50, 99, 99, "G", 0, 0);
+        Player p3  = new Player("p3",  3, 500, 60, 99, 99, "F", 0, 0);
+        Player p4  = new Player("p4",  4, 500, 99, 55, 99, "M", 0, 0);
+        Player p5  = new Player("p5",  5, 500, 99, 50, 99, "M", 0, 0);
+        Player p6  = new Player("p6",  1, 500, 80, 99, 99, "M", 0, 0);
+        Player p7  = new Player("p7",  2, 500, 99, 99, 80, "M", 0, 0);
+        Player p8  = new Player("p8",  3, 500, 99, 30, 99, "M", 0, 0);
+        Player p9  = new Player("p9",  4, 500, 30, 99, 99, "M", 0, 0);
+        Player p10 = new Player("p10", 5, 500, 20, 20, 99, "D", 0, 0);
+        Player p11 = new Player("p11", 1, 500, 70, 99, 99, "F", 0, 0);
+        Player p12 = new Player("p12", 2, 500, 40, 99, 99, "D", 0, 0);
+        Player p13 = new Player("p13", 3, 500, 99, 85, 99, "D", 0, 0);
+        Player p14 = new Player("p14", 4, 500, 99, 80, 80, "D", 0, 0);
+        Player p15 = new Player("p15", 5, 500, 90, 99, 99, "M", 0, 0);
+        Player p16 = new Player("p16", 1, 500, 99, 40, 99, "M", 0, 0);
+        Player p17 = new Player("p17", 2, 500, 30, 99, 99, "F", 0, 0);
+        Player p18 = new Player("p18", 3, 500, 99, 90, 90, "F", 0, 0);
+        Player p19 = new Player("p19", 4, 500, 80, 99, 99, "G", 0, 0);
+        Player p20 = new Player("p20", 5, 500, 99, 99, 10, "F", 0, 0);
+        Player p21 = new Player("p21", 4, 500, 99, 99, 90, "F", 0, 0);
+        Player p22 = new Player("p22", 5, 500, 99, 90, 99, "D", 0, 0);
+
+        tempTeam.add(p1);
+        tempTeam.add(p2);
+        tempTeam.add(p3);
+        tempTeam.add(p4);
+        tempTeam.add(p5);
+        tempTeam.add(p6);
+        tempTeam.add(p7);
+        tempTeam.add(p8);
+        tempTeam.add(p9);
+        tempTeam.add(p10);
+        tempTeam.add(p11);
+        tempTeam.add(p12);
+        tempTeam.add(p13);
+        tempTeam.add(p14);
+        tempTeam.add(p15);
+        tempTeam.add(p16);
+        tempTeam.add(p17);
+        tempTeam.add(p18);
+        tempTeam.add(p19);
+        tempTeam.add(p20);
+        tempTeam.add(p21);
+        tempTeam.add(p22);
+        
+        LineUp tempLineUp = new LineUp();
+        tempLineUp.setKeeper(p19);
+        tempLineUp.addVerdediger(p22);
+        tempLineUp.addVerdediger(p13);
+        tempLineUp.addVerdediger(p14);
+        tempLineUp.addMiddenvelder(p15);
+        tempLineUp.addMiddenvelder(p7);
+        tempLineUp.addMiddenvelder(p6);
+        tempLineUp.addMiddenvelder(p4);
+        tempLineUp.addAanvaller(p22);
+        tempLineUp.addAanvaller(p13);
+        tempLineUp.addAanvaller(p19);
+        
+        assertEquals(tempLineUp, tempTeam.getDefaultLineUp());
+    }
+
+    
     /**
      * test 1, is the budget upgraded?
      */
