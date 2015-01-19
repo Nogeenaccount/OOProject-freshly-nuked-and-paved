@@ -668,6 +668,7 @@ public class League {
     
     public void processResult(Team t1, Team t2, int h, int a){
         LastResultDetailed = new ArrayList<Update>();
+        System.out.println(t1.getTeamName() + h + "-" + a + t2.getTeamName());
         t1.setPlayed(t1.getPlayed()+1);
         t2.setPlayed(t2.getPlayed()+1);
         t1.setGoalsMade(t1.getGoalsMade()+h);
