@@ -1,5 +1,6 @@
 package rest;
 
+import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -70,7 +71,7 @@ public class TeamTest {
     @Test
     public void buyPlayerTest() {
 	//first test, is the budget upgraded and the player added?
-	a.buyPlayer(p1); // budget is 10000 - 500
+	a.buyPlayer(p1,500); // budget is 10000 - 500
 
 	assertTrue(a.getBudget() == 9500);
 	assertTrue(a.getPlayers().get(0).equals(p1));
@@ -78,13 +79,13 @@ public class TeamTest {
 	//second test, is the shirt number changed?
 	a.add(p1);
 	a.add(p2);
-	a.buyPlayer(p6);
-	a.buyPlayer(p7);
+	a.buyPlayer(p6,500);
+	a.buyPlayer(p7,500);
 	assertTrue(p6.getShirtNumber() == 3);
 	assertTrue(p7.getShirtNumber() == 4);
 	
 	assertEquals(a.getPlayers().size(), 4);
-	a.buyPlayer(p0);
+	a.buyPlayer(p0,500);
 	assertEquals(a.getPlayers().size(), 4);
     }
 
@@ -239,13 +240,13 @@ public class TeamTest {
     public void sellPlayerTest() {
 	//test 1, is the budget upgraded?
 	a.add(p1);
-	a.sellPlayer(p1);
+	a.sellPlayer(p1,1);
 	assertTrue(a.getBudget() == 10500);
 
 	//test 2, is the player removed and the list shifted to the left?
 	a.add(p1);
 	a.add(p2);
-	a.sellPlayer(p1);
+	a.sellPlayer(p1,1);
 	assertTrue(a.getPlayers().get(0).equals(p2));
 	
     }
