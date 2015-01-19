@@ -54,6 +54,31 @@ public class MenuBetweenRounds extends State {
 
 	createSpace();
 	
+                //MoreSpace
+        JTextArea invisi3 = new JTextArea();
+        c.weightx = 0.5;
+        c.gridx = 0;
+        c.gridy = 6;
+        layout.setConstraints(invisi3, c);
+        invisi3.setPreferredSize(new Dimension(200, 10));
+        invisi3.setOpaque(false);
+        invisi3.setEditable(false);
+        invisi3.setMargin(new Insets(0, 200, 0, 0));
+        this.add(invisi3);
+    
+        JTextArea invisi4 = new JTextArea();
+        c.weightx = 0.5;
+        c.gridx = 3;
+        c.gridy = 6;
+        layout.setConstraints(invisi4, c);
+        invisi4.setPreferredSize(new Dimension(200, 10));
+        invisi4.setOpaque(false);
+        invisi4.setEditable(false);
+        invisi4.setMargin(new Insets(0, 0, 0, 200));
+        this.add(invisi4);
+        
+
+        
 	c.weightx = 0.5;
 	c.gridx = 1;
 	c.gridy = 4;
@@ -117,12 +142,13 @@ public class MenuBetweenRounds extends State {
 	textFieldBudget.setFont(new Font("Arial", Font.PLAIN, 14));
 
 	int yourBudget = 0;
-	String yourTeam = StateManager.getLeague().getChosenTeam();
-	for (int i = 0; i < StateManager.getLeague().getTeams().size(); i++) {
-	    if (StateManager.getLeague().getTeams().get(i).getTeamName().equals(yourTeam)) {
-		yourBudget = StateManager.getLeague().getTeams().get(i).getBudget();
-	    }
-	}
+	rest.Team yourTeam = StateManager.getLeague().getTeamByName(StateManager.getLeague().getChosenTeam());
+        yourBudget = yourTeam.getBudget();
+
+        if(StateManager.getLeague().getRounds() <= 0) {
+            buttonNextMatch.setEnabled(false);
+        }
+
 
         
         Match nextMatch = MatchLogic.findOwnMatch(StateManager.getLeague().getRounds()+1);

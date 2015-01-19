@@ -58,18 +58,18 @@ public class MenuAftermath extends State {
 	progress.setText("");
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 3;
+	c.gridy = 2;
 	layout.setConstraints(progress, c);
 	this.add(progress);
 
 	//Prompt Round Results
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 4;
+	c.gridy = 3;
 	layout.setConstraints(matchResults, c);
-	matchResults.setPreferredSize(new Dimension(400, 500));
-	matchResults.setMinimumSize(new Dimension(400, 500));
-        matchResults.setMaximumSize(new Dimension(400, 500));
+	matchResults.setPreferredSize(new Dimension(400, 400));
+	matchResults.setMinimumSize(new Dimension(400, 400));
+        matchResults.setMaximumSize(new Dimension(400, 400));
 	matchResults.setBackground(Color.decode("#525151"));
 	matchResults.setForeground(Color.white);
 	matchResults.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -139,7 +139,7 @@ public class MenuAftermath extends State {
 	//Advance
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 6;
+	c.gridy = 5;
 	createButton(buttonAdvance, "", c, layout);
 	attachStateChanger(buttonAdvance, new MenuBetweenRounds());
         buttonAdvance.addActionListener(new ActionListener() {
