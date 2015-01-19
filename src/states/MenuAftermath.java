@@ -123,8 +123,8 @@ public class MenuAftermath extends State {
 		+ yourRoundResult + "\n" + "\n"
 		+ Bookings + "\n" + "\n"
 		+ injuries + "\n" + "\n"
-		+ "And here are the results of the other matches:" + "\n";
-		//+ otherMatches;
+		+ "And here are the results of the other matches:" + "\n"
+		+ othermatches;
 
         int round = states.StateManager.getLeague().getRounds();
         Match weddie = MatchLogic.findOwnMatch(round);
