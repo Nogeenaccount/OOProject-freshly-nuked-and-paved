@@ -83,6 +83,22 @@ public class LineUp {
 	}
     }
 
+        /**
+     * equals: tests if two LineUp instances are equal
+     * @param obj
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof LineUp){
+            LineUp L = (LineUp) obj;
+            if (this.getAanvallers().equals(L.getAanvallers()) && this.getMiddenvelders().equals(L.getMiddenvelders()) && this.getVerdedigers().equals(L.getVerdedigers()) && this.getKeeper().equals(L.getKeeper()))
+                return true;
+        }
+        return false;
+    }
+
+    
     /*
      * GETTERS AND SETTERS
      */
