@@ -86,7 +86,7 @@ public class TeamTest {
 	
 	assertEquals(a.getPlayers().size(), 4);
 	a.buyPlayer(p0,500);
-	assertEquals(a.getPlayers().size(), 4);
+	assertEquals(a.getPlayers().size(), 5);
     }
 
         /**

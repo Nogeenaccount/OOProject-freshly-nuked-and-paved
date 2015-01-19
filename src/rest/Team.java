@@ -218,7 +218,7 @@ public class Team {
             for(int i = 0; i<11; i++){
                 if(i < 10){
                 playerNumber = lineupTemp.substring(0, lineupTemp.indexOf(", "));
-                lineup = lineup.substring(lineup.indexOf(", ")+2, lineup.length());
+                lineup = lineup.substring(lineup.indexOf(", ")+2);
                 lineupTemp = lineup;
                 }else{                
                     playerNumber = lineupTemp;
