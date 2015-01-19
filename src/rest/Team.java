@@ -405,13 +405,12 @@ public class Team {
 			}
                         
 			aanvallers.remove(toBeEliminated);
-<<<<<<< HEAD
+
 		} 
 		System.out.println("Aanvallers: "+aanvallers.size()+"aantal" + aanvallers.toString());
-=======
-		} while(aanvallers.size()>3);
+
 		
->>>>>>> 977b2d78ca431fcac3e3df8f34a2aa1c33a64f88
+		
 		
 		l.setAanvallers(aanvallers);
 		l.setMiddenvelders(middenvelders);
@@ -419,7 +418,8 @@ public class Team {
 		l.setKeeper(keepers.get(0));
 		
 		return l;
-	}
+
+}
         /**
          * Method to get a Player by name, String must be in Player format.
          * @param s The string containing the name.

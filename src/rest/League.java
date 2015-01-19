@@ -173,6 +173,7 @@ public class League {
 	}
 	return new League("", 0, "", "");
     }
+    
     public Round nextRound(String fileName, int ronde) {
         try {
             int roundNr = 0;
@@ -209,15 +210,10 @@ public class League {
                 c += 10;
                 rondes.add(r);
             }
-<<<<<<< HEAD
-           return rondes.get(ronde);
-           
-=======
             System.out.println("League round method, ronde: " + ronde);
             ronde = 39-ronde;
             System.out.println("League round method, real ronde: " + ronde);
             return rondes.get(ronde);
->>>>>>> 977b2d78ca431fcac3e3df8f34a2aa1c33a64f88
         } catch (SAXException ex) {
             Logger.getLogger(League.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -463,15 +459,11 @@ public class League {
 		int price = x.getPrice();
 
 		if (bod == price) {
-<<<<<<< HEAD
-			return (Math.random() > 0.5);
-	
-=======
 			if (Math.random() > 0.5) {
                             System.out.println("case1");
 				return true;
 			}
->>>>>>> 977b2d78ca431fcac3e3df8f34a2aa1c33a64f88
+
 		} else if (bod < price && bod > 0.8 * price) {
 			if (Math.random() > 0.7) {
                             System.out.println("case2");
