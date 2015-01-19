@@ -522,20 +522,20 @@ public class League {
                 // Math.floor(Math.random() * size returnes a value between [1,size]
 		//Player attempt = this.chosenTeam().getPlayers().get((int) Math.floor(Math.random() * buyer.getPlayers().size()) );
 		
+                //StateManager.getLeague() == this
                 String offerString;
                
-		Team seller = this.getTeams().get((int) Math.floor(Math.random() * this.getTeams().size()));
-                System.out.println("Team selling:" + seller.getTeamName());
-                Player attempt = seller.getPlayers().get((int) Math.floor(Math.random() * seller.getPlayers().size()));
-                System.out.println("Player they're selling: " + attempt);
+		Team thatBuyer = this.getTeams().get((int) Math.floor(Math.random() * this.getTeams().size()));
+                System.out.println("Team you will be selling to:" + thatBuyer.getTeamName());
+                Player yourPlayer = this.getTeamByName(this.getChosenTeam()).getPlayers().get((int) Math.floor(Math.random() * this.getTeamByName(this.getChosenTeam()).getPlayers().size()));
+                System.out.println("Player you're selling: " + yourPlayer);
                 
-		int offer = (int) ((attempt.getPrice() * (Math.random() + 0.2)* 1.5));
-		if (seller == this.chosenTeam() || (seller.getBudget() < offer)) {
-			String offers = this.generateOffer();
-                        //this.addOffersMade(offers);
-			return offers;
+		int offer = (int) ((yourPlayer.getPrice() * (Math.random() + 0.2)* 1.5));
+		if (thatBuyer.getTeamName().equals(this.getChosenTeam())  || (thatBuyer.getBudget() < offer)) {
+			String offerLooped = this.generateOffer();
+			return offerLooped;
 		} else {
-			offerString = seller.getTeamName() + " " + offer + " " + attempt.getPlayerName();
+			offerString = thatBuyer.getTeamName() + " " + offer + " " + yourPlayer.getPlayerName();
                         this.addOffersMade((String)offerString);
 			return offerString;
 		}
@@ -579,7 +579,6 @@ public class League {
          * @return 
          */
         public boolean Transfer(String soortTransactie, String offerFormat) {
-            System.out.println();
             Scanner sc = new Scanner(offerFormat);
             
             String team1 = sc.next();
@@ -630,9 +629,9 @@ public class League {
 	}
         
         public boolean TransferOffer(String soortTransactie, String offerFormat) {
-            System.out.println();
             Scanner sc = new Scanner(offerFormat);
             
+            //Team
             String team1 = sc.next();
             if (sc.hasNextInt() == false) {
                 team1 = team1 + " " + sc.next();
@@ -642,9 +641,11 @@ public class League {
             }
             System.out.println("Team:" + team1);
             
+            //Price
             int bod = sc.nextInt();
             System.out.println("Price:" + bod);
             
+            //Player
             String playerName = sc.next();
             if (sc.hasNext() == true) {
                 playerName = playerName + " " + sc.next();
@@ -652,21 +653,25 @@ public class League {
             if (sc.hasNext() == true) {
                 playerName = playerName + " " + sc.next();
             }
+            System.out.println("|"+playerName+"|");
             
+            //Team verification by name
             Team team = this.getTeamByString(team1);
-            System.out.println("Team from the string above: " + team.getTeamName());
+            System.out.println(team.getTeamName());
             
-            if (soortTransactie.equalsIgnoreCase("buy")) {
-                    Player player = team.getPlayerByName(playerName);
-                    System.out.println("Check name: " + player);
-                    if (this.chosenTeam().getBudget() >= bod) {
-                        this.chosenTeam().buyPlayer(player, bod);
-                        team.sellPlayer(player, bod);
-                        return true;
+            //action
+		if (soortTransactie.equalsIgnoreCase("sell")) {
+                    Player player = this.chosenTeam().getPlayerByName(playerName);
+                    System.out.println("Check name of sold player:" + player.getPlayerName());
+                    System.out.println("Buying team's budget before transfer: " + team.getBudget() + " What they will pay (less): " + bod);
+                    if (team.getBudget() >= bod) {
+			this.chosenTeam().sellPlayer(player, bod);
+			team.buyPlayer(player, bod);
+			return true;
                     }
 		}
-            System.out.println("SHOULD NEVER BE SEEN");
-            return false;
+                System.out.println("TransferOffer failed: ERROR");
+		return false;
 	}
     
     public void processResult(Team t1, Team t2, int h, int a){

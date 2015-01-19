@@ -353,7 +353,7 @@ public class MenuTransfers extends State {
 	buttonAttempt.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		if (alreadyTried.contains(playerList.getSelectedValue()) == false) {
+		if (alreadyTried.contains((String)playerList.getSelectedValue()) == false) {
 		    System.out.println("Attempt to buy or sell made: " + buyOrSellList.getSelectedValue() + ", " + playerList.getSelectedValue() + " from/to " + teamList.getSelectedValue());
 		    alreadyTried.add((String) playerList.getSelectedValue());
 		    System.out.println(alreadyTried);
@@ -424,9 +424,9 @@ public class MenuTransfers extends State {
                     String offer = (String) offerList.getSelectedValue();
                     //StateManager.getLeague().getOffersMade().remove(offerList.getSelectedIndex());
                     //offerList.removeSelectionInterval(offerList.getSelectedIndex(), offerList.getSelectedIndex());
-                    StateManager.getLeague().TransferOffer("Buy", offer);
-                    System.out.println("Offer accepted: " + tempOffersTried);
-		    tempOffersTried.add((String) offerList.getSelectedValue());
+                    StateManager.getLeague().TransferOffer("Sell", offer);
+                    tempOffersTried.add((String) offerList.getSelectedValue());
+                    System.out.println("Offer accepted: " + offer + " New arrayofaccepted: " + tempOffersTried);
                     budgetDisplay.setText("Your budget: " + StateManager.getLeague().getTeamByName(StateManager.getLeague().getChosenTeam()).getBudget());
 		}
 	    }
