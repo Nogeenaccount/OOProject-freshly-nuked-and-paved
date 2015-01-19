@@ -219,6 +219,10 @@ public class MenuTransfers extends State {
 	    public void valueChanged(ListSelectionEvent e) {
 		//exception occurs here
 		if (teamList.getValueIsAdjusting() && buyOrSellList.getSelectedValue().equals("Buy")) {
+                    /**
+                     * CODE BUGT OP DE IF HIERBOVEN (Nullpointer exception)
+                     * KAN ERIC STEFAN HIER naar kijken?? xxx <3
+                     */
 		    playerArray.clear();
 		    for (int i = 0; i < StateManager.getLeague().getTeams().size(); i++) {
 			if (teamList.getSelectedValue().equals(StateManager.getLeague().getTeams().get(i).getTeamName())) {
