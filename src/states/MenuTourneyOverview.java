@@ -57,10 +57,9 @@ public class MenuTourneyOverview extends State {
         Arrays.sort(data, new Comparator<String[]>() {
             @Override
             public int compare(final String[] entry1, final String[] entry2) {
-                final int points1 = Integer.parseInt(entry1[8]);
-                final int points2 = Integer.parseInt(entry2[8]);
-                Integer.compare(points1, points2);
-                return Integer.compare(points1, points2) * -1;
+                final String points1 = entry1[1];
+                final String points2 = entry2[1];
+                return points1.compareTo(points2);
             }
         });
 

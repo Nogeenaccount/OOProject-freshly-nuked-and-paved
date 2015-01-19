@@ -46,14 +46,14 @@ public class MenuMatchScreen extends State {
 	progress.setText("");
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 2;
+	c.gridy = 3;
 	layout.setConstraints(progress, c);
 	this.add(progress);
 
 	//Prompt Your Match progress
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 3;
+	c.gridy = 4;
 	layout.setConstraints(matchProgress, c);
 	matchProgress.setPreferredSize(new Dimension(400, 400));
 	matchProgress.setEditable(false);
@@ -68,7 +68,7 @@ public class MenuMatchScreen extends State {
         //Advance
 	c.weightx = 0.5;
 	c.gridx = 2;
-	c.gridy = 4;
+	c.gridy = 5;
 	createButton(buttonAdvance, "", c, layout);
 	buttonAdvance.setEnabled(false);
 	attachStateChanger(buttonAdvance, new MenuAftermath());

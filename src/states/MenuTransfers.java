@@ -34,11 +34,11 @@ public class MenuTransfers extends State {
 	c = new GridBagConstraints();
 
         //!!!!!!
-//        StateManager.getLeague().setOffersmade(new ArrayList<String>());
-//        
-//        for(int i = 0; i < 3; i ++) {
-//            StateManager.getLeague().generateOffer();
-//                    }
+        StateManager.getLeague().setOffersmade(new ArrayList<String>());
+        
+        for(int i = 0; i < 3; i ++) {
+            StateManager.getLeague().generateOffer();
+                    }
         //!!!!!
         
         String[] array2 = new String[StateManager.getLeague().getOffersMade().size()];

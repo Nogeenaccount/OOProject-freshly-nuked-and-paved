@@ -78,7 +78,6 @@ public class Team {
 	    players.add(player);
 	}
     }
-
     /**
      * toString: turns Team into a printable String
      *
@@ -176,6 +175,70 @@ public class Team {
              }
              return aanvallers;
 	}
+      
+      /**
+       * Returns a palyers when a shirt number is given
+       * @param shn
+       * @return Desired payer
+       */
+      public Player getByShirtNumber(int shn){
+            Player p = null;
+            Player q = null;
+            for(int i =0; i < this.getPlayers().size(); i++){
+            p = this.getPlayers().get(i);
+            if(this.getPlayers().get(i).getShirtNumber() == shn){
+            q = this.getPlayers().get(i);
+                }
+              }
+            if(q instanceof Player){
+            return q;
+            }else{
+                System.out.println("huh");
+                return null;
+            }
+        }
+      
+      /**
+       * Accepteert een String waarin de lineup een string representatie is van shirtnummers gescheiden door komma's
+       * @param lu
+       * @return Een volwaardige opstelling
+       */  
+            public LineUp convertToLineUp(String lineup){
+            LineUp lup = new LineUp();
+            Player tempKeeper = null;
+            ArrayList<Player> tempVerdedigers = new ArrayList<Player>();
+            ArrayList<Player> tempMiddenvelders = new ArrayList<Player>();
+            ArrayList<Player> tempAanvallers = new ArrayList<Player>();
+            String lineupTemp = lineup;
+            String playerNumber = "";
+                //System.out.println(lineupTemp.indexOf(", "));
+            int p = 0;
+            //Player tempPlayer = null;
+           // lineupTemp.indexOf(", ");
+            for(int i = 0; i<11; i++){
+                if(i < 10){
+                playerNumber = lineupTemp.substring(0, lineupTemp.indexOf(", "));
+                lineup = lineup.substring(lineup.indexOf(", ")+2, lineup.length());
+                lineupTemp = lineup;
+                }else{                
+                    playerNumber = lineupTemp;
+                }
+                p = Integer.parseInt(playerNumber);
+            
+                if(i == 0){
+                tempKeeper = this.getByShirtNumber(p);
+                }else if (i < 5){
+                    tempVerdedigers.add(this.getByShirtNumber(p));
+                }else if (i < 8){
+                    tempMiddenvelders.add(this.getByShirtNumber(p));
+                }else{
+                    tempAanvallers.add(this.getByShirtNumber(p));
+                }
+            }
+            lup.setKeeper(tempKeeper); lup.setVerdedigers(tempVerdedigers); lup.setMiddenvelders(tempMiddenvelders);lup.setAanvallers(tempAanvallers);
+            return lup;
+            }
+            
            /**
      * Returns a desired number of players that suits the lineup requirements
      * @return list of either attackers/ midfielder/ defenders/ a keeper
@@ -331,7 +394,7 @@ public class Team {
 		// eliminatie van mindere aanvallers
 		toBeEliminated = 0;
 		lowestStats = 100000;
-		do {
+		if(aanvallers.size() >=4){
                         lowestStats = 100000;
 			for (int p = 0; p<aanvallers.size(); p++){
 			
@@ -342,7 +405,11 @@ public class Team {
 			}
                         
 			aanvallers.remove(toBeEliminated);
-		} while(aanvallers.size()>3);
+
+		} 
+		System.out.println("Aanvallers: "+aanvallers.size()+"aantal" + aanvallers.toString());
+
+		
 		
 		
 		l.setAanvallers(aanvallers);
@@ -351,7 +418,8 @@ public class Team {
 		l.setKeeper(keepers.get(0));
 		
 		return l;
-	}
+
+}
         /**
          * Method to get a Player by name, String must be in Player format.
          * @param s The string containing the name.

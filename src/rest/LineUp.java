@@ -57,7 +57,7 @@ public class LineUp {
                  for(int i = 0; i<3; i++){
                 res += this.getAanvallers().get(i).getShirtNumber()+", ";
             }
-            
+            res = res.substring(0, res.length()-2);
             return res;
         }
 

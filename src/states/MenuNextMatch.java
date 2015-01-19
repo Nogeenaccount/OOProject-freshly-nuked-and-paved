@@ -54,7 +54,7 @@ public class MenuNextMatch extends State {
 		array2[i] = array1[i].toUpperCase();
 	    }
 	}
-	//System.out.println("Next round matches determined by: array2 //filler");
+	System.out.println("Next round matches determined by: array2 //filler");
 	String[] array3 = teamsToShow();
         String[][] data = new String[10][];
 	for (int i = 0; i < 20; i = i + 2) {
@@ -62,13 +62,13 @@ public class MenuNextMatch extends State {
 	}
 	String[] columnNames = {"Home team", "", "Away team"};
 
+       
         
 	//Next matches table
 	table = new JTable(data, columnNames);
 	c.weightx = 0.5;
-	c.gridx = 1;
+	c.gridx = 2;
 	c.gridy = 3;
-        c.gridwidth = 2;
 	layout.setConstraints(table, c);
 	table.setPreferredSize(new Dimension(400, 160));
 	table.getColumnModel().getColumn(0).setPreferredWidth(170);
@@ -96,14 +96,14 @@ public class MenuNextMatch extends State {
         
 	//Advance
 	c.weightx = 0.5;
-	c.gridx = 1;
+	c.gridx = 2;
 	c.gridy = 4;
 	createButton(buttonAdvance, "", c, layout);
 	attachStateChanger(buttonAdvance, new MenuMatchScreen());
 
 	//Go back
 	c.weightx = 0.5;
-	c.gridx = 1;
+	c.gridx = 2;
 	c.gridy = 5;
 	createButton(buttonBack, "", c, layout);
 	attachStateChanger(buttonBack, new MenuBetweenRounds());
